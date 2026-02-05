@@ -12,7 +12,7 @@
 
 WITH 
 -- ============================================================================
--- STEP 1: ZSGD Sources (LIS, DDA, CHA, LNS, CHS)
+-- STEP 1-5: Source Extractions with Databricks Date Logic
 -- ============================================================================
 zsgd_base AS (
     SELECT
@@ -28,25 +28,22 @@ zsgd_base AS (
         END AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+        {{ to_databricks_date(edw_process_date) }} AS process_date
     FROM {{ source('edw_views', 'zsgd_acct') }} zsgd
     LEFT JOIN {{ source('edw_views', 'zsgd_acct_loan') }} zsgd_al
         ON zsgd.acct_key = zsgd_al.acct_key
-        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+        AND {{ to_databricks_date(edw_process_date) }} 
             BETWEEN zsgd_al.from_date AND zsgd_al.to_date
     LEFT JOIN {{ source('edw_views', 'zsgd_acct') }} zsgd_a
         ON zsgd.acct_key = zsgd_a.acct_key
         AND zsgd.src_sys_code = 'CHS'
-        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+        AND {{ to_databricks_date(edw_process_date) }} 
             BETWEEN zsgd_a.from_date AND zsgd_a.to_date
-    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+    WHERE {{ to_databricks_date(edw_process_date) }} 
         BETWEEN zsgd.from_date AND zsgd.to_date
         AND zsgd.src_sys_code IN ('LIS', 'DDA', 'CHA', 'LNS', 'CHS')
 ),
 
--- ============================================================================
--- STEP 2: RAMS/RMS Source
--- ============================================================================
 rms_base AS (
     SELECT
         zrms.armt_key,
@@ -55,19 +52,16 @@ rms_base AS (
         'Repayment_Type' AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+        {{ to_databricks_date(edw_process_date) }} AS process_date
     FROM {{ source('edw_views', 'zrms_account') }} zrms
     LEFT JOIN {{ source('edw_views', 'zrms_loan_account') }} zrms_la
         ON zrms.account_id = zrms_la.account_id
-        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+        AND {{ to_databricks_date(edw_process_date) }} 
             BETWEEN zrms_la.from_date AND zrms_la.to_date
-    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+    WHERE {{ to_databricks_date(edw_process_date) }} 
         BETWEEN zrms.from_date AND zrms.to_date
 ),
 
--- ============================================================================
--- STEP 3: MB/MU-001 Source (Product-based inference)
--- ============================================================================
 mu001_base AS (
     SELECT
         zaam.armt_key,
@@ -76,20 +70,17 @@ mu001_base AS (
         'Product_Code' AS src_column,
         zmlm.product_code AS mu001_product_code,
         zmlm.system_product_type AS mu001_system_product_type,
-        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+        {{ to_databricks_date(edw_process_date) }} AS process_date
     FROM {{ source('edw_views', 'zwgd_all_acct_m_hist') }} zaam
     LEFT JOIN {{ source('edw_views', 'zwgd_mrtg_loan_m_hist') }} zmlm
         ON zaam.account_id = zmlm.account_id
-        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+        AND {{ to_databricks_date(edw_process_date) }} 
             BETWEEN zmlm.from_date AND zmlm.to_date
     WHERE zaam.source_system_code = 'MB'
-        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+        AND {{ to_databricks_date(edw_process_date) }} 
             BETWEEN zaam.from_date AND zaam.to_date
 ),
 
--- ============================================================================
--- STEP 4: Nexus/ML-005 Source
--- ============================================================================
 nexus_base AS (
     SELECT
         znex.armt_key,
@@ -98,19 +89,16 @@ nexus_base AS (
         'Repay_Type_Code' AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+        {{ to_databricks_date(edw_process_date) }} AS process_date
     FROM {{ source('sgdw_views', 'znex_account') }} znex
     LEFT JOIN {{ source('sgdw_views', 'znex_loan') }} znex_l
         ON znex.account_id = znex_l.account_id
-        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+        AND {{ to_databricks_date(edw_process_date) }} 
             BETWEEN znex_l.from_date AND znex_l.to_date
-    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+    WHERE {{ to_databricks_date(edw_process_date) }} 
         BETWEEN znex.from_date AND znex.to_date
 ),
 
--- ============================================================================
--- STEP 5: TBK Source
--- ============================================================================
 tbk_base AS (
     SELECT
         ztbk.armt_key,
@@ -119,124 +107,76 @@ tbk_base AS (
         'Repay_Type_Code' AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+        {{ to_databricks_date(edw_process_date) }} AS process_date
     FROM {{ source('edw_views', 'ztbk_account') }} ztbk
-    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
+    WHERE {{ to_databricks_date(edw_process_date) }} 
         BETWEEN ztbk.from_date AND ztbk.to_date
 ),
 
 -- ============================================================================
--- STEP 6: Union all source systems
+-- STEP 6: Union
 -- ============================================================================
 all_sources AS (
-    SELECT * FROM zsgd_base
-    UNION ALL
-    SELECT * FROM rms_base
-    UNION ALL
-    SELECT * FROM mu001_base
-    UNION ALL
-    SELECT * FROM nexus_base
-    UNION ALL
+    SELECT * FROM zsgd_base UNION ALL
+    SELECT * FROM rms_base UNION ALL
+    SELECT * FROM mu001_base UNION ALL
+    SELECT * FROM nexus_base UNION ALL
     SELECT * FROM tbk_base
 ),
 
 -- ============================================================================
--- STEP 7: Apply business rules and derive Loan_Repayment_Type
+-- STEP 7: Business Rules (The derived CTE)
 -- ============================================================================
 derived AS (
     SELECT
-        b.armt_key,
-        b.src_sys_code,
-        b.src_repay_type_code,
-        b.src_column,
-        b.mu001_product_code,
-        b.mu001_system_product_type,
-        b.process_date,
-        
-        -- Reference mapping lookups
+        b.*,
+        -- Reference mapping lookups (passing these through solves the error)
         rrtm.repay_type_code AS mapped_repay_type,
-        rctm.repay_type_code AS chs_mapped_repay_type,
         COALESCE(covid.covid_efs_repay_type_code, '') AS covid_carryover_value,
         
-        -- ====================================================================
-        -- BUSINESS RULES APPLICATION
-        -- ====================================================================
         CASE
-            WHEN b.src_sys_code = 'CHS' 
-                 AND COALESCE(rctm.repay_type_code, '') <> ''
-            THEN rctm.repay_type_code
-            
-            WHEN b.src_sys_code = 'MU-001'
-                 AND b.mu001_product_code IN ('11752', '11753', '11758')
-                 AND b.mu001_system_product_type = 'EAL'
-                 AND COALESCE(rrtm.repay_type_code, '') = ''
-            THEN 'Interest Only'
-            
-            WHEN b.src_sys_code = 'MU-001'
-                 AND b.mu001_product_code = '11206'
-                 AND COALESCE(rrtm.repay_type_code, '') = ''
-            THEN 'Interest Only'
-            
-            WHEN b.src_sys_code = 'LIS'
-                 AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''
-            THEN covid.covid_efs_repay_type_code
-            
-            WHEN b.src_sys_code <> 'CHS'
-                 AND COALESCE(rrtm.repay_type_code, '') <> ''
-            THEN rrtm.repay_type_code
-            
+            WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''
+                THEN rctm.repay_type_code
+            WHEN b.src_sys_code = 'MU-001' AND b.mu001_product_code IN ('11752', '11753', '11758') AND b.mu001_system_product_type = 'EAL'
+                THEN 'Interest Only'
+            WHEN b.src_sys_code = 'MU-001' AND b.mu001_product_code = '11206'
+                THEN 'Interest Only'
+            WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''
+                THEN covid.covid_efs_repay_type_code
+            WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> ''
+                THEN rrtm.repay_type_code
             ELSE 'Amortising'
         END AS loan_repayment_type,
         
         CASE
-            WHEN b.src_sys_code = 'CHS' 
-                 AND COALESCE(rctm.repay_type_code, '') <> ''
-            THEN 'Rule 1 - CHS OD_Type Mapping'
-            
-            WHEN b.src_sys_code = 'MU-001'
-                 AND b.mu001_product_code IN ('11752', '11753', '11758')
-                 AND b.mu001_system_product_type = 'EAL'
-                 AND COALESCE(rrtm.repay_type_code, '') = ''
-            THEN 'Rule 2 - MU-001 EAL Product Default'
-            
-            WHEN b.src_sys_code = 'MU-001'
-                 AND b.mu001_product_code = '11206'
-                 AND COALESCE(rrtm.repay_type_code, '') = ''
-            THEN 'Rule 3 - MU-001 Product 11206 Default'
-            
-            WHEN b.src_sys_code = 'LIS'
-                 AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''
-            THEN 'Rule 4 - COVID Carryover'
-            
-            WHEN b.src_sys_code <> 'CHS'
-                 AND COALESCE(rrtm.repay_type_code, '') <> ''
-            THEN 'Rule 5 - Reference Mapping'
-            
+            WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> '' THEN 'Rule 1 - CHS OD_Type Mapping'
+            WHEN b.src_sys_code = 'MU-001' AND b.mu001_product_code IN ('11752', '11753', '11758') AND b.mu001_system_product_type = 'EAL' THEN 'Rule 2 - MU-001 EAL Product Default'
+            WHEN b.src_sys_code = 'MU-001' AND b.mu001_product_code = '11206' THEN 'Rule 3 - MU-001 Product 11206 Default'
+            WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> '' THEN 'Rule 4 - COVID Carryover'
+            WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> '' THEN 'Rule 5 - Reference Mapping'
             ELSE 'Rule 99 - Default Amortising'
         END AS applied_rule
         
     FROM all_sources b
-    
     LEFT JOIN {{ source('efs', 'refs_repay_type_map') }} rrtm
         ON b.src_sys_code = rrtm.src_sys_code
         AND b.src_repay_type_code = rrtm.src_repay_type_code
         AND rrtm.src_column = 'Repay_Type_Code'
-        AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') 
-            BETWEEN rrtm.from_date AND rrtm.to_date
-    
+        AND {{ to_databricks_date(ref_effective_date) }} BETWEEN rrtm.from_date AND rrtm.to_date
     LEFT JOIN {{ source('efs', 'refs_repay_type_map') }} rctm
         ON b.src_sys_code = rctm.src_sys_code
         AND b.src_repay_type_code = rctm.src_repay_type_code
         AND rctm.src_column = 'OD_Type'
         AND b.src_sys_code = 'CHS'
-        AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') 
-            BETWEEN rctm.from_date AND rctm.to_date
-    
+        AND {{ to_databricks_date(ref_effective_date) }} BETWEEN rctm.from_date AND rctm.to_date
     LEFT JOIN {{ source('efs', 'refs_covid_repay_type') }} covid
         ON b.armt_key = covid.armt_key
         AND b.src_sys_code = 'LIS'
 )
 
+-- ============================================================================
+-- FINAL SELECT: All columns are now visible from the 'derived' CTE
+-- ============================================================================
 SELECT
     armt_key,
     src_sys_code AS source_system_code,
