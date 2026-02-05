@@ -125,15 +125,14 @@ all_sources AS (
 ),
 
 -- ============================================================================
--- STEP 7: Business Rules (Resolving columns inside the CTE)
+-- STEP 7: Business Rules (Fixing the Scoping Error)
 -- ============================================================================
 derived AS (
     SELECT
         b.*,
-        rrtm.repay_type_code AS mapped_repay_type,
+        rrtm.repay_type_code AS mapped_repay_type, -- Explicitly selecting to expose it
         COALESCE(covid.covid_efs_repay_type_code, '') AS covid_carryover_value,
         
-        -- Derived Repayment Type Logic
         CASE
             WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''
                 THEN rctm.repay_type_code
@@ -148,7 +147,6 @@ derived AS (
             ELSE 'Amortising'
         END AS loan_repayment_type,
         
-        -- Rule Tracking Logic
         CASE
             WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> '' THEN 'Rule 1 - CHS OD_Type Mapping'
             WHEN b.src_sys_code = 'MU-001' AND b.mu001_product_code IN ('11752', '11753', '11758') AND b.mu001_system_product_type = 'EAL' THEN 'Rule 2 - MU-001 EAL Product Default'
@@ -176,7 +174,7 @@ derived AS (
 )
 
 -- ============================================================================
--- FINAL SELECT: mapped_repay_type is now available from the 'derived' CTE
+-- FINAL SELECT
 -- ============================================================================
 SELECT
     armt_key,
