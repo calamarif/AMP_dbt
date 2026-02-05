@@ -1,6 +1,7 @@
 {{
     config(
         materialized='table',
+        schema='callum',
         tags=['loan_repayment_type', 'data_lineage'],
         description='Derives Loan_Repayment_Type from ultimate source systems using documented business rules'
     )
