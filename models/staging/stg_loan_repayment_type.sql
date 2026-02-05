@@ -1,7 +1,7 @@
 {{
     config(
         materialized='table',
-        schema='westpac',
+        schema='Westpac',
         tags=['loan_repayment_type', 'data_lineage'],
         description='Derives Loan_Repayment_Type from ultimate source systems using documented business rules'
     )
@@ -12,7 +12,7 @@
 
 WITH 
 -- ============================================================================
--- STEP 1-5: Source Extractions with Databricks Date Logic
+-- STEP 1-5: Source Extractions using direct Databricks to_date logic
 -- ============================================================================
 zsgd_base AS (
     SELECT
@@ -28,18 +28,18 @@ zsgd_base AS (
         END AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        {{ to_databricks_date(edw_process_date) }} AS process_date
+        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
     FROM {{ source('edw_views', 'zsgd_acct') }} zsgd
     LEFT JOIN {{ source('edw_views', 'zsgd_acct_loan') }} zsgd_al
         ON zsgd.acct_key = zsgd_al.acct_key
-        AND {{ to_databricks_date(edw_process_date) }} 
+        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
             BETWEEN zsgd_al.from_date AND zsgd_al.to_date
     LEFT JOIN {{ source('edw_views', 'zsgd_acct') }} zsgd_a
         ON zsgd.acct_key = zsgd_a.acct_key
         AND zsgd.src_sys_code = 'CHS'
-        AND {{ to_databricks_date(edw_process_date) }} 
+        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
             BETWEEN zsgd_a.from_date AND zsgd_a.to_date
-    WHERE {{ to_databricks_date(edw_process_date) }} 
+    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
         BETWEEN zsgd.from_date AND zsgd.to_date
         AND zsgd.src_sys_code IN ('LIS', 'DDA', 'CHA', 'LNS', 'CHS')
 ),
@@ -52,13 +52,13 @@ rms_base AS (
         'Repayment_Type' AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        {{ to_databricks_date(edw_process_date) }} AS process_date
+        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
     FROM {{ source('edw_views', 'zrms_account') }} zrms
     LEFT JOIN {{ source('edw_views', 'zrms_loan_account') }} zrms_la
         ON zrms.account_id = zrms_la.account_id
-        AND {{ to_databricks_date(edw_process_date) }} 
+        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
             BETWEEN zrms_la.from_date AND zrms_la.to_date
-    WHERE {{ to_databricks_date(edw_process_date) }} 
+    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
         BETWEEN zrms.from_date AND zrms.to_date
 ),
 
@@ -70,14 +70,14 @@ mu001_base AS (
         'Product_Code' AS src_column,
         zmlm.product_code AS mu001_product_code,
         zmlm.system_product_type AS mu001_system_product_type,
-        {{ to_databricks_date(edw_process_date) }} AS process_date
+        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
     FROM {{ source('edw_views', 'zwgd_all_acct_m_hist') }} zaam
     LEFT JOIN {{ source('edw_views', 'zwgd_mrtg_loan_m_hist') }} zmlm
         ON zaam.account_id = zmlm.account_id
-        AND {{ to_databricks_date(edw_process_date) }} 
+        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
             BETWEEN zmlm.from_date AND zmlm.to_date
     WHERE zaam.source_system_code = 'MB'
-        AND {{ to_databricks_date(edw_process_date) }} 
+        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
             BETWEEN zaam.from_date AND zaam.to_date
 ),
 
@@ -89,13 +89,13 @@ nexus_base AS (
         'Repay_Type_Code' AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        {{ to_databricks_date(edw_process_date) }} AS process_date
+        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
     FROM {{ source('sgdw_views', 'znex_account') }} znex
     LEFT JOIN {{ source('sgdw_views', 'znex_loan') }} znex_l
         ON znex.account_id = znex_l.account_id
-        AND {{ to_databricks_date(edw_process_date) }} 
+        AND to_date('{{ edw_process_date }}', 'yyyyMMdd') 
             BETWEEN znex_l.from_date AND znex_l.to_date
-    WHERE {{ to_databricks_date(edw_process_date) }} 
+    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
         BETWEEN znex.from_date AND znex.to_date
 ),
 
@@ -107,9 +107,9 @@ tbk_base AS (
         'Repay_Type_Code' AS src_column,
         CAST(NULL AS STRING) AS mu001_product_code,
         CAST(NULL AS STRING) AS mu001_system_product_type,
-        {{ to_databricks_date(edw_process_date) }} AS process_date
+        to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
     FROM {{ source('edw_views', 'ztbk_account') }} ztbk
-    WHERE {{ to_databricks_date(edw_process_date) }} 
+    WHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') 
         BETWEEN ztbk.from_date AND ztbk.to_date
 ),
 
@@ -125,15 +125,15 @@ all_sources AS (
 ),
 
 -- ============================================================================
--- STEP 7: Business Rules (The derived CTE)
+-- STEP 7: Business Rules (Resolving columns inside the CTE)
 -- ============================================================================
 derived AS (
     SELECT
         b.*,
-        -- Reference mapping lookups (passing these through solves the error)
         rrtm.repay_type_code AS mapped_repay_type,
         COALESCE(covid.covid_efs_repay_type_code, '') AS covid_carryover_value,
         
+        -- Derived Repayment Type Logic
         CASE
             WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''
                 THEN rctm.repay_type_code
@@ -148,6 +148,7 @@ derived AS (
             ELSE 'Amortising'
         END AS loan_repayment_type,
         
+        -- Rule Tracking Logic
         CASE
             WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> '' THEN 'Rule 1 - CHS OD_Type Mapping'
             WHEN b.src_sys_code = 'MU-001' AND b.mu001_product_code IN ('11752', '11753', '11758') AND b.mu001_system_product_type = 'EAL' THEN 'Rule 2 - MU-001 EAL Product Default'
@@ -162,20 +163,20 @@ derived AS (
         ON b.src_sys_code = rrtm.src_sys_code
         AND b.src_repay_type_code = rrtm.src_repay_type_code
         AND rrtm.src_column = 'Repay_Type_Code'
-        AND {{ to_databricks_date(ref_effective_date) }} BETWEEN rrtm.from_date AND rrtm.to_date
+        AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rrtm.from_date AND rrtm.to_date
     LEFT JOIN {{ source('efs', 'refs_repay_type_map') }} rctm
         ON b.src_sys_code = rctm.src_sys_code
         AND b.src_repay_type_code = rctm.src_repay_type_code
         AND rctm.src_column = 'OD_Type'
         AND b.src_sys_code = 'CHS'
-        AND {{ to_databricks_date(ref_effective_date) }} BETWEEN rctm.from_date AND rctm.to_date
+        AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rctm.from_date AND rctm.to_date
     LEFT JOIN {{ source('efs', 'refs_covid_repay_type') }} covid
         ON b.armt_key = covid.armt_key
         AND b.src_sys_code = 'LIS'
 )
 
 -- ============================================================================
--- FINAL SELECT: All columns are now visible from the 'derived' CTE
+-- FINAL SELECT: mapped_repay_type is now available from the 'derived' CTE
 -- ============================================================================
 SELECT
     armt_key,
