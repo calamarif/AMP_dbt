@@ -4,7 +4,7 @@ sources:
   # =============================================================================
   # EDW Views (EWP1VIEWA)
   # =============================================================================
-  - name: callum
+  - name: edw_views
     #database: EWP1VIEWA
     database: westpac
     description: "EDW View layer - Enterprise Data Warehouse views"
@@ -104,9 +104,9 @@ sources:
   # =============================================================================
   # SGDW Views (DWPVIEWA)
   # =============================================================================
-  - name: callum
+  - name: sgdw_views
     #database: DWPVIEWA
-    database: westpac
+    database: Callum
     description: "SGDW View layer - St.George Data Warehouse views"
     tables:
       - name: znex_account
@@ -136,9 +136,9 @@ sources:
   # =============================================================================
   # EFS Schema (EWP1AEFS)
   # =============================================================================
-  - name: callum
+  - name: efs
     #database: EWP1AEFS
-    database: westpac
+    database: Callum
     description: "EFS Production schema - Reference and target tables"
     tables:
       - name: refs_repay_type_map
