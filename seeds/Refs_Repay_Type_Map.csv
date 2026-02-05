@@ -1,0 +1,28 @@
+Src_Sys_Code,Src_Repay_Type_Code,Src_Column,Repay_Type_Code,From_Date,To_Date
+LIS,PI,Repay_Type_Code,Amortising,2020-01-01,2099-12-31
+LIS,IO,Repay_Type_Code,Interest Only,2020-01-01,2099-12-31
+LIS,REV,Repay_Type_Code,Revolving,2020-01-01,2099-12-31
+LIS,P&I,Repay_Type_Code,Amortising,2020-01-01,2099-12-31
+LIS,INT,Repay_Type_Code,Interest Only,2020-01-01,2099-12-31
+DDA,STD,Repay_Type_Code,Amortising,2020-01-01,2099-12-31
+DDA,INT_ONLY,Repay_Type_Code,Interest Only,2020-01-01,2099-12-31
+DDA,STANDARD,Repay_Type_Code,Amortising,2020-01-01,2099-12-31
+DDA,REVOLVE,Repay_Type_Code,Revolving,2020-01-01,2099-12-31
+CHS,OD_STD,OD_Type,Revolving,2020-01-01,2099-12-31
+CHS,OD_BUS,OD_Type,Revolving,2020-01-01,2099-12-31
+CHS,OD_PREM,OD_Type,Revolving,2020-01-01,2099-12-31
+CHS,OD_FLEX,OD_Type,Revolving,2020-01-01,2099-12-31
+CHA,AMT,Repay_Type_Code,Amortising,2020-01-01,2099-12-31
+CHA,IO,Repay_Type_Code,Interest Only,2020-01-01,2099-12-31
+LNS,AMT,Repay_Type_Code,Amortising,2020-01-01,2099-12-31
+LNS,IO,Repay_Type_Code,Interest Only,2020-01-01,2099-12-31
+RMS,P&I,Repayment_Type,Amortising,2020-01-01,2099-12-31
+RMS,I/O,Repayment_Type,Interest Only,2020-01-01,2099-12-31
+RMS,PRINCIPAL_INTEREST,Repayment_Type,Amortising,2020-01-01,2099-12-31
+RMS,INTEREST_ONLY,Repayment_Type,Interest Only,2020-01-01,2099-12-31
+ML-005,MARGIN,Repay_Type_Code,Revolving,2020-01-01,2099-12-31
+ML-005,INT,Repay_Type_Code,Interest Only,2020-01-01,2099-12-31
+ML-005,REV,Repay_Type_Code,Revolving,2020-01-01,2099-12-31
+TBK,AMT,Repay_Type_Code,Amortising,2020-01-01,2099-12-31
+TBK,REV,Repay_Type_Code,Revolving,2020-01-01,2099-12-31
+TBK,IO,Repay_Type_Code,Interest Only,2020-01-01,2099-12-31
