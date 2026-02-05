@@ -5,7 +5,8 @@ sources:
   # EDW Views (EWP1VIEWA)
   # =============================================================================
   - name: edw_views
-    database: EWP1VIEWA
+    #database: EWP1VIEWA
+    database: Callum
     description: "EDW View layer - Enterprise Data Warehouse views"
     tables:
       - name: zsgd_acct
@@ -104,7 +105,8 @@ sources:
   # SGDW Views (DWPVIEWA)
   # =============================================================================
   - name: sgdw_views
-    database: DWPVIEWA
+    #database: DWPVIEWA
+    database: Callum
     description: "SGDW View layer - St.George Data Warehouse views"
     tables:
       - name: znex_account
@@ -135,7 +137,8 @@ sources:
   # EFS Schema (EWP1AEFS)
   # =============================================================================
   - name: efs
-    database: EWP1AEFS
+    #database: EWP1AEFS
+    database: Callum
     description: "EFS Production schema - Reference and target tables"
     tables:
       - name: refs_repay_type_map
