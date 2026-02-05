@@ -106,7 +106,7 @@ sources:
   # =============================================================================
   - name: sgdw_views
     #database: DWPVIEWA
-    database: Callum
+    database: westpac
     description: "SGDW View layer - St.George Data Warehouse views"
     tables:
       - name: znex_account
@@ -138,7 +138,7 @@ sources:
   # =============================================================================
   - name: efs
     #database: EWP1AEFS
-    database: Callum
+    database: westpac
     description: "EFS Production schema - Reference and target tables"
     tables:
       - name: refs_repay_type_map
