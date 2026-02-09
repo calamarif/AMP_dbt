@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "tbk_base__tbk_base"
+  tags:
+  - "prophecy_temp"

@@ -11,7 +11,13 @@
       }
     },
     "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false
+    "publishDiagnosticMetrics" : false,
+    "processesVsModelFiles" : {
+      "tbk_base_jrYO9cj8" : "models/tbk_base/tbk_base__tbk_base.sql",
+      "tbk_base##xoi9dIup" : "models/tbk_base/tbk_base__tbk_base.sql",
+      "filtered_tbk_acc##GwkbSmYd" : "models/tbk_base/tbk_base__tbk_base.sql",
+      "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu" : "models/tbk_base/tbk_base__tbk_base.sql"
+    }
   },
   "processes" : {
     "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu" : {
@@ -34,18 +40,121 @@
         }
       },
       "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "evW3WJub",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "filtered_tbk_acc##GwkbSmYd" : {
+      "id" : "filtered_tbk_acc##GwkbSmYd",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "filtered_tbk_accounts",
+        "x" : -220,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN ztbk.From_Date AND ztbk.To_Date"
+        }
+      },
+      "ports" : {
         "inputs" : [ {
-          "id" : "HcUHP-2auTbTQr8twaPHT$$qcK-nkDb7jMHtXElDSQLl",
-          "slug" : "in"
+          "id" : "P8clMnyY",
+          "slug" : "ztbk"
         } ],
         "outputs" : [ {
-          "id" : "dysESZD65idpyC9meer1G$$c3yU-1nNPR3qkqPPOc4Yo",
+          "id" : "erEqyvso",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "tbk_base##xoi9dIup" : {
+      "id" : "tbk_base##xoi9dIup",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "tbk_base",
+        "x" : -20,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "ztbk.Armt_Key"
+          },
+          "alias" : "armt_key",
+          "_row_id" : "1437809898"
+        }, {
+          "expression" : {
+            "expression" : "'TBK'"
+          },
+          "alias" : "src_sys_code",
+          "_row_id" : "263677967"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(ztbk.Repay_Type_Code, '')"
+          },
+          "alias" : "src_repay_type_code",
+          "_row_id" : "429193836"
+        }, {
+          "expression" : {
+            "expression" : "'Repay_Type_Code'"
+          },
+          "alias" : "src_column",
+          "_row_id" : "566771761"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_product_code",
+          "_row_id" : "524739963"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_system_product_type",
+          "_row_id" : "86315760"
+        }, {
+          "expression" : {
+            "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd')"
+          },
+          "alias" : "process_date",
+          "_row_id" : "835654199"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "rrMlq12O",
+          "slug" : "ztbk"
+        } ],
+        "outputs" : [ {
+          "id" : "jrYO9cj8",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false
       }
     }
   },
-  "connections" : [ ],
+  "connections" : [ {
+    "id" : "ZHqKxMU8",
+    "source" : "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu",
+    "sourcePort" : "evW3WJub",
+    "target" : "filtered_tbk_acc##GwkbSmYd",
+    "targetPort" : "P8clMnyY"
+  }, {
+    "id" : "Vd6kDIJB",
+    "source" : "filtered_tbk_acc##GwkbSmYd",
+    "sourcePort" : "erEqyvso",
+    "target" : "tbk_base##xoi9dIup",
+    "targetPort" : "rrMlq12O"
+  } ],
   "component" : "Pipeline"
 }

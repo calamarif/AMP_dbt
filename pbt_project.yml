@@ -1036,5 +1036,7 @@ sqlOrchestratorPipelines:
     files:
     - .prophecy/ide/pipelines/tbk_base.json
     - pipelines/tbk_base.py
+    - models/tbk_base/tbk_base__tbk_base.sql
+    - models/tbk_base/schema.yml
     createdAt: '2026-02-09 06:29:05'
 sqlBusinessApps: {}

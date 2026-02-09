@@ -1,7 +1,2 @@
 with DAG():
-    ztbk_account = Task(
-        task_id = "ztbk_account", 
-        component = "Dataset", 
-        writeOptions = {"writeMode" : "overwrite"}, 
-        table = {"name" : "ztbk_account", "sourceName" : "westpac_edw_views", "sourceType" : "Table"}
-    )
+    tbk_base__tbk_base = Task(task_id = "tbk_base__tbk_base", component = "Model", modelName = "tbk_base__tbk_base")

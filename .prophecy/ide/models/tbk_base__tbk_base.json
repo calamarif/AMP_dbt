@@ -1,0 +1,197 @@
+{
+  "id" : "tbk_base__tbk_base",
+  "metainfo" : {
+    "label" : "tbk_base__tbk_base",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"main\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "tbk_base_jrYO9cj8" : {
+      "id" : "tbk_base_jrYO9cj8",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "tbk_base"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM tbk_base\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "tbk_base##xoi9dIup" : {
+      "id" : "tbk_base##xoi9dIup",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "tbk_base",
+        "x" : -20,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "ztbk.Armt_Key"
+          },
+          "alias" : "armt_key",
+          "_row_id" : "1437809898"
+        }, {
+          "expression" : {
+            "expression" : "'TBK'"
+          },
+          "alias" : "src_sys_code",
+          "_row_id" : "263677967"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(ztbk.Repay_Type_Code, '')"
+          },
+          "alias" : "src_repay_type_code",
+          "_row_id" : "429193836"
+        }, {
+          "expression" : {
+            "expression" : "'Repay_Type_Code'"
+          },
+          "alias" : "src_column",
+          "_row_id" : "566771761"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_product_code",
+          "_row_id" : "524739963"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_system_product_type",
+          "_row_id" : "86315760"
+        }, {
+          "expression" : {
+            "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd')"
+          },
+          "alias" : "process_date",
+          "_row_id" : "835654199"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "rrMlq12O",
+          "slug" : "ztbk"
+        } ],
+        "outputs" : [ {
+          "id" : "jrYO9cj8",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "filtered_tbk_acc##GwkbSmYd" : {
+      "id" : "filtered_tbk_acc##GwkbSmYd",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "filtered_tbk_accounts",
+        "x" : -220,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN ztbk.From_Date AND ztbk.To_Date"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "P8clMnyY",
+          "slug" : "ztbk"
+        } ],
+        "outputs" : [ {
+          "id" : "erEqyvso",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu" : {
+      "id" : "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "ztbk_account",
+        "x" : -420,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "ztbk_account",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "evW3WJub",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_tbk_base##xoi9dIup_jrYO9cj8_tbk_base_jrYO9cj8",
+    "source" : "tbk_base##xoi9dIup",
+    "sourcePort" : "jrYO9cj8",
+    "target" : "tbk_base_jrYO9cj8",
+    "targetPort" : "input_port_0"
+  }, {
+    "id" : "Vd6kDIJB",
+    "source" : "filtered_tbk_acc##GwkbSmYd",
+    "sourcePort" : "erEqyvso",
+    "target" : "tbk_base##xoi9dIup",
+    "targetPort" : "rrMlq12O"
+  }, {
+    "id" : "ZHqKxMU8",
+    "source" : "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu",
+    "sourcePort" : "evW3WJub",
+    "target" : "filtered_tbk_acc##GwkbSmYd",
+    "targetPort" : "P8clMnyY"
+  } ],
+  "component" : "Model"
+}

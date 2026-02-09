@@ -11,36 +11,38 @@
       }
     },
     "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false
+    "publishDiagnosticMetrics" : false,
+    "processesVsModelFiles" : {
+      "tbk_base_jrYO9cj8" : "models/tbk_base/tbk_base__tbk_base.sql",
+      "tbk_base##xoi9dIup" : "models/tbk_base/tbk_base__tbk_base.sql",
+      "filtered_tbk_acc##GwkbSmYd" : "models/tbk_base/tbk_base__tbk_base.sql",
+      "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu" : "models/tbk_base/tbk_base__tbk_base.sql"
+    }
   },
   "processes" : {
-    "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu" : {
-      "id" : "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu",
-      "component" : "Dataset",
+    "tbk_base##xoi9dIup" : {
+      "id" : "tbk_base##xoi9dIup",
+      "component" : "Model",
       "metadata" : {
-        "label" : "ztbk_account",
-        "x" : -420,
-        "y" : -140,
+        "label" : "tbk_base__tbk_base",
         "phase" : 0
       },
       "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "ztbk_account",
-          "sourceName" : "westpac_edw_views",
-          "sourceType" : "Table"
-        }
+        "modelName" : "tbk_base__tbk_base"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "tbk_base_jrYO9cj8", "tbk_base##xoi9dIup", "filtered_tbk_acc##GwkbSmYd", "axqK4zySN_N7H_s0fWuqC$$MIjNWrQsg79rKGTbz0VFu" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "HcUHP-2auTbTQr8twaPHT$$qcK-nkDb7jMHtXElDSQLl",
-          "slug" : "in"
+          "id" : "tbk_base__tbk_base_in_0",
+          "slug" : "in_0"
         } ],
         "outputs" : [ {
-          "id" : "dysESZD65idpyC9meer1G$$c3yU-1nNPR3qkqPPOc4Yo",
-          "slug" : "out"
+          "id" : "tbk_base__tbk_base_out_0",
+          "slug" : "out_0"
         } ],
         "isCustomOutputSchema" : false
       }
