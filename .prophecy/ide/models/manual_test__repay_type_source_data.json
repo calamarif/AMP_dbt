@@ -28,7 +28,7 @@
         "phase" : 0
       },
       "properties" : {
-        "columnsSelector" : [ ],
+        "columnsSelector" : [ "mbwFvuoD##zsgd_Armt_Key", "mbwFvuoD##zsgd_Src_Sys_Code", "mbwFvuoD##zsgd_a_OD_Type", "mbwFvuoD##zsgd_al_Repay_Type_Code" ],
         "expressions" : [ {
           "expression" : {
             "expression" : "zsgd_Armt_Key"
@@ -96,7 +96,7 @@
         "phase" : 0
       },
       "properties" : {
-        "columnsSelector" : [ ],
+        "columnsSelector" : [ "q5q7im2C##zsgd_From_Date", "q5q7im2C##zsgd_To_Date", "q5q7im2C##zsgd_Src_Sys_Code" ],
         "condition" : {
           "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_From_Date AND zsgd_To_Date\nAND zsgd_Src_Sys_Code IN ('LIS', 'DDA', 'CHA', 'LNS', 'CHS')"
         }
@@ -246,7 +246,7 @@
           "_row_id" : "1265169433"
         } ],
         "activeTab" : "conditions",
-        "columnsSelector" : [ ],
+        "columnsSelector" : [ "FZrxMTWj##Acct_Key", "u6UBGjPZ##Acct_Key", "u6UBGjPZ##From_Date", "u6UBGjPZ##To_Date", "Ys3eZari##Acct_Key", "FZrxMTWj##Src_Sys_Code", "Ys3eZari##From_Date", "Ys3eZari##To_Date", "FZrxMTWj##From_Date", "FZrxMTWj##To_Date", "FZrxMTWj##Acct_Key", "u6UBGjPZ##Acct_Key", "FZrxMTWj##Src_Sys_Code", "u6UBGjPZ##From_Date", "Ys3eZari##From_Date", "u6UBGjPZ##To_Date", "Ys3eZari##To_Date", "u6UBGjPZ##Repay_Type_Code", "Ys3eZari##OD_Type", "FZrxMTWj##Armt_Key", "Ys3eZari##Acct_Key" ],
         "headAlias" : "zsgd"
       },
       "ports" : {

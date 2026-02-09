@@ -105,23 +105,32 @@ sources:
         type: "Date"
     type: "table"
   - name: "zwgd_mrtg_loan_m_hist"
+    description: "Historical mortgage loan product information used for tracking product\
+      \ types and account associations over time."
     config:
       tags:
       - "pipeline:mu001_base"
     columns:
     - name: "Account_Id"
+      description: "Unique identifier for the mortgage loan account."
       dataType:
         type: "Bigint"
-    - name: "Armt_Key"
+    - name: "Product_Code"
+      description: "Code representing the specific mortgage product assigned to the\
+        \ account."
       dataType:
         type: "Bigint"
-    - name: "Source_System_Code"
+    - name: "System_Product_Type"
+      description: "Type of mortgage product as classified by the system."
       dataType:
         type: "String"
     - name: "From_Date"
+      description: "Date when the mortgage product became active on the account."
       dataType:
         type: "Date"
     - name: "To_Date"
+      description: "Date when the mortgage product was deactivated or changed on the\
+        \ account."
       dataType:
         type: "Date"
     type: "table"

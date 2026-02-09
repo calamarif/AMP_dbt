@@ -52,7 +52,9 @@
         "label" : "zwgd_mrtg_loan_m_hist",
         "x" : -1120,
         "y" : -280,
-        "phase" : 0
+        "phase" : 0,
+        "comment" : "Overwrites the historical mortgage loan data from the Westpac data warehouse for reporting and analysis.",
+        "autoUpdateComment" : true
       },
       "properties" : {
         "writeOptions" : {

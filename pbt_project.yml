@@ -875,19 +875,27 @@ sqlSources:
         - name: Account_Id
           dataType:
             type: Bigint
-        - name: Armt_Key
+          description: Unique identifier for the mortgage loan account.
+        - name: Product_Code
           dataType:
             type: Bigint
-        - name: Source_System_Code
+          description: Code representing the specific mortgage product assigned to
+            the account.
+        - name: System_Product_Type
           dataType:
             type: String
+          description: Type of mortgage product as classified by the system.
         - name: From_Date
           dataType:
             type: Date
+          description: Date when the mortgage product became active on the account.
         - name: To_Date
           dataType:
             type: Date
-      description: null
+          description: Date when the mortgage product was deactivated or changed on
+            the account.
+      description: Historical mortgage loan product information used for tracking
+        product types and account associations over time.
       author: callum@prophecy.io
       createdAt: '2026-02-09 03:56:39'
       tableType: table
