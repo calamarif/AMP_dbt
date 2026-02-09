@@ -11,67 +11,46 @@
       }
     },
     "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false
+    "publishDiagnosticMetrics" : false,
+    "processesVsModelFiles" : {
+      "repay_type_sourc##F5oSYeSA" : "models/manual_test/manual_test__repay_type_source_data.sql",
+      "filtered_source_##qWEhgFZd" : "models/manual_test/manual_test__repay_type_source_data.sql",
+      "zsgd_acct_loan##rKnnjyIG" : "models/manual_test/manual_test__repay_type_source_data.sql",
+      "source_repay_typ##iJRQ7HHC" : "models/manual_test/manual_test__repay_type_source_data.sql",
+      "repay_type_source_data_tTqkJ0M9" : "models/manual_test/manual_test__repay_type_source_data.sql",
+      "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX" : "models/manual_test/manual_test__repay_type_source_data.sql"
+    }
   },
   "processes" : {
-    "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX" : {
-      "id" : "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX",
-      "component" : "Dataset",
+    "repay_type_sourc##F5oSYeSA" : {
+      "id" : "repay_type_sourc##F5oSYeSA",
+      "component" : "Model",
       "metadata" : {
-        "label" : "zsgd_acct",
-        "x" : -980,
-        "y" : -280,
+        "label" : "manual_test__repay_type_source_data",
         "phase" : 0
       },
       "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "zsgd_acct",
-          "sourceName" : "westpac_edw_views",
-          "sourceType" : "Table"
-        }
+        "modelName" : "manual_test__repay_type_source_data"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "repay_type_source_data_tTqkJ0M9", "repay_type_sourc##F5oSYeSA", "filtered_source_##qWEhgFZd", "source_repay_typ##iJRQ7HHC", "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX", "zsgd_acct_loan##rKnnjyIG" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "zPPbdw3eQIevEgUkbWq4V$$2c7TFh1OP5dxa8Hdt8G8T",
-          "slug" : "in"
+          "id" : "manual_test__repay_type_source_data_in_0",
+          "slug" : "in_0"
+        }, {
+          "id" : "manual_test__repay_type_source_data_in_1",
+          "slug" : "in_1"
+        }, {
+          "id" : "manual_test__repay_type_source_data_in_2",
+          "slug" : "in_2"
         } ],
         "outputs" : [ {
-          "id" : "bh7gtotlYO8joC-4kBgrH$$WSavNr-8nlk4xj_ATFt9a",
-          "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "s-YqDAZCPMsYcOGPNEAaP$$xzpVRkL0OTO18A9GI58rp" : {
-      "id" : "s-YqDAZCPMsYcOGPNEAaP$$xzpVRkL0OTO18A9GI58rp",
-      "component" : "Dataset",
-      "metadata" : {
-        "label" : "zsgd_acct_loan",
-        "x" : -980,
-        "y" : -140,
-        "phase" : 0
-      },
-      "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "zsgd_acct_loan",
-          "sourceName" : "westpac_edw_views",
-          "sourceType" : "Table"
-        }
-      },
-      "ports" : {
-        "inputs" : [ {
-          "id" : "o9TwtBhMvzF_9AsKCOz4A$$uPPWlNvkND8N7Mzml0QSw",
-          "slug" : "in"
-        } ],
-        "outputs" : [ {
-          "id" : "UZu0rU_ml-1ngxwacnb87$$75oaGUwCzA2dDXexU0Tr5",
-          "slug" : "out"
+          "id" : "manual_test__repay_type_source_data_out_0",
+          "slug" : "out_0"
         } ],
         "isCustomOutputSchema" : false
       }

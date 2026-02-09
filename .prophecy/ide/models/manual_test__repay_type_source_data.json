@@ -1,25 +1,21 @@
 {
-  "id" : "manual_test",
+  "id" : "manual_test__repay_type_source_data",
   "metainfo" : {
-    "label" : "manual_test",
-    "autoLayout" : false,
-    "version" : 1,
-    "configuration" : {
-      "schema" : {
-        "type" : "record",
-        "fields" : [ ]
+    "label" : "manual_test__repay_type_source_data",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"main\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
       }
     },
-    "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false,
-    "processesVsModelFiles" : {
-      "repay_type_sourc##F5oSYeSA" : "models/manual_test/manual_test__repay_type_source_data.sql",
-      "filtered_source_##qWEhgFZd" : "models/manual_test/manual_test__repay_type_source_data.sql",
-      "zsgd_acct_loan##rKnnjyIG" : "models/manual_test/manual_test__repay_type_source_data.sql",
-      "source_repay_typ##iJRQ7HHC" : "models/manual_test/manual_test__repay_type_source_data.sql",
-      "repay_type_source_data_tTqkJ0M9" : "models/manual_test/manual_test__repay_type_source_data.sql",
-      "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX" : "models/manual_test/manual_test__repay_type_source_data.sql"
-    }
+    "version" : 3
   },
   "processes" : {
     "repay_type_sourc##F5oSYeSA" : {
@@ -86,7 +82,8 @@
           "id" : "tTqkJ0M9",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "filtered_source_##qWEhgFZd" : {
@@ -113,12 +110,13 @@
           "id" : "asKYo9Sv",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "zsgd_acct_loan##rKnnjyIG" : {
       "id" : "zsgd_acct_loan##rKnnjyIG",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zsgd_acct_loan",
         "x" : -980,
@@ -141,9 +139,9 @@
           "id" : "LP7MIOno",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 0
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "source_repay_typ##iJRQ7HHC" : {
       "id" : "source_repay_typ##iJRQ7HHC",
@@ -266,12 +264,43 @@
           "id" : "F7Y1cJWy",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "repay_type_source_data_tTqkJ0M9" : {
+      "id" : "repay_type_source_data_tTqkJ0M9",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "repay_type_source_data"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM repay_type_source_data\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX" : {
       "id" : "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zsgd_acct",
         "x" : -980,
@@ -294,28 +323,23 @@
           "id" : "iECbGSDk",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     }
   },
   "connections" : [ {
-    "id" : "P7WaTe9N",
-    "source" : "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX",
-    "sourcePort" : "iECbGSDk",
-    "target" : "source_repay_typ##iJRQ7HHC",
-    "targetPort" : "FZrxMTWj"
+    "id" : "conn_repay_type_sourc##F5oSYeSA_tTqkJ0M9_repay_type_source_data_tTqkJ0M9",
+    "source" : "repay_type_sourc##F5oSYeSA",
+    "sourcePort" : "tTqkJ0M9",
+    "target" : "repay_type_source_data_tTqkJ0M9",
+    "targetPort" : "input_port_0"
   }, {
-    "id" : "YZ94e0Zc",
-    "source" : "zsgd_acct_loan##rKnnjyIG",
-    "sourcePort" : "LP7MIOno",
-    "target" : "source_repay_typ##iJRQ7HHC",
-    "targetPort" : "u6UBGjPZ"
-  }, {
-    "id" : "G0uTdXot",
-    "source" : "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX",
-    "sourcePort" : "iECbGSDk",
-    "target" : "source_repay_typ##iJRQ7HHC",
-    "targetPort" : "Ys3eZari"
+    "id" : "eV9cstQP",
+    "source" : "filtered_source_##qWEhgFZd",
+    "sourcePort" : "asKYo9Sv",
+    "target" : "repay_type_sourc##F5oSYeSA",
+    "targetPort" : "mbwFvuoD"
   }, {
     "id" : "GRqHFePW",
     "source" : "source_repay_typ##iJRQ7HHC",
@@ -323,11 +347,23 @@
     "target" : "filtered_source_##qWEhgFZd",
     "targetPort" : "q5q7im2C"
   }, {
-    "id" : "eV9cstQP",
-    "source" : "filtered_source_##qWEhgFZd",
-    "sourcePort" : "asKYo9Sv",
-    "target" : "repay_type_sourc##F5oSYeSA",
-    "targetPort" : "mbwFvuoD"
+    "id" : "P7WaTe9N",
+    "source" : "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX",
+    "sourcePort" : "iECbGSDk",
+    "target" : "source_repay_typ##iJRQ7HHC",
+    "targetPort" : "FZrxMTWj"
+  }, {
+    "id" : "G0uTdXot",
+    "source" : "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX",
+    "sourcePort" : "iECbGSDk",
+    "target" : "source_repay_typ##iJRQ7HHC",
+    "targetPort" : "Ys3eZari"
+  }, {
+    "id" : "YZ94e0Zc",
+    "source" : "zsgd_acct_loan##rKnnjyIG",
+    "sourcePort" : "LP7MIOno",
+    "target" : "source_repay_typ##iJRQ7HHC",
+    "targetPort" : "u6UBGjPZ"
   } ],
-  "component" : "Pipeline"
+  "component" : "Model"
 }

@@ -822,5 +822,7 @@ sqlOrchestratorPipelines:
     files:
     - .prophecy/ide/pipelines/manual_test.json
     - pipelines/manual_test.py
+    - models/manual_test/manual_test__repay_type_source_data.sql
+    - models/manual_test/schema.yml
     createdAt: '2026-02-09 03:19:38'
 sqlBusinessApps: {}
