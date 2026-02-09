@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "nexus_base__repay_type_code_extract"
+  tags:
+  - "prophecy_temp"

@@ -1,30 +1,26 @@
 {
-  "id" : "nexus_base",
+  "id" : "nexus_base__repay_type_code_extract",
   "metainfo" : {
-    "label" : "nexus_base",
-    "autoLayout" : false,
-    "version" : 1,
-    "configuration" : {
-      "schema" : {
-        "type" : "record",
-        "fields" : [ ]
+    "label" : "nexus_base__repay_type_code_extract",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"main\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
       }
     },
-    "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false,
-    "processesVsModelFiles" : {
-      "AwMcZL8qneueK85XVxlu3$$38AI_n1HwbhicwkZGcLKu" : "models/nexus_base/nexus_base__repay_type_code_extract.sql",
-      "znex_loan##KD4iGbsS" : "models/nexus_base/nexus_base__repay_type_code_extract.sql",
-      "account_date_fil##Yd1tFvAM" : "models/nexus_base/nexus_base__repay_type_code_extract.sql",
-      "repay_type_code_extract_Z316jeJw" : "models/nexus_base/nexus_base__repay_type_code_extract.sql",
-      "account_loan_joi##dlVHGYfX" : "models/nexus_base/nexus_base__repay_type_code_extract.sql",
-      "repay_type_code_##yNPKyRiK" : "models/nexus_base/nexus_base__repay_type_code_extract.sql"
-    }
+    "version" : 3
   },
   "processes" : {
     "AwMcZL8qneueK85XVxlu3$$38AI_n1HwbhicwkZGcLKu" : {
       "id" : "AwMcZL8qneueK85XVxlu3$$38AI_n1HwbhicwkZGcLKu",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "znex_account",
         "x" : -420,
@@ -47,12 +43,13 @@
           "id" : "obGYvatF",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "znex_loan##KD4iGbsS" : {
       "id" : "znex_loan##KD4iGbsS",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "znex_loan",
         "x" : -420,
@@ -75,9 +72,9 @@
           "id" : "TFBZN9Fd",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 1
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "account_date_fil##Yd1tFvAM" : {
       "id" : "account_date_fil##Yd1tFvAM",
@@ -103,7 +100,38 @@
           "id" : "C4xMjpsw",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "repay_type_code_extract_Z316jeJw" : {
+      "id" : "repay_type_code_extract_Z316jeJw",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "repay_type_code_extract"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM repay_type_code_extract\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "account_loan_joi##dlVHGYfX" : {
@@ -188,7 +216,8 @@
           "id" : "HtD2nb50",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "repay_type_code_##yNPKyRiK" : {
@@ -255,11 +284,30 @@
           "id" : "Z316jeJw",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     }
   },
   "connections" : [ {
+    "id" : "conn_repay_type_code_##yNPKyRiK_Z316jeJw_repay_type_code_extract_Z316jeJw",
+    "source" : "repay_type_code_##yNPKyRiK",
+    "sourcePort" : "Z316jeJw",
+    "target" : "repay_type_code_extract_Z316jeJw",
+    "targetPort" : "input_port_0"
+  }, {
+    "id" : "uO8ZzgZU",
+    "source" : "account_date_fil##Yd1tFvAM",
+    "sourcePort" : "C4xMjpsw",
+    "target" : "repay_type_code_##yNPKyRiK",
+    "targetPort" : "URI0H06k"
+  }, {
+    "id" : "inzI8pRm",
+    "source" : "account_loan_joi##dlVHGYfX",
+    "sourcePort" : "HtD2nb50",
+    "target" : "account_date_fil##Yd1tFvAM",
+    "targetPort" : "CsgBHljc"
+  }, {
     "id" : "ddMDlBOy",
     "source" : "AwMcZL8qneueK85XVxlu3$$38AI_n1HwbhicwkZGcLKu",
     "sourcePort" : "obGYvatF",
@@ -271,18 +319,6 @@
     "sourcePort" : "TFBZN9Fd",
     "target" : "account_loan_joi##dlVHGYfX",
     "targetPort" : "bYxxB4Hr"
-  }, {
-    "id" : "inzI8pRm",
-    "source" : "account_loan_joi##dlVHGYfX",
-    "sourcePort" : "HtD2nb50",
-    "target" : "account_date_fil##Yd1tFvAM",
-    "targetPort" : "CsgBHljc"
-  }, {
-    "id" : "uO8ZzgZU",
-    "source" : "account_date_fil##Yd1tFvAM",
-    "sourcePort" : "C4xMjpsw",
-    "target" : "repay_type_code_##yNPKyRiK",
-    "targetPort" : "URI0H06k"
   } ],
-  "component" : "Pipeline"
+  "component" : "Model"
 }

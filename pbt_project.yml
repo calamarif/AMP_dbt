@@ -1029,6 +1029,8 @@ sqlOrchestratorPipelines:
     files:
     - pipelines/nexus_base.py
     - .prophecy/ide/pipelines/nexus_base.json
+    - models/nexus_base/nexus_base__repay_type_code_extract.sql
+    - models/nexus_base/schema.yml
     createdAt: '2026-02-09 06:04:23'
   .prophecy/metadata/sqlorchestratorpipeline/tbk_base:
     name: tbk_base
