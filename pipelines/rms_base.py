@@ -1,13 +1,6 @@
 with DAG():
-    zrms_loan_account = Task(
-        task_id = "zrms_loan_account", 
-        component = "Dataset", 
-        writeOptions = {"writeMode" : "overwrite"}, 
-        table = {"name" : "zrms_loan_account", "sourceName" : "westpac_edw_views", "sourceType" : "Table"}
-    )
-    zrms_account = Task(
-        task_id = "zrms_account", 
-        component = "Dataset", 
-        writeOptions = {"writeMode" : "overwrite"}, 
-        table = {"name" : "zrms_account", "sourceName" : "westpac_edw_views", "sourceType" : "Table"}
+    rms_base__repayment_type_extraction = Task(
+        task_id = "rms_base__repayment_type_extraction", 
+        component = "Model", 
+        modelName = "rms_base__repayment_type_extraction"
     )

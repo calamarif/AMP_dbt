@@ -1,25 +1,21 @@
 {
-  "id" : "rms_base",
+  "id" : "rms_base__repayment_type_extraction",
   "metainfo" : {
-    "label" : "rms_base",
-    "autoLayout" : false,
-    "version" : 1,
-    "configuration" : {
-      "schema" : {
-        "type" : "record",
-        "fields" : [ ]
+    "label" : "rms_base__repayment_type_extraction",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"main\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
       }
     },
-    "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false,
-    "processesVsModelFiles" : {
-      "joined_account_r##x8C7zCY6" : "models/rms_base/rms_base__repayment_type_extraction.sql",
-      "zrms_account##CFZyuNSU" : "models/rms_base/rms_base__repayment_type_extraction.sql",
-      "repayment_type_e##CO6DKtKK" : "models/rms_base/rms_base__repayment_type_extraction.sql",
-      "filtered_active_##ENgoNiDC" : "models/rms_base/rms_base__repayment_type_extraction.sql",
-      "ispX2XAOoNnyLmI18UbXg$$wXRbHH7-MFMfXsc_LcEXP" : "models/rms_base/rms_base__repayment_type_extraction.sql",
-      "repayment_type_extraction_ZEYPpOTr" : "models/rms_base/rms_base__repayment_type_extraction.sql"
-    }
+    "version" : 3
   },
   "processes" : {
     "joined_account_r##x8C7zCY6" : {
@@ -98,12 +94,13 @@
           "id" : "kIFc4vbp",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "zrms_account##CFZyuNSU" : {
       "id" : "zrms_account##CFZyuNSU",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zrms_account",
         "x" : -1120,
@@ -126,9 +123,9 @@
           "id" : "LJqwZogy",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 1
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "repayment_type_e##CO6DKtKK" : {
       "id" : "repayment_type_e##CO6DKtKK",
@@ -194,7 +191,8 @@
           "id" : "ZEYPpOTr",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "filtered_active_##ENgoNiDC" : {
@@ -221,12 +219,13 @@
           "id" : "vEa2R0AP",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "ispX2XAOoNnyLmI18UbXg$$wXRbHH7-MFMfXsc_LcEXP" : {
       "id" : "ispX2XAOoNnyLmI18UbXg$$wXRbHH7-MFMfXsc_LcEXP",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zrms_loan_account",
         "x" : -1120,
@@ -249,11 +248,60 @@
           "id" : "Wg4BXSkG",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "repayment_type_extraction_ZEYPpOTr" : {
+      "id" : "repayment_type_extraction_ZEYPpOTr",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "repayment_type_extraction"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM repayment_type_extraction\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     }
   },
   "connections" : [ {
+    "id" : "conn_repayment_type_e##CO6DKtKK_ZEYPpOTr_repayment_type_extraction_ZEYPpOTr",
+    "source" : "repayment_type_e##CO6DKtKK",
+    "sourcePort" : "ZEYPpOTr",
+    "target" : "repayment_type_extraction_ZEYPpOTr",
+    "targetPort" : "input_port_0"
+  }, {
+    "id" : "BF8UHLWz",
+    "source" : "filtered_active_##ENgoNiDC",
+    "sourcePort" : "vEa2R0AP",
+    "target" : "repayment_type_e##CO6DKtKK",
+    "targetPort" : "solQdPWk"
+  }, {
+    "id" : "UGuzd3gW",
+    "source" : "joined_account_r##x8C7zCY6",
+    "sourcePort" : "kIFc4vbp",
+    "target" : "filtered_active_##ENgoNiDC",
+    "targetPort" : "wJ8vkUXs"
+  }, {
     "id" : "vWi3c2nm",
     "source" : "zrms_account##CFZyuNSU",
     "sourcePort" : "LJqwZogy",
@@ -265,18 +313,6 @@
     "sourcePort" : "Wg4BXSkG",
     "target" : "joined_account_r##x8C7zCY6",
     "targetPort" : "uojbMegl"
-  }, {
-    "id" : "UGuzd3gW",
-    "source" : "joined_account_r##x8C7zCY6",
-    "sourcePort" : "kIFc4vbp",
-    "target" : "filtered_active_##ENgoNiDC",
-    "targetPort" : "wJ8vkUXs"
-  }, {
-    "id" : "BF8UHLWz",
-    "source" : "filtered_active_##ENgoNiDC",
-    "sourcePort" : "vEa2R0AP",
-    "target" : "repayment_type_e##CO6DKtKK",
-    "targetPort" : "solQdPWk"
   } ],
-  "component" : "Pipeline"
+  "component" : "Model"
 }

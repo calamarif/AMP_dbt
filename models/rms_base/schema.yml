@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "rms_base__repayment_type_extraction"
+  tags:
+  - "prophecy_temp"

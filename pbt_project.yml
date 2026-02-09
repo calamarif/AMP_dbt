@@ -875,5 +875,7 @@ sqlOrchestratorPipelines:
     files:
     - pipelines/rms_base.py
     - .prophecy/ide/pipelines/rms_base.json
+    - models/rms_base/rms_base__repayment_type_extraction.sql
+    - models/rms_base/schema.yml
     createdAt: '2026-02-09 03:44:00'
 sqlBusinessApps: {}
