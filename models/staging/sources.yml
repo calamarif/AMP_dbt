@@ -1,182 +1,159 @@
+---
 version: 2
-
 sources:
-  # =============================================================================
-  # EDW Views (EWP1VIEWA)
-  # =============================================================================
-  - name: edw_views
-    #database: EWP1VIEWA
-    database: westpac
-    description: "EDW View layer - Enterprise Data Warehouse views"
-    tables:
-      - name: zsgd_acct
-        description: "St.George Account master - LIS, DDA, CHA, LNS, CHS source systems"
-        columns:
-          - name: armt_key
-            description: "Arrangement key - unique account identifier"
-          - name: acct_key
-            description: "Account key for joins"
-          - name: src_sys_code
-            description: "Source system code (LIS, DDA, CHA, LNS, CHS)"
-          - name: od_type
-            description: "Overdraft type - used for CHS repayment type derivation"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-      - name: zsgd_acct_loan
-        description: "St.George Loan Account details"
-        columns:
-          - name: acct_key
-            description: "Account key for joins"
-          - name: repay_type_code
-            description: "Source repayment type code"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-      - name: zrms_account
-        description: "RAMS Account master"
-        columns:
-          - name: armt_key
-            description: "Arrangement key"
-          - name: account_id
-            description: "Account identifier for joins"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-      - name: zrms_loan_account
-        description: "RAMS Loan Account details"
-        columns:
-          - name: account_id
-            description: "Account identifier for joins"
-          - name: repayment_type
-            description: "Source repayment type"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-      - name: zwgd_all_acct_m_hist
-        description: "Westpac Group All Account Monthly History"
-        columns:
-          - name: armt_key
-            description: "Arrangement key"
-          - name: account_id
-            description: "Account identifier for joins"
-          - name: source_system_code
-            description: "Source system code (MB for Mortgage Builder)"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-      - name: zwgd_mrtg_loan_m_hist
-        description: "Mortgage Loan Monthly History - MU-001 source"
-        columns:
-          - name: account_id
-            description: "Account identifier for joins"
-          - name: product_code
-            description: "Product code - used for repayment type inference"
-          - name: system_product_type
-            description: "System product type (e.g., EAL)"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-      - name: ztbk_account
-        description: "Transaction Banking Account"
-        columns:
-          - name: armt_key
-            description: "Arrangement key"
-          - name: repay_type_code
-            description: "Source repayment type code"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-  # =============================================================================
-  # SGDW Views (DWPVIEWA)
-  # =============================================================================
-  - name: sgdw_views
-    #database: DWPVIEWA
-    database: westpac
-    description: "SGDW View layer - St.George Data Warehouse views"
-    tables:
-      - name: znex_account
-        description: "Nexus Account master - Margin Lending"
-        columns:
-          - name: armt_key
-            description: "Arrangement key"
-          - name: account_id
-            description: "Account identifier for joins"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-      - name: znex_loan
-        description: "Nexus Loan details"
-        columns:
-          - name: account_id
-            description: "Account identifier for joins"
-          - name: repay_type_code
-            description: "Source repayment type code"
-          - name: from_date
-            description: "Record effective start date"
-          - name: to_date
-            description: "Record effective end date"
-
-  # =============================================================================
-  # EFS Schema (EWP1AEFS)
-  # =============================================================================
-  - name: efs
-    #database: EWP1AEFS
-    database: westpac
-    description: "EFS Production schema - Reference and target tables"
-    tables:
-      - name: refs_repay_type_map
-        description: "Reference mapping table for repayment type codes"
-        columns:
-          - name: src_sys_code
-            description: "Source system code"
-          - name: src_repay_type_code
-            description: "Source repayment type code"
-          - name: src_column
-            description: "Source column name (Repay_Type_Code or OD_Type)"
-          - name: repay_type_code
-            description: "Mapped EFS repayment type value"
-          - name: from_date
-            description: "Mapping effective start date"
-          - name: to_date
-            description: "Mapping effective end date"
-
-      - name: refs_covid_repay_type
-        description: "COVID-19 repayment pause carryover values"
-        columns:
-          - name: armt_key
-            description: "Arrangement key"
-          - name: covid_efs_repay_type_code
-            description: "Carried-over repayment type during COVID pause"
-
-      - name: armt_stock
-        description: "Target table - Arrangement Stock"
-        columns:
-          - name: armt_key
-            description: "Arrangement key"
-          - name: as_of_date
-            description: "As of date for the record"
-          - name: process_date
-            description: "Process date"
-          - name: loan_repayment_type
-            description: "Target attribute - Loan Repayment Type"
-          - name: source_system_code
-            description: "Source system code"
-          - name: product_category
-            description: "Product category (Loans)"
+- name: "edw_views"
+  description: "EDW View layer - Enterprise Data Warehouse views"
+  database: "westpac"
+  tables:
+  - name: "zsgd_acct"
+    description: "St.George Account master - LIS, DDA, CHA, LNS, CHS source systems"
+    columns:
+    - name: "armt_key"
+      description: "Arrangement key - unique account identifier"
+    - name: "acct_key"
+      description: "Account key for joins"
+    - name: "src_sys_code"
+      description: "Source system code (LIS, DDA, CHA, LNS, CHS)"
+    - name: "od_type"
+      description: "Overdraft type - used for CHS repayment type derivation"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+  - name: "zsgd_acct_loan"
+    description: "St.George Loan Account details"
+    columns:
+    - name: "acct_key"
+      description: "Account key for joins"
+    - name: "repay_type_code"
+      description: "Source repayment type code"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+  - name: "zrms_account"
+    description: "RAMS Account master"
+    columns:
+    - name: "armt_key"
+      description: "Arrangement key"
+    - name: "account_id"
+      description: "Account identifier for joins"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+  - name: "zrms_loan_account"
+    description: "RAMS Loan Account details"
+    columns:
+    - name: "account_id"
+      description: "Account identifier for joins"
+    - name: "repayment_type"
+      description: "Source repayment type"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+  - name: "zwgd_all_acct_m_hist"
+    description: "Westpac Group All Account Monthly History"
+    columns:
+    - name: "armt_key"
+      description: "Arrangement key"
+    - name: "account_id"
+      description: "Account identifier for joins"
+    - name: "source_system_code"
+      description: "Source system code (MB for Mortgage Builder)"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+  - name: "zwgd_mrtg_loan_m_hist"
+    description: "Mortgage Loan Monthly History - MU-001 source"
+    columns:
+    - name: "account_id"
+      description: "Account identifier for joins"
+    - name: "product_code"
+      description: "Product code - used for repayment type inference"
+    - name: "system_product_type"
+      description: "System product type (e.g., EAL)"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+  - name: "ztbk_account"
+    description: "Transaction Banking Account"
+    columns:
+    - name: "armt_key"
+      description: "Arrangement key"
+    - name: "repay_type_code"
+      description: "Source repayment type code"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+- name: "sgdw_views"
+  description: "SGDW View layer - St.George Data Warehouse views"
+  database: "westpac"
+  tables:
+  - name: "znex_account"
+    description: "Nexus Account master - Margin Lending"
+    columns:
+    - name: "armt_key"
+      description: "Arrangement key"
+    - name: "account_id"
+      description: "Account identifier for joins"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+  - name: "znex_loan"
+    description: "Nexus Loan details"
+    columns:
+    - name: "account_id"
+      description: "Account identifier for joins"
+    - name: "repay_type_code"
+      description: "Source repayment type code"
+    - name: "from_date"
+      description: "Record effective start date"
+    - name: "to_date"
+      description: "Record effective end date"
+- name: "efs"
+  description: "EFS Production schema - Reference and target tables"
+  database: "westpac"
+  tables:
+  - name: "refs_repay_type_map"
+    description: "Reference mapping table for repayment type codes"
+    columns:
+    - name: "src_sys_code"
+      description: "Source system code"
+    - name: "src_repay_type_code"
+      description: "Source repayment type code"
+    - name: "src_column"
+      description: "Source column name (Repay_Type_Code or OD_Type)"
+    - name: "repay_type_code"
+      description: "Mapped EFS repayment type value"
+    - name: "from_date"
+      description: "Mapping effective start date"
+    - name: "to_date"
+      description: "Mapping effective end date"
+  - name: "refs_covid_repay_type"
+    description: "COVID-19 repayment pause carryover values"
+    columns:
+    - name: "armt_key"
+      description: "Arrangement key"
+    - name: "covid_efs_repay_type_code"
+      description: "Carried-over repayment type during COVID pause"
+  - name: "armt_stock"
+    description: "Target table - Arrangement Stock"
+    columns:
+    - name: "armt_key"
+      description: "Arrangement key"
+    - name: "as_of_date"
+      description: "As of date for the record"
+    - name: "process_date"
+      description: "Process date"
+    - name: "loan_repayment_type"
+      description: "Target attribute - Loan Repayment Type"
+    - name: "source_system_code"
+      description: "Source system code"
+    - name: "product_category"
+      description: "Product category (Loans)"

@@ -1,0 +1,49 @@
+---
+version: 2
+sources:
+- name: "westpac_edw_views"
+  database: "westpac"
+  schema: "edw_views"
+  tables:
+  - name: "zsgd_acct"
+    config:
+      tags:
+      - "pipeline:manual_test"
+    columns:
+    - name: "Acct_Key"
+      dataType:
+        type: "Bigint"
+    - name: "Armt_Key"
+      dataType:
+        type: "Bigint"
+    - name: "Src_Sys_Code"
+      dataType:
+        type: "String"
+    - name: "OD_Type"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"
+  - name: "zsgd_acct_loan"
+    config:
+      tags:
+      - "pipeline:manual_test"
+    columns:
+    - name: "Acct_Key"
+      dataType:
+        type: "Bigint"
+    - name: "Repay_Type_Code"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"

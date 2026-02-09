@@ -745,6 +745,62 @@ sqlSources:
       description: Nexus Loan details
       author: callum@prophecy.io
       createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlsources/westpac_edw_views:
+    name: westpac_edw_views
+    description: null
+    author: callum@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2026-02-09 03:31:55'
+    tables:
+    - name: zsgd_acct
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Acct_Key
+          dataType:
+            type: Bigint
+        - name: Armt_Key
+          dataType:
+            type: Bigint
+        - name: Src_Sys_Code
+          dataType:
+            type: String
+        - name: OD_Type
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:31:55'
+      tableType: table
+    - name: zsgd_acct_loan
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Acct_Key
+          dataType:
+            type: Bigint
+        - name: Repay_Type_Code
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:32:25'
+      tableType: table
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline

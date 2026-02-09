@@ -1,89 +1,80 @@
+---
 version: 2
-
 models:
-  - name: stg_loan_repayment_type
-    description: |
-      Derives Loan_Repayment_Type from ultimate source systems using documented business rules.
-      
-      **Source Systems:**
-      - LIS, DDA, CHA/LNS, CHS (ZSGD_Acct_Loan / ZSGD_Acct)
-      - RAMS/RMS (ZRMS_Loan_Account)
-      - MB/MU-001 (ZWGD_Mrtg_Loan_M_Hist - Product-based inference)
-      - Nexus/ML-005 (ZNEX_LOAN)
-      - TBK (ZTBK_Account)
-      
-      **Business Rules (Priority Order):**
-      1. CHS OD_Type mapping via Refs_Repay_Type_Map
-      2. MU-001 EAL Products (11752, 11753, 11758) → 'Interest Only'
-      3. MU-001 Product 11206 → 'Interest Only'
-      4. COVID-19 Repayment Pause Carryover (LIS)
-      5. Standard reference table mapping
-      99. Default to 'Amortising'
-      
-      **Valid Domain Values:**
-      - Amortising: Principal and interest repayments
-      - Interest Only: Interest-only repayments
-      - Revolving: Revolving credit facility
-      - '' (Empty): Not applicable
-    
-    config:
-      tags: ['loan_repayment_type', 'data_lineage', 'efs']
-    
-    columns:
-      - name: armt_key
-        description: "Arrangement key - unique account identifier"
-        tests:
-          - not_null
-
-      - name: source_system_code
-        description: "Source system code (LIS, DDA, CHA, LNS, CHS, RMS, MU-001, ML-005, TBK)"
-        tests:
-          - not_null
-          - accepted_values:
-              values: ['LIS', 'DDA', 'CHA', 'LNS', 'CHS', 'RMS', 'MU-001', 'ML-005', 'TBK']
-
-      - name: source_value
-        description: "Original source repayment type code from the source system"
-
-      - name: src_column
-        description: "Source column name (Repay_Type_Code, OD_Type, Repayment_Type, Product_Code)"
-
-      - name: mu001_product_code
-        description: "MU-001 Product Code - used for Interest Only inference"
-
-      - name: mu001_system_product_type
-        description: "MU-001 System Product Type (e.g., EAL)"
-
-      - name: reference_mapped_value
-        description: "Value from Refs_Repay_Type_Map lookup"
-
-      - name: covid_carryover_value
-        description: "COVID-19 repayment pause carryover value (LIS only)"
-
-      - name: loan_repayment_type
-        description: "Derived Loan Repayment Type - final output"
-        tests:
-          - not_null
-          - accepted_values:
-              values: ['Amortising', 'Interest Only', 'Revolving', '']
-
-      - name: applied_rule
-        description: "Business rule that was applied to derive the value"
-        tests:
-          - not_null
-          - accepted_values:
-              values:
-                - 'Rule 1 - CHS OD_Type Mapping'
-                - 'Rule 2 - MU-001 EAL Product Default'
-                - 'Rule 3 - MU-001 Product 11206 Default'
-                - 'Rule 4 - COVID Carryover'
-                - 'Rule 5 - Reference Mapping'
-                - 'Rule 99 - Default Amortising'
-
-      - name: process_date
-        description: "EDW process date used for sourcing"
-        tests:
-          - not_null
-
-      - name: dbt_loaded_at
-        description: "Timestamp when the record was loaded by dbt"
+- name: "stg_loan_repayment_type"
+  description: "Derives Loan_Repayment_Type from ultimate source systems using documented\
+    \ business rules.\n\n**Source Systems:**\n- LIS, DDA, CHA/LNS, CHS (ZSGD_Acct_Loan\
+    \ / ZSGD_Acct)\n- RAMS/RMS (ZRMS_Loan_Account)\n- MB/MU-001 (ZWGD_Mrtg_Loan_M_Hist\
+    \ - Product-based inference)\n- Nexus/ML-005 (ZNEX_LOAN)\n- TBK (ZTBK_Account)\n\
+    \n**Business Rules (Priority Order):**\n1. CHS OD_Type mapping via Refs_Repay_Type_Map\n\
+    2. MU-001 EAL Products (11752, 11753, 11758) → 'Interest Only'\n3. MU-001 Product\
+    \ 11206 → 'Interest Only'\n4. COVID-19 Repayment Pause Carryover (LIS)\n5. Standard\
+    \ reference table mapping\n99. Default to 'Amortising'\n\n**Valid Domain Values:**\n\
+    - Amortising: Principal and interest repayments\n- Interest Only: Interest-only\
+    \ repayments\n- Revolving: Revolving credit facility\n- '' (Empty): Not applicable\n"
+  config:
+    tags:
+    - "loan_repayment_type"
+    - "data_lineage"
+    - "efs"
+  columns:
+  - name: "armt_key"
+    description: "Arrangement key - unique account identifier"
+    tests:
+    - "not_null"
+  - name: "source_system_code"
+    description: "Source system code (LIS, DDA, CHA, LNS, CHS, RMS, MU-001, ML-005,\
+      \ TBK)"
+    tests:
+    - "not_null"
+    - accepted_values:
+        values:
+        - "LIS"
+        - "DDA"
+        - "CHA"
+        - "LNS"
+        - "CHS"
+        - "RMS"
+        - "MU-001"
+        - "ML-005"
+        - "TBK"
+  - name: "source_value"
+    description: "Original source repayment type code from the source system"
+  - name: "src_column"
+    description: "Source column name (Repay_Type_Code, OD_Type, Repayment_Type, Product_Code)"
+  - name: "mu001_product_code"
+    description: "MU-001 Product Code - used for Interest Only inference"
+  - name: "mu001_system_product_type"
+    description: "MU-001 System Product Type (e.g., EAL)"
+  - name: "reference_mapped_value"
+    description: "Value from Refs_Repay_Type_Map lookup"
+  - name: "covid_carryover_value"
+    description: "COVID-19 repayment pause carryover value (LIS only)"
+  - name: "loan_repayment_type"
+    description: "Derived Loan Repayment Type - final output"
+    tests:
+    - "not_null"
+    - accepted_values:
+        values:
+        - "Amortising"
+        - "Interest Only"
+        - "Revolving"
+        - ""
+  - name: "applied_rule"
+    description: "Business rule that was applied to derive the value"
+    tests:
+    - "not_null"
+    - accepted_values:
+        values:
+        - "Rule 1 - CHS OD_Type Mapping"
+        - "Rule 2 - MU-001 EAL Product Default"
+        - "Rule 3 - MU-001 Product 11206 Default"
+        - "Rule 4 - COVID Carryover"
+        - "Rule 5 - Reference Mapping"
+        - "Rule 99 - Default Amortising"
+  - name: "process_date"
+    description: "EDW process date used for sourcing"
+    tests:
+    - "not_null"
+  - name: "dbt_loaded_at"
+    description: "Timestamp when the record was loaded by dbt"

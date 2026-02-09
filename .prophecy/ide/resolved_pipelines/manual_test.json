@@ -14,43 +14,63 @@
     "publishDiagnosticMetrics" : false
   },
   "processes" : {
-    "VyRmGrA_oa5KL2Nr9oY53$$2t_KdlNbYLA2YXIw48h06" : {
-      "id" : "VyRmGrA_oa5KL2Nr9oY53$$2t_KdlNbYLA2YXIw48h06",
-      "component" : "OrchestrationSource",
-      "kind" : "OnedriveSource",
+    "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX" : {
+      "id" : "qzz-arVnp_QDyQyD3H5UK$$fH_4uWQOkhq9xfG6--BDX",
+      "component" : "Dataset",
       "metadata" : {
-        "label" : "OrchestrationSource_0",
+        "label" : "zsgd_acct",
         "x" : -980,
-        "y" : -420,
+        "y" : -280,
         "phase" : 0
       },
       "properties" : {
-        "connector" : {
-          "kind" : "onedrive",
-          "properties" : { },
-          "type" : "connector"
+        "writeOptions" : {
+          "writeMode" : "overwrite"
         },
-        "properties" : {
-          "fileOperationProperties" : { }
-        },
-        "format" : {
-          "properties" : {
-            "allowLazyQuotes" : false,
-            "allowEmptyColumnNames" : true,
-            "separator" : ",",
-            "nullValue" : "",
-            "encoding" : "UTF-8",
-            "header" : true
-          },
-          "kind" : "csv",
-          "category" : "file"
-        },
-        "isNew" : true
+        "table" : {
+          "name" : "zsgd_acct",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
       },
       "ports" : {
-        "inputs" : [ ],
+        "inputs" : [ {
+          "id" : "zPPbdw3eQIevEgUkbWq4V$$2c7TFh1OP5dxa8Hdt8G8T",
+          "slug" : "in"
+        } ],
         "outputs" : [ {
-          "id" : "G-T7MlD8732o0yoZCbtke$$GCSXbRsD7dMVlIvosEOg1",
+          "id" : "bh7gtotlYO8joC-4kBgrH$$WSavNr-8nlk4xj_ATFt9a",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "s-YqDAZCPMsYcOGPNEAaP$$xzpVRkL0OTO18A9GI58rp" : {
+      "id" : "s-YqDAZCPMsYcOGPNEAaP$$xzpVRkL0OTO18A9GI58rp",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "zsgd_acct_loan",
+        "x" : -980,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zsgd_acct_loan",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "o9TwtBhMvzF_9AsKCOz4A$$uPPWlNvkND8N7Mzml0QSw",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "UZu0rU_ml-1ngxwacnb87$$75oaGUwCzA2dDXexU0Tr5",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false
