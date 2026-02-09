@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "mu001_base__mu001_product_code_mapping"
+  tags:
+  - "prophecy_temp"

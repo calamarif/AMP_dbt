@@ -942,5 +942,7 @@ sqlOrchestratorPipelines:
     files:
     - .prophecy/ide/pipelines/mu001_base.json
     - pipelines/mu001_base.py
+    - models/mu001_base/mu001_base__mu001_product_code_mapping.sql
+    - models/mu001_base/schema.yml
     createdAt: '2026-02-09 03:54:50'
 sqlBusinessApps: {}

@@ -1,30 +1,26 @@
 {
-  "id" : "mu001_base",
+  "id" : "mu001_base__mu001_product_code_mapping",
   "metainfo" : {
-    "label" : "mu001_base",
-    "autoLayout" : false,
-    "version" : 1,
-    "configuration" : {
-      "schema" : {
-        "type" : "record",
-        "fields" : [ ]
+    "label" : "mu001_base__mu001_product_code_mapping",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"main\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
       }
     },
-    "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false,
-    "processesVsModelFiles" : {
-      "zwgd_mrtg_loan_m##UDphIavK" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
-      "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
-      "mu001_product_code_mapping_C8QZmNmJ" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
-      "mb_accounts_filt##Txek0dRY" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
-      "mu001_product_co##DF8LM2uX" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
-      "account_loan_pro##SQvzwTpo" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql"
-    }
+    "version" : 3
   },
   "processes" : {
     "zwgd_mrtg_loan_m##UDphIavK" : {
       "id" : "zwgd_mrtg_loan_m##UDphIavK",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zwgd_mrtg_loan_m_hist",
         "x" : -1120,
@@ -47,13 +43,13 @@
           "id" : "m7KkOfAA",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 1
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-" : {
       "id" : "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zwgd_all_acct_m_hist",
         "x" : -1120,
@@ -76,7 +72,38 @@
           "id" : "WMyIiGVU",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "mu001_product_code_mapping_C8QZmNmJ" : {
+      "id" : "mu001_product_code_mapping_C8QZmNmJ",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "mu001_product_code_mapping"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM mu001_product_code_mapping\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "mb_accounts_filt##Txek0dRY" : {
@@ -103,7 +130,8 @@
           "id" : "cQfqUQLg",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "mu001_product_co##DF8LM2uX" : {
@@ -170,7 +198,8 @@
           "id" : "C8QZmNmJ",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "account_loan_pro##SQvzwTpo" : {
@@ -237,11 +266,30 @@
           "id" : "aVl2EJqO",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     }
   },
   "connections" : [ {
+    "id" : "conn_mu001_product_co##DF8LM2uX_C8QZmNmJ_mu001_product_code_mapping_C8QZmNmJ",
+    "source" : "mu001_product_co##DF8LM2uX",
+    "sourcePort" : "C8QZmNmJ",
+    "target" : "mu001_product_code_mapping_C8QZmNmJ",
+    "targetPort" : "input_port_0"
+  }, {
+    "id" : "VatkDbE5",
+    "source" : "mb_accounts_filt##Txek0dRY",
+    "sourcePort" : "cQfqUQLg",
+    "target" : "mu001_product_co##DF8LM2uX",
+    "targetPort" : "QxDbRikh"
+  }, {
+    "id" : "HjSzpAJL",
+    "source" : "account_loan_pro##SQvzwTpo",
+    "sourcePort" : "aVl2EJqO",
+    "target" : "mb_accounts_filt##Txek0dRY",
+    "targetPort" : "tqICfExl"
+  }, {
     "id" : "J3q6UZl9",
     "source" : "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-",
     "sourcePort" : "WMyIiGVU",
@@ -253,18 +301,6 @@
     "sourcePort" : "m7KkOfAA",
     "target" : "account_loan_pro##SQvzwTpo",
     "targetPort" : "EW58qwO1"
-  }, {
-    "id" : "HjSzpAJL",
-    "source" : "account_loan_pro##SQvzwTpo",
-    "sourcePort" : "aVl2EJqO",
-    "target" : "mb_accounts_filt##Txek0dRY",
-    "targetPort" : "tqICfExl"
-  }, {
-    "id" : "VatkDbE5",
-    "source" : "mb_accounts_filt##Txek0dRY",
-    "sourcePort" : "cQfqUQLg",
-    "target" : "mu001_product_co##DF8LM2uX",
-    "targetPort" : "QxDbRikh"
   } ],
-  "component" : "Pipeline"
+  "component" : "Model"
 }

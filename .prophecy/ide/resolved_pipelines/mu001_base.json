@@ -11,69 +11,43 @@
       }
     },
     "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false
+    "publishDiagnosticMetrics" : false,
+    "processesVsModelFiles" : {
+      "zwgd_mrtg_loan_m##UDphIavK" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
+      "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
+      "mu001_product_code_mapping_C8QZmNmJ" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
+      "mb_accounts_filt##Txek0dRY" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
+      "mu001_product_co##DF8LM2uX" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql",
+      "account_loan_pro##SQvzwTpo" : "models/mu001_base/mu001_base__mu001_product_code_mapping.sql"
+    }
   },
   "processes" : {
-    "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-" : {
-      "id" : "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-",
-      "component" : "Dataset",
+    "mu001_product_co##DF8LM2uX" : {
+      "id" : "mu001_product_co##DF8LM2uX",
+      "component" : "Model",
       "metadata" : {
-        "label" : "zwgd_all_acct_m_hist",
-        "x" : -1120,
-        "y" : -420,
+        "label" : "mu001_base__mu001_product_code_mapping",
         "phase" : 0
       },
       "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "zwgd_all_acct_m_hist",
-          "sourceName" : "westpac_edw_views",
-          "sourceType" : "Table"
-        }
+        "modelName" : "mu001_base__mu001_product_code_mapping"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "mu001_product_code_mapping_C8QZmNmJ", "mu001_product_co##DF8LM2uX", "mb_accounts_filt##Txek0dRY", "account_loan_pro##SQvzwTpo", "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-", "zwgd_mrtg_loan_m##UDphIavK" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "v6jWSvaGl7nSm0ZdEwKR3$$inXDk9F-1Gv74J3maTxeB",
-          "slug" : "in"
+          "id" : "mu001_base__mu001_product_code_mapping_in_0",
+          "slug" : "in_0"
+        }, {
+          "id" : "mu001_base__mu001_product_code_mapping_in_1",
+          "slug" : "in_1"
         } ],
         "outputs" : [ {
-          "id" : "K1SafoRqK_u4d2e1fs3Z0$$2ciVhbChitZjsJ-VZYv_N",
-          "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "NC5Ex4Ir2IlO7myixcaFm$$cQZdXJxKnBaUt-tZ6NYiY" : {
-      "id" : "NC5Ex4Ir2IlO7myixcaFm$$cQZdXJxKnBaUt-tZ6NYiY",
-      "component" : "Dataset",
-      "metadata" : {
-        "label" : "zwgd_mrtg_loan_m_hist",
-        "x" : -1120,
-        "y" : -280,
-        "phase" : 0,
-        "comment" : "Overwrites the historical mortgage loan data from the Westpac data warehouse for reporting and analysis.",
-        "autoUpdateComment" : true
-      },
-      "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "zwgd_mrtg_loan_m_hist",
-          "sourceName" : "westpac_edw_views",
-          "sourceType" : "Table"
-        }
-      },
-      "ports" : {
-        "inputs" : [ {
-          "id" : "XiysuB3WeDIxgDIaNoH5S$$sUcAkUm1uCB84cvJlTjm0",
-          "slug" : "in"
-        } ],
-        "outputs" : [ {
-          "id" : "fLo6w5H8n9ogV-fcbaqIz$$pfpULnADNdeiyUEw9F22k",
-          "slug" : "out"
+          "id" : "mu001_base__mu001_product_code_mapping_out_0",
+          "slug" : "out_0"
         } ],
         "isCustomOutputSchema" : false
       }
