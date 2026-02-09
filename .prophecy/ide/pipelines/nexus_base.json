@@ -1,0 +1,82 @@
+{
+  "id" : "nexus_base",
+  "metainfo" : {
+    "label" : "nexus_base",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false
+  },
+  "processes" : {
+    "AwMcZL8qneueK85XVxlu3$$38AI_n1HwbhicwkZGcLKu" : {
+      "id" : "AwMcZL8qneueK85XVxlu3$$38AI_n1HwbhicwkZGcLKu",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "znex_account",
+        "x" : -420,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "znex_account",
+          "sourceName" : "westpac_sgdw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "kiMHHMirRiHedyMZlIISp$$Q0WBc0I5JrAglZSrUIIPj",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "5nRpkjQp6axqm5NMTfwnS$$H7CrEFXDWJrVj8Ne4rlsb",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "gWKslXqVSnT_KkF4f1xce$$T0HMwH_GU7qhZUqBuO2qJ" : {
+      "id" : "gWKslXqVSnT_KkF4f1xce$$T0HMwH_GU7qhZUqBuO2qJ",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "znex_loan",
+        "x" : -420,
+        "y" : 0,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "znex_loan",
+          "sourceName" : "westpac_sgdw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "9mhSfBy1QjljgnhEVKN4H$$zP6BI_59L7P5qvNNG_6qV",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "fF4aQBTXSXcVN6r37ViBl$$afpILevtL1P57_4p2imjV",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ ],
+  "component" : "Pipeline"
+}

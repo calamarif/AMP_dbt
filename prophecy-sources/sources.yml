@@ -134,3 +134,64 @@ sources:
       dataType:
         type: "Date"
     type: "table"
+  - name: "ztbk_account"
+    config:
+      tags:
+      - "pipeline:tbk_base"
+    columns:
+    - name: "Account_Id"
+      dataType:
+        type: "Bigint"
+    - name: "Armt_Key"
+      dataType:
+        type: "Bigint"
+    - name: "Repay_Type_Code"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"
+- name: "westpac_sgdw_views"
+  database: "westpac"
+  schema: "sgdw_views"
+  tables:
+  - name: "znex_account"
+    config:
+      tags:
+      - "pipeline:nexus_base"
+    columns:
+    - name: "Account_Id"
+      dataType:
+        type: "Bigint"
+    - name: "Armt_Key"
+      dataType:
+        type: "Bigint"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"
+  - name: "znex_loan"
+    config:
+      tags:
+      - "pipeline:nexus_base"
+    columns:
+    - name: "Account_Id"
+      dataType:
+        type: "Bigint"
+    - name: "Repay_Type_Code"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"

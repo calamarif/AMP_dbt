@@ -899,6 +899,80 @@ sqlSources:
       author: callum@prophecy.io
       createdAt: '2026-02-09 03:56:39'
       tableType: table
+    - name: ztbk_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Account_Id
+          dataType:
+            type: Bigint
+        - name: Armt_Key
+          dataType:
+            type: Bigint
+        - name: Repay_Type_Code
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 06:29:47'
+      tableType: table
+  .prophecy/metadata/sqlsources/westpac_sgdw_views:
+    name: westpac_sgdw_views
+    description: null
+    author: callum@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2026-02-09 06:05:08'
+    tables:
+    - name: znex_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Account_Id
+          dataType:
+            type: Bigint
+        - name: Armt_Key
+          dataType:
+            type: Bigint
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 06:05:08'
+      tableType: table
+    - name: znex_loan
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Account_Id
+          dataType:
+            type: Bigint
+        - name: Repay_Type_Code
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 06:05:21'
+      tableType: table
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline
@@ -945,4 +1019,22 @@ sqlOrchestratorPipelines:
     - models/mu001_base/mu001_base__mu001_product_code_mapping.sql
     - models/mu001_base/schema.yml
     createdAt: '2026-02-09 03:54:50'
+  .prophecy/metadata/sqlorchestratorpipeline/nexus_base:
+    name: nexus_base
+    schema: null
+    description: null
+    author: callum@prophecy.io
+    files:
+    - pipelines/nexus_base.py
+    - .prophecy/ide/pipelines/nexus_base.json
+    createdAt: '2026-02-09 06:04:23'
+  .prophecy/metadata/sqlorchestratorpipeline/tbk_base:
+    name: tbk_base
+    schema: null
+    description: null
+    author: callum@prophecy.io
+    files:
+    - .prophecy/ide/pipelines/tbk_base.json
+    - pipelines/tbk_base.py
+    createdAt: '2026-02-09 06:29:05'
 sqlBusinessApps: {}

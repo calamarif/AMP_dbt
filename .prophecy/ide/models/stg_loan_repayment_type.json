@@ -11,7 +11,7 @@
       "entityConfig" : {
         "materialized" : "table",
         "description" : "'Derives Loan_Repayment_Type from ultimate source systems using documented business rules'",
-        "schema" : "'westpac'",
+        "database" : "\"westpac\"",
         "tags" : "['loan_repayment_type', 'data_lineage']",
         "type" : "ModelConfig"
       },
@@ -33,10 +33,13 @@
         "x" : 700,
         "y" : 420,
         "phase" : 0,
+        "macroDependencies" : [ ],
+        "comment" : "Tracks loan repayment types and their mapping details for each product and source system, supporting analysis of repayment behaviors and rule application.",
+        "autoUpdateComment" : true,
         "isLabelGrayed" : false
       },
       "properties" : {
-        "customQueryDisabled" : true,
+        "customQueryDisabled" : false,
         "customQuery" : true,
         "incrementalEditorDisabled" : true,
         "query" : "SELECT \n  armt_key,\n  src_sys_code AS source_system_code,\n  src_repay_type_code AS source_value,\n  src_column,\n  mu001_product_code,\n  mu001_system_product_type,\n  mapped_repay_type AS reference_mapped_value,\n  covid_carryover_value,\n  loan_repayment_type,\n  applied_rule,\n  process_date,\n  current_timestamp() AS dbt_loaded_at\n\nFROM derived\n",
@@ -57,8 +60,7 @@
         } ],
         "isCustomOutputSchema" : false,
         "autoUpdateOnRun" : false
-      },
-      "index" : 7
+      }
     },
     "mu001_base##sdnYvsEA" : {
       "id" : "mu001_base##sdnYvsEA",
