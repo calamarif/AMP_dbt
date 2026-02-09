@@ -1,12 +1,6 @@
 ---
 version: 2
 models:
-- name: "manual_test__repay_type_source_data"
-  tags:
-  - "prophecy_temp"
-- name: "manual_test__repayment_type_extraction"
-  tags:
-  - "prophecy_temp"
-- name: "manual_test__tbk_base"
+- name: "manual_test__loan_repayment_type_mapping"
   tags:
   - "prophecy_temp"

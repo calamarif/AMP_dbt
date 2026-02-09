@@ -994,10 +994,8 @@ sqlOrchestratorPipelines:
     files:
     - .prophecy/ide/pipelines/manual_test.json
     - pipelines/manual_test.py
-    - models/manual_test/manual_test__repay_type_source_data.sql
     - models/manual_test/schema.yml
-    - models/manual_test/manual_test__tbk_base.sql
-    - models/manual_test/manual_test__repayment_type_extraction.sql
+    - models/manual_test/manual_test__loan_repayment_type_mapping.sql
     createdAt: '2026-02-09 03:19:38'
   .prophecy/metadata/sqlorchestratorpipeline/rms_base:
     name: rms_base

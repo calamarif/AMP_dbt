@@ -1,16 +1,6 @@
 with DAG():
-    manual_test__repay_type_source_data = Task(
-        task_id = "manual_test__repay_type_source_data", 
+    manual_test__loan_repayment_type_mapping = Task(
+        task_id = "manual_test__loan_repayment_type_mapping", 
         component = "Model", 
-        modelName = "manual_test__repay_type_source_data"
-    )
-    manual_test__repayment_type_extraction = Task(
-        task_id = "manual_test__repayment_type_extraction", 
-        component = "Model", 
-        modelName = "manual_test__repayment_type_extraction"
-    )
-    manual_test__tbk_base = Task(
-        task_id = "manual_test__tbk_base", 
-        component = "Model", 
-        modelName = "manual_test__tbk_base"
+        modelName = "manual_test__loan_repayment_type_mapping"
     )

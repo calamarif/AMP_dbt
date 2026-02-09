@@ -91,6 +91,7 @@ sources:
     config:
       tags:
       - "pipeline:mu001_base"
+      - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
       dataType:
@@ -114,6 +115,7 @@ sources:
     config:
       tags:
       - "pipeline:mu001_base"
+      - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
       description: "Unique identifier for the mortgage loan account."
@@ -168,6 +170,7 @@ sources:
     config:
       tags:
       - "pipeline:nexus_base"
+      - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
       dataType:
@@ -186,6 +189,7 @@ sources:
     config:
       tags:
       - "pipeline:nexus_base"
+      - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
       dataType:
