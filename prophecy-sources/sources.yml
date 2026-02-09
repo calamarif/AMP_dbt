@@ -47,3 +47,39 @@ sources:
       dataType:
         type: "Date"
     type: "table"
+  - name: "zrms_loan_account"
+    config:
+      tags:
+      - "pipeline:rms_base"
+    columns:
+    - name: "Account_Id"
+      dataType:
+        type: "Bigint"
+    - name: "Repayment_Type"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"
+  - name: "zrms_account"
+    config:
+      tags:
+      - "pipeline:rms_base"
+    columns:
+    - name: "Account_Id"
+      dataType:
+        type: "Bigint"
+    - name: "Repayment_Type"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"

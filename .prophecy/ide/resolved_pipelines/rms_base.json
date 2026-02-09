@@ -1,0 +1,82 @@
+{
+  "id" : "rms_base",
+  "metainfo" : {
+    "label" : "rms_base",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false
+  },
+  "processes" : {
+    "ispX2XAOoNnyLmI18UbXg$$wXRbHH7-MFMfXsc_LcEXP" : {
+      "id" : "ispX2XAOoNnyLmI18UbXg$$wXRbHH7-MFMfXsc_LcEXP",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "zrms_loan_account",
+        "x" : -1120,
+        "y" : -420,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zrms_loan_account",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "9BLNshr7mMddzLhwtuU3i$$faTAAspUsTlTo8OBulJMp",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "jv0Spf1EODS0H3kc0oq-j$$ctqRZpyDyTX1-oL_Vz6nB",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "J8vPgSll_KMu3EmQTYvPI$$dZUZATR1V40RjhiyNPIfc" : {
+      "id" : "J8vPgSll_KMu3EmQTYvPI$$dZUZATR1V40RjhiyNPIfc",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "zrms_account",
+        "x" : -1120,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zrms_account",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "rgjSNidFR6KgAnN8IHtat$$ABbqVZm3x7yiYu5E0NZ8I",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "A3l2SVc7ISfFwJkWbaP_w$$rBto-K4UFV0Vo6rJ5Kb4S",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ ],
+  "component" : "Pipeline"
+}

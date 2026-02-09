@@ -801,6 +801,48 @@ sqlSources:
       author: callum@prophecy.io
       createdAt: '2026-02-09 03:32:25'
       tableType: table
+    - name: zrms_loan_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Account_Id
+          dataType:
+            type: Bigint
+        - name: Repayment_Type
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:46:33'
+      tableType: table
+    - name: zrms_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Account_Id
+          dataType:
+            type: Bigint
+        - name: Repayment_Type
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:46:53'
+      tableType: table
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline
@@ -825,4 +867,13 @@ sqlOrchestratorPipelines:
     - models/manual_test/manual_test__repay_type_source_data.sql
     - models/manual_test/schema.yml
     createdAt: '2026-02-09 03:19:38'
+  .prophecy/metadata/sqlorchestratorpipeline/rms_base:
+    name: rms_base
+    schema: null
+    description: null
+    author: callum@prophecy.io
+    files:
+    - pipelines/rms_base.py
+    - .prophecy/ide/pipelines/rms_base.json
+    createdAt: '2026-02-09 03:44:00'
 sqlBusinessApps: {}
