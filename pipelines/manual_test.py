@@ -1,6 +1,6 @@
 with DAG():
-    manual_test__loan_repayment_type_mapping = Task(
-        task_id = "manual_test__loan_repayment_type_mapping", 
+    manual_test__Union_1 = Task(
+        task_id = "manual_test__Union_1", 
         component = "Model", 
-        modelName = "manual_test__loan_repayment_type_mapping"
+        modelName = "manual_test__Union_1"
     )

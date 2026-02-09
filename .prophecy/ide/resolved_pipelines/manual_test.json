@@ -13,84 +13,85 @@
     "isTranspiledPipeline" : false,
     "publishDiagnosticMetrics" : false,
     "processesVsModelFiles" : {
-      "XKdgsr36gbVkJ2_E6o-ci$$1tnBPFYkgvk4B5kbk6Ru_" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "gY0QJsI1me5y9TtecxkYA$$VqrFPclpJ6rmCuBfjH9m0" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "WUMNk1vOoP7LjS5RCedUh$$zaJWXVbXi_PY-GaTrHivx" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "2iizAFqOBTeJm2inIQblg$$9BtGc6xFSDN5h7usciTHP" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "KLBNHqvpq_3oQmdE7t7YQ$$d9iUPN1jhOsfr3zLN5UzU" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "L-BOcXvly_gw6oofAithx$$HurZpZo4BdwNSVz7766mD" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
+      "XKdgsr36gbVkJ2_E6o-ci$$1tnBPFYkgvk4B5kbk6Ru_" : "models/manual_test/manual_test__Union_1.sql",
+      "gY0QJsI1me5y9TtecxkYA$$VqrFPclpJ6rmCuBfjH9m0" : "models/manual_test/manual_test__Union_1.sql",
+      "WUMNk1vOoP7LjS5RCedUh$$zaJWXVbXi_PY-GaTrHivx" : "models/manual_test/manual_test__Union_1.sql",
+      "2iizAFqOBTeJm2inIQblg$$9BtGc6xFSDN5h7usciTHP" : "models/manual_test/manual_test__Union_1.sql",
+      "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL" : "models/manual_test/manual_test__Union_1.sql",
+      "KLBNHqvpq_3oQmdE7t7YQ$$d9iUPN1jhOsfr3zLN5UzU" : "models/manual_test/manual_test__Union_1.sql",
+      "L-BOcXvly_gw6oofAithx$$HurZpZo4BdwNSVz7766mD" : "models/manual_test/manual_test__Union_1.sql",
+      "Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5" : "models/manual_test/manual_test__Union_1.sql",
+      "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl" : "models/manual_test/manual_test__Union_1.sql",
       "loan_repayment_type_mapping_JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "awLTyUKbvtJs0bVtyQtz5$$j6YScd_TZQIaczBCxC_Xg" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
+      "awLTyUKbvtJs0bVtyQtz5$$j6YScd_TZQIaczBCxC_Xg" : "models/manual_test/manual_test__Union_1.sql",
+      "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0" : "models/manual_test/manual_test__Union_1.sql",
       "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "LsYgYhWoyM4L3X4wBFI0u$$2GTSOM0MoHjs8qsb5t0Os" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "_HZzro8gcfOsRy2XDFzAH$$lzkQ4Ch1yOHejEra_WYq6" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "z2ZzCkr81tI69xfB8uV-0$$pJLKrwEUD2C8gSIE8Fg3x" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "3wo9kLHphslEy4gvbdEBG$$XSHdJVDMv9aQXT23LD48q" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "PRS5XBPnGlortyYU7H22T$$ZYUJ58wuf29oloUdufJ-a" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql",
-      "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf" : "models/manual_test/manual_test__loan_repayment_type_mapping.sql"
+      "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb" : "models/manual_test/manual_test__Union_1.sql",
+      "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r" : "models/manual_test/manual_test__Union_1.sql",
+      "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb" : "models/manual_test/manual_test__Union_1.sql",
+      "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj" : "models/manual_test/manual_test__Union_1.sql",
+      "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T" : "models/manual_test/manual_test__Union_1.sql",
+      "LsYgYhWoyM4L3X4wBFI0u$$2GTSOM0MoHjs8qsb5t0Os" : "models/manual_test/manual_test__Union_1.sql",
+      "_HZzro8gcfOsRy2XDFzAH$$lzkQ4Ch1yOHejEra_WYq6" : "models/manual_test/manual_test__Union_1.sql",
+      "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz" : "models/manual_test/manual_test__Union_1.sql",
+      "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp" : "models/manual_test/manual_test__Union_1.sql",
+      "z2ZzCkr81tI69xfB8uV-0$$pJLKrwEUD2C8gSIE8Fg3x" : "models/manual_test/manual_test__Union_1.sql",
+      "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc" : "models/manual_test/manual_test__Union_1.sql",
+      "3wo9kLHphslEy4gvbdEBG$$XSHdJVDMv9aQXT23LD48q" : "models/manual_test/manual_test__Union_1.sql",
+      "PRS5XBPnGlortyYU7H22T$$ZYUJ58wuf29oloUdufJ-a" : "models/manual_test/manual_test__Union_1.sql",
+      "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf" : "models/manual_test/manual_test__Union_1.sql"
     }
   },
   "processes" : {
-    "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5" : {
-      "id" : "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5",
+    "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r" : {
+      "id" : "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r",
       "component" : "Model",
       "metadata" : {
-        "label" : "manual_test__loan_repayment_type_mapping",
+        "label" : "manual_test__Union_1",
         "phase" : 0
       },
       "properties" : {
-        "modelName" : "manual_test__loan_repayment_type_mapping"
+        "modelName" : "manual_test__Union_1"
       },
       "visualMetaInfo" : {
-        "visualProcessIds" : [ "loan_repayment_type_mapping_JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4", "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5", "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r", "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL", "z2ZzCkr81tI69xfB8uV-0$$pJLKrwEUD2C8gSIE8Fg3x", "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T", "_HZzro8gcfOsRy2XDFzAH$$lzkQ4Ch1yOHejEra_WYq6", "awLTyUKbvtJs0bVtyQtz5$$j6YScd_TZQIaczBCxC_Xg", "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp", "LsYgYhWoyM4L3X4wBFI0u$$2GTSOM0MoHjs8qsb5t0Os", "gY0QJsI1me5y9TtecxkYA$$VqrFPclpJ6rmCuBfjH9m0", "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb", "3wo9kLHphslEy4gvbdEBG$$XSHdJVDMv9aQXT23LD48q", "WUMNk1vOoP7LjS5RCedUh$$zaJWXVbXi_PY-GaTrHivx", "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz", "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj", "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0", "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb", "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf", "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc", "L-BOcXvly_gw6oofAithx$$HurZpZo4BdwNSVz7766mD", "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl", "2iizAFqOBTeJm2inIQblg$$9BtGc6xFSDN5h7usciTHP", "KLBNHqvpq_3oQmdE7t7YQ$$d9iUPN1jhOsfr3zLN5UzU", "PRS5XBPnGlortyYU7H22T$$ZYUJ58wuf29oloUdufJ-a", "XKdgsr36gbVkJ2_E6o-ci$$1tnBPFYkgvk4B5kbk6Ru_" ],
+        "visualProcessIds" : [ "Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5", "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r", "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL", "z2ZzCkr81tI69xfB8uV-0$$pJLKrwEUD2C8gSIE8Fg3x", "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T", "_HZzro8gcfOsRy2XDFzAH$$lzkQ4Ch1yOHejEra_WYq6", "awLTyUKbvtJs0bVtyQtz5$$j6YScd_TZQIaczBCxC_Xg", "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp", "LsYgYhWoyM4L3X4wBFI0u$$2GTSOM0MoHjs8qsb5t0Os", "gY0QJsI1me5y9TtecxkYA$$VqrFPclpJ6rmCuBfjH9m0", "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb", "3wo9kLHphslEy4gvbdEBG$$XSHdJVDMv9aQXT23LD48q", "WUMNk1vOoP7LjS5RCedUh$$zaJWXVbXi_PY-GaTrHivx", "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz", "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj", "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0", "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb", "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf", "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc", "L-BOcXvly_gw6oofAithx$$HurZpZo4BdwNSVz7766mD", "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl", "2iizAFqOBTeJm2inIQblg$$9BtGc6xFSDN5h7usciTHP", "KLBNHqvpq_3oQmdE7t7YQ$$d9iUPN1jhOsfr3zLN5UzU", "PRS5XBPnGlortyYU7H22T$$ZYUJ58wuf29oloUdufJ-a", "XKdgsr36gbVkJ2_E6o-ci$$1tnBPFYkgvk4B5kbk6Ru_" ],
         "type" : "ephemeral",
         "isTemporaryTable" : true
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "manual_test__loan_repayment_type_mapping_in_0",
+          "id" : "manual_test__Union_1_in_0",
           "slug" : "in_0"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_1",
+          "id" : "manual_test__Union_1_in_1",
           "slug" : "in_1"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_2",
+          "id" : "manual_test__Union_1_in_2",
           "slug" : "in_2"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_3",
+          "id" : "manual_test__Union_1_in_3",
           "slug" : "in_3"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_4",
+          "id" : "manual_test__Union_1_in_4",
           "slug" : "in_4"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_5",
+          "id" : "manual_test__Union_1_in_5",
           "slug" : "in_5"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_6",
+          "id" : "manual_test__Union_1_in_6",
           "slug" : "in_6"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_7",
+          "id" : "manual_test__Union_1_in_7",
           "slug" : "in_7"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_8",
+          "id" : "manual_test__Union_1_in_8",
           "slug" : "in_8"
         }, {
-          "id" : "manual_test__loan_repayment_type_mapping_in_9",
+          "id" : "manual_test__Union_1_in_9",
           "slug" : "in_9"
         } ],
         "outputs" : [ {
-          "id" : "manual_test__loan_repayment_type_mapping_out_0",
+          "id" : "manual_test__Union_1_out_0",
           "slug" : "out_0"
         } ],
         "isCustomOutputSchema" : false

@@ -1,6 +1,6 @@
 ---
 version: 2
 models:
-- name: "manual_test__loan_repayment_type_mapping"
+- name: "manual_test__Union_1"
   tags:
   - "prophecy_temp"

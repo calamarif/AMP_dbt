@@ -325,79 +325,8 @@ Union_1 AS (
   
   FROM mu001_product_code_mapping AS in4
 
-),
-
-loan_repayment_type_mapping AS (
-
-  SELECT 
-    b.armt_key,
-    b.src_sys_code,
-    b.src_repay_type_code,
-    b.src_column,
-    b.mu001_product_code,
-    b.mu001_system_product_type,
-    b.process_date,
-    -- Reference mapping lookups
-    rrtm.repay_type_code AS mapped_repay_type,
-    rctm.repay_type_code AS chs_mapped_repay_type,
-    COALESCE(covid.covid_efs_repay_type_code, '') AS covid_carryover_value,
-    -- ====================================================================
-    -- BUSINESS RULES APPLICATION
-    -- ====================================================================
-    CASE
-      WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''
-        THEN rctm.repay_type_code
-      WHEN b.src_sys_code = 'MU-001'
-      AND b.mu001_product_code IN ('11752', '11753', '11758')
-      AND b.mu001_system_product_type = 'EAL'
-      AND COALESCE(rrtm.repay_type_code, '') = ''
-        THEN 'Interest Only'
-      WHEN b.src_sys_code = 'MU-001'
-      AND b.mu001_product_code = '11206'
-      AND COALESCE(rrtm.repay_type_code, '') = ''
-        THEN 'Interest Only'
-      WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''
-        THEN covid.covid_efs_repay_type_code
-      WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> ''
-        THEN rrtm.repay_type_code
-      ELSE 'Amortising'
-    END AS loan_repayment_type,
-    CASE
-      WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''
-        THEN 'Rule 1 - CHS OD_Type Mapping'
-      WHEN b.src_sys_code = 'MU-001'
-      AND b.mu001_product_code IN ('11752', '11753', '11758')
-      AND b.mu001_system_product_type = 'EAL'
-      AND COALESCE(rrtm.repay_type_code, '') = ''
-        THEN 'Rule 2 - MU-001 EAL Product Default'
-      WHEN b.src_sys_code = 'MU-001'
-      AND b.mu001_product_code = '11206'
-      AND COALESCE(rrtm.repay_type_code, '') = ''
-        THEN 'Rule 3 - MU-001 Product 11206 Default'
-      WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''
-        THEN 'Rule 4 - COVID Carryover'
-      WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> ''
-        THEN 'Rule 5 - Reference Mapping'
-      ELSE 'Rule 99 - Default Amortising'
-    END AS applied_rule
-  
-  FROM all_sources AS b
-  LEFT JOIN {{ source('efs', 'refs_repay_type_map') }} AS rrtm
-     ON b.src_sys_code = rrtm.src_sys_code
-    AND b.src_repay_type_code = rrtm.src_repay_type_code
-    AND rrtm.src_column = 'Repay_Type_Code'
-    AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rrtm.from_date AND rrtm.to_date
-  LEFT JOIN {{ source('efs', 'refs_repay_type_map') }} AS rctm
-     ON b.src_sys_code = rctm.src_sys_code
-    AND b.src_repay_type_code = rctm.src_repay_type_code
-    AND rctm.src_column = 'OD_Type'
-    AND b.src_sys_code = 'CHS'
-    AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rctm.from_date AND rctm.to_date
-  LEFT JOIN {{ source('efs', 'refs_covid_repay_type') }} AS covid
-     ON b.armt_key = covid.armt_key AND b.src_sys_code = 'LIS'
-
 )
 
 SELECT *
 
-FROM loan_repayment_type_mapping
+FROM Union_1

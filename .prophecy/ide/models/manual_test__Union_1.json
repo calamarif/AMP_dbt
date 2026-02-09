@@ -1,7 +1,7 @@
 {
-  "id" : "manual_test__loan_repayment_type_mapping",
+  "id" : "manual_test__Union_1",
   "metainfo" : {
-    "label" : "manual_test__loan_repayment_type_mapping",
+    "label" : "manual_test__Union_1",
     "autoLayout" : true,
     "staleState" : "none",
     "sourceSuggestions" : {
@@ -355,6 +355,36 @@
         "autoUpdateOnRun" : false
       }
     },
+    "Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5" : {
+      "id" : "Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "Union_1"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM Union_1\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
     "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl" : {
       "id" : "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl",
       "component" : "Source",
@@ -379,36 +409,6 @@
         "outputs" : [ {
           "id" : "hJJmw3Cb0iAgCywiXuFAX$$S15xSjd1gaRBHwuE3JjRP",
           "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false,
-        "autoUpdateOnRun" : false
-      }
-    },
-    "loan_repayment_type_mapping_JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4" : {
-      "id" : "loan_repayment_type_mapping_JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4",
-      "component" : "TargetModel",
-      "metadata" : {
-        "label" : "loan_repayment_type_mapping"
-      },
-      "properties" : {
-        "customQueryDisabled" : true,
-        "customQuery" : false,
-        "incrementalEditorDisabled" : true,
-        "query" : "\nSELECT *\n\nFROM loan_repayment_type_mapping\n\n",
-        "isModel" : true,
-        "incrementalKey" : false,
-        "incremental" : {
-          "expression" : "true"
-        }
-      },
-      "ports" : {
-        "inputs" : [ {
-          "id" : "input_port_0",
-          "slug" : "input_port_0"
-        } ],
-        "outputs" : [ {
-          "id" : "output_port_0",
-          "slug" : "output_port_0"
         } ],
         "isCustomOutputSchema" : false,
         "autoUpdateOnRun" : false
@@ -505,36 +505,6 @@
         "inputs" : [ ],
         "outputs" : [ {
           "id" : "8vn_me9n7Qunpvb91O0ER$$DRaAI5Lmzv7XXSbhHqWPk",
-          "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false,
-        "autoUpdateOnRun" : false
-      }
-    },
-    "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5" : {
-      "id" : "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5",
-      "component" : "SQLStatement",
-      "metadata" : {
-        "label" : "loan_repayment_type_mapping",
-        "x" : 460,
-        "y" : 600,
-        "phase" : 0
-      },
-      "properties" : {
-        "fileTabs" : [ {
-          "path" : "out",
-          "id" : "out",
-          "language" : "sql",
-          "content" : "SELECT \n  b.armt_key,\n  b.src_sys_code,\n  b.src_repay_type_code,\n  b.src_column,\n  b.mu001_product_code,\n  b.mu001_system_product_type,\n  b.process_date,\n  -- Reference mapping lookups\n  rrtm.repay_type_code AS mapped_repay_type,\n  rctm.repay_type_code AS chs_mapped_repay_type,\n  COALESCE(covid.covid_efs_repay_type_code, '') AS covid_carryover_value,\n  -- ====================================================================\n  -- BUSINESS RULES APPLICATION\n  -- ====================================================================\n  CASE\n    WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''\n      THEN rctm.repay_type_code\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code IN ('11752', '11753', '11758')\n    AND b.mu001_system_product_type = 'EAL'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Interest Only'\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code = '11206'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Interest Only'\n    WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''\n      THEN covid.covid_efs_repay_type_code\n    WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> ''\n      THEN rrtm.repay_type_code\n    ELSE 'Amortising'\n  END AS loan_repayment_type,\n  CASE\n    WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''\n      THEN 'Rule 1 - CHS OD_Type Mapping'\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code IN ('11752', '11753', '11758')\n    AND b.mu001_system_product_type = 'EAL'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Rule 2 - MU-001 EAL Product Default'\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code = '11206'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Rule 3 - MU-001 Product 11206 Default'\n    WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''\n      THEN 'Rule 4 - COVID Carryover'\n    WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> ''\n      THEN 'Rule 5 - Reference Mapping'\n    ELSE 'Rule 99 - Default Amortising'\n  END AS applied_rule\n\nFROM all_sources AS b\nLEFT JOIN {{ source('efs', 'refs_repay_type_map') }} AS rrtm\n   ON b.src_sys_code = rrtm.src_sys_code\n  AND b.src_repay_type_code = rrtm.src_repay_type_code\n  AND rrtm.src_column = 'Repay_Type_Code'\n  AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rrtm.from_date AND rrtm.to_date\nLEFT JOIN {{ source('efs', 'refs_repay_type_map') }} AS rctm\n   ON b.src_sys_code = rctm.src_sys_code\n  AND b.src_repay_type_code = rctm.src_repay_type_code\n  AND rctm.src_column = 'OD_Type'\n  AND b.src_sys_code = 'CHS'\n  AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rctm.from_date AND rctm.to_date\nLEFT JOIN {{ source('efs', 'refs_covid_repay_type') }} AS covid\n   ON b.armt_key = covid.armt_key AND b.src_sys_code = 'LIS'\n"
-        } ]
-      },
-      "ports" : {
-        "inputs" : [ {
-          "id" : "jAf7TyndYRocaSbtAWgUg$$_iZOWHFjtZKGNVIV072zg",
-          "slug" : "Union_1"
-        } ],
-        "outputs" : [ {
-          "id" : "JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false,
@@ -1220,17 +1190,11 @@
     }
   },
   "connections" : [ {
-    "id" : "conn_S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5_JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4_loan_repayment_type_mapping_JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4",
-    "source" : "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5",
-    "sourcePort" : "JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4",
-    "target" : "loan_repayment_type_mapping_JXi0TzLXxNYauLnBDPERm$$U96JagFdUQG9WEAQuitH4",
-    "targetPort" : "input_port_0"
-  }, {
-    "id" : "waXc4uqY8mZsFNidGXV6L",
+    "id" : "conn_mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5_Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5",
     "source" : "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r",
     "sourcePort" : "DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5",
-    "target" : "S1kGWxZmHKORciv2U-rft$$yGFtXk0Nh4rPFUW65LKq5",
-    "targetPort" : "jAf7TyndYRocaSbtAWgUg$$_iZOWHFjtZKGNVIV072zg"
+    "target" : "Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5",
+    "targetPort" : "input_port_0"
   }, {
     "id" : "QjktAQDm4jhlQFd3Bvo3K$$8kfrfn3yvxR-zEYyeaaaC",
     "source" : "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL",
