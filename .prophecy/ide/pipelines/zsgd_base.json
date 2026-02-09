@@ -1,0 +1,339 @@
+{
+  "id" : "zsgd_base",
+  "metainfo" : {
+    "label" : "zsgd_base",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false,
+    "processesVsModelFiles" : {
+      "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "repay_type_source_data_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql"
+    }
+  },
+  "processes" : {
+    "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi" : {
+      "id" : "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "zsgd_acct_loan",
+        "x" : -640,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zsgd_acct_loan",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "r12I63N9uoLweo06oC3q3$$7kXT1H3OqadItswRONSYS",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "cBZDhrPLyXh-cndjIwHmS$$8OvOM_FfXMAF1xqt4RZAK",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      },
+      "index" : 0
+    },
+    "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6" : {
+      "id" : "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "zsgd_acct",
+        "x" : -640,
+        "y" : -240,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zsgd_acct",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "rT1eaPDlFf4Z5b9_d8U8I$$gu-XI3MSZTv2laHbzzS0x",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "GgsOM57vXcIui1VBgEXhH$$8rXnNlbrMuR62wrjMjSSZ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7" : {
+      "id" : "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "repay_type_source_data",
+        "x" : -40,
+        "y" : -160,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "mbwFvuoD##zsgd_Armt_Key", "mbwFvuoD##zsgd_Src_Sys_Code", "mbwFvuoD##zsgd_a_OD_Type", "mbwFvuoD##zsgd_al_Repay_Type_Code" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "zsgd_Armt_Key"
+          },
+          "alias" : "armt_key",
+          "_row_id" : "648779500"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_Src_Sys_Code"
+          },
+          "alias" : "src_sys_code",
+          "_row_id" : "886487961"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN zsgd_Src_Sys_Code = 'CHS'\n    THEN COALESCE(zsgd_a_OD_Type, '')\n  ELSE COALESCE(zsgd_al_Repay_Type_Code, '')\nEND"
+          },
+          "alias" : "src_repay_type_code",
+          "_row_id" : "1079348626"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN zsgd_Src_Sys_Code = 'CHS'\n    THEN 'OD_Type'\n  ELSE 'Repay_Type_Code'\nEND"
+          },
+          "alias" : "src_column",
+          "_row_id" : "1397070322"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_product_code",
+          "_row_id" : "2054741310"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_system_product_type",
+          "_row_id" : "515213459"
+        }, {
+          "expression" : {
+            "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd')"
+          },
+          "alias" : "process_date",
+          "_row_id" : "1858562381"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "-J_gTVRCz7unJkSqqfvG_$$Mk0d8mRT39QVIVJ4lf_4_",
+          "slug" : "filtered_source_data"
+        } ],
+        "outputs" : [ {
+          "id" : "FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt" : {
+      "id" : "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "filtered_source_data",
+        "x" : -240,
+        "y" : -160,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "q5q7im2C##zsgd_From_Date", "q5q7im2C##zsgd_To_Date", "q5q7im2C##zsgd_Src_Sys_Code" ],
+        "condition" : {
+          "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_From_Date AND zsgd_To_Date\nAND zsgd_Src_Sys_Code IN ('LIS', 'DDA', 'CHA', 'LNS', 'CHS')"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "12PBMe3ec5f-PLUOJX4So$$Bi4CLHWK5dGJCIFSU0oGX",
+          "slug" : "source_repay_type_data"
+        } ],
+        "outputs" : [ {
+          "id" : "stVUqQx_D1mog0ARzNfQz$$_94NgGqN_Rf3u1eg2dgb9",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO" : {
+      "id" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "source_repay_type_data",
+        "x" : -440,
+        "y" : -160,
+        "phase" : 0
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "zsgd_al",
+          "expression" : {
+            "expression" : "zsgd.Acct_Key = zsgd_al.Acct_Key\nAND TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_al.From_Date AND zsgd_al.To_Date"
+          },
+          "joinType" : "LEFT"
+        }, {
+          "alias" : "zsgd_a",
+          "expression" : {
+            "expression" : "zsgd.Acct_Key = zsgd_a.Acct_Key\nAND zsgd.Src_Sys_Code = 'CHS'\nAND TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_a.From_Date AND zsgd_a.To_Date"
+          },
+          "joinType" : "LEFT"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "zsgd.From_Date"
+          },
+          "alias" : "zsgd_From_Date",
+          "_row_id" : "1298858320"
+        }, {
+          "expression" : {
+            "expression" : "zsgd.To_Date"
+          },
+          "alias" : "zsgd_To_Date",
+          "_row_id" : "1981648671"
+        }, {
+          "expression" : {
+            "expression" : "zsgd.Acct_Key"
+          },
+          "alias" : "zsgd_Acct_Key",
+          "_row_id" : "1513454321"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_al.Acct_Key"
+          },
+          "alias" : "zsgd_al_Acct_Key",
+          "_row_id" : "1990650142"
+        }, {
+          "expression" : {
+            "expression" : "zsgd.Src_Sys_Code"
+          },
+          "alias" : "zsgd_Src_Sys_Code",
+          "_row_id" : "2018373683"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_al.From_Date"
+          },
+          "alias" : "zsgd_al_From_Date",
+          "_row_id" : "852955723"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_a.From_Date"
+          },
+          "alias" : "zsgd_a_From_Date",
+          "_row_id" : "53811000"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_al.To_Date"
+          },
+          "alias" : "zsgd_al_To_Date",
+          "_row_id" : "2008713261"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_a.To_Date"
+          },
+          "alias" : "zsgd_a_To_Date",
+          "_row_id" : "1378659773"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_al.Repay_Type_Code"
+          },
+          "alias" : "zsgd_al_Repay_Type_Code",
+          "_row_id" : "228762468"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_a.OD_Type"
+          },
+          "alias" : "zsgd_a_OD_Type",
+          "_row_id" : "1806527352"
+        }, {
+          "expression" : {
+            "expression" : "zsgd.Armt_Key"
+          },
+          "alias" : "zsgd_Armt_Key",
+          "_row_id" : "1862817909"
+        }, {
+          "expression" : {
+            "expression" : "zsgd_a.Acct_Key"
+          },
+          "alias" : "zsgd_a_Acct_Key",
+          "_row_id" : "1265169433"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ "FZrxMTWj##Acct_Key", "u6UBGjPZ##Acct_Key", "u6UBGjPZ##From_Date", "u6UBGjPZ##To_Date", "Ys3eZari##Acct_Key", "FZrxMTWj##Src_Sys_Code", "Ys3eZari##From_Date", "Ys3eZari##To_Date", "FZrxMTWj##From_Date", "FZrxMTWj##To_Date", "FZrxMTWj##Acct_Key", "u6UBGjPZ##Acct_Key", "FZrxMTWj##Src_Sys_Code", "u6UBGjPZ##From_Date", "Ys3eZari##From_Date", "u6UBGjPZ##To_Date", "Ys3eZari##To_Date", "u6UBGjPZ##Repay_Type_Code", "Ys3eZari##OD_Type", "FZrxMTWj##Armt_Key", "Ys3eZari##Acct_Key" ],
+        "headAlias" : "zsgd"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ybrBKirmI6X01zD7j1SZ3$$lzQtI5om6KsAQSiN_Pyft",
+          "slug" : "zsgd"
+        }, {
+          "id" : "-UiRFB_nCvt0RAr7Be0lQ$$DrsotJJd3x62zAn3aYsOl",
+          "slug" : "zsgd_al"
+        }, {
+          "id" : "XBQle0732JHqJO2q7G5Fg$$D6CpkJFe_ORuq6GOnXLjb",
+          "slug" : "zsgd_a"
+        } ],
+        "outputs" : [ {
+          "id" : "n1LwjatYjSH5s4tNlg53a$$34VRsG9MfwF2BS84t9WXv",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "N-tixCvAZZTJVcu2WpYBJ",
+    "source" : "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6",
+    "sourcePort" : "GgsOM57vXcIui1VBgEXhH$$8rXnNlbrMuR62wrjMjSSZ",
+    "target" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "targetPort" : "ybrBKirmI6X01zD7j1SZ3$$lzQtI5om6KsAQSiN_Pyft"
+  }, {
+    "id" : "eb0kjSz5xC1xeIcjMySYx",
+    "source" : "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi",
+    "sourcePort" : "cBZDhrPLyXh-cndjIwHmS$$8OvOM_FfXMAF1xqt4RZAK",
+    "target" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "targetPort" : "-UiRFB_nCvt0RAr7Be0lQ$$DrsotJJd3x62zAn3aYsOl"
+  }, {
+    "id" : "5xrLCr7R7iNPajICIQNO4",
+    "source" : "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6",
+    "sourcePort" : "GgsOM57vXcIui1VBgEXhH$$8rXnNlbrMuR62wrjMjSSZ",
+    "target" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "targetPort" : "XBQle0732JHqJO2q7G5Fg$$D6CpkJFe_ORuq6GOnXLjb"
+  }, {
+    "id" : "vulDoIVwckFhbbiDrq-3s",
+    "source" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "sourcePort" : "n1LwjatYjSH5s4tNlg53a$$34VRsG9MfwF2BS84t9WXv",
+    "target" : "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt",
+    "targetPort" : "12PBMe3ec5f-PLUOJX4So$$Bi4CLHWK5dGJCIFSU0oGX"
+  }, {
+    "id" : "xhCPxYvBzPQ8FqPwriVID",
+    "source" : "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt",
+    "sourcePort" : "stVUqQx_D1mog0ARzNfQz$$_94NgGqN_Rf3u1eg2dgb9",
+    "target" : "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7",
+    "targetPort" : "-J_gTVRCz7unJkSqqfvG_$$Mk0d8mRT39QVIVJ4lf_4_"
+  } ],
+  "component" : "Pipeline"
+}

@@ -1,0 +1,61 @@
+{
+  "id" : "zsgd_base",
+  "metainfo" : {
+    "label" : "zsgd_base",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false,
+    "processesVsModelFiles" : {
+      "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "repay_type_source_data_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql",
+      "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO" : "models/zsgd_base/zsgd_base__repay_type_source_data.sql"
+    }
+  },
+  "processes" : {
+    "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7" : {
+      "id" : "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "zsgd_base__repay_type_source_data",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "zsgd_base__repay_type_source_data"
+      },
+      "visualMetaInfo" : {
+        "visualProcessIds" : [ "repay_type_source_data_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T", "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7", "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt", "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO", "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6", "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "zsgd_base__repay_type_source_data_in_0",
+          "slug" : "in_0"
+        }, {
+          "id" : "zsgd_base__repay_type_source_data_in_1",
+          "slug" : "in_1"
+        }, {
+          "id" : "zsgd_base__repay_type_source_data_in_2",
+          "slug" : "in_2"
+        } ],
+        "outputs" : [ {
+          "id" : "zsgd_base__repay_type_source_data_out_0",
+          "slug" : "out_0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ ],
+  "component" : "Pipeline"
+}

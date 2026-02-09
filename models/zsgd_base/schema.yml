@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "zsgd_base__repay_type_source_data"
+  tags:
+  - "prophecy_temp"

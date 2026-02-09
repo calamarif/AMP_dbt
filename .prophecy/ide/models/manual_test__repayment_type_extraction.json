@@ -1,0 +1,318 @@
+{
+  "id" : "manual_test__repayment_type_extraction",
+  "metainfo" : {
+    "label" : "manual_test__repayment_type_extraction",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"main\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "repayment_type_extraction_N7IS9YutsJNdVduG2JQqc$$rK1iz--TUSr_v13VUJPWw" : {
+      "id" : "repayment_type_extraction_N7IS9YutsJNdVduG2JQqc$$rK1iz--TUSr_v13VUJPWw",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "repayment_type_extraction"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM repayment_type_extraction\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb" : {
+      "id" : "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "joined_account_repayment_data",
+        "x" : -520,
+        "y" : 340,
+        "phase" : 0
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "zrms_la",
+          "expression" : {
+            "expression" : "zrms.Account_Id = zrms_la.Account_Id\nAND TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zrms_la.From_Date AND zrms_la.To_Date"
+          },
+          "joinType" : "LEFT"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "zrms_la.To_Date"
+          },
+          "alias" : "zrms_la_To_Date",
+          "_row_id" : "1577662371"
+        }, {
+          "expression" : {
+            "expression" : "zrms_la.From_Date"
+          },
+          "alias" : "zrms_la_From_Date",
+          "_row_id" : "1959381396"
+        }, {
+          "expression" : {
+            "expression" : "zrms.To_Date"
+          },
+          "alias" : "zrms_To_Date",
+          "_row_id" : "600136879"
+        }, {
+          "expression" : {
+            "expression" : "zrms_la.Repayment_Type"
+          },
+          "alias" : "zrms_la_Repayment_Type",
+          "_row_id" : "2141710205"
+        }, {
+          "expression" : {
+            "expression" : "zrms_la.Account_Id"
+          },
+          "alias" : "zrms_la_Account_Id",
+          "_row_id" : "1251744585"
+        }, {
+          "expression" : {
+            "expression" : "zrms.Account_Id"
+          },
+          "alias" : "zrms_Account_Id",
+          "_row_id" : "51597024"
+        }, {
+          "expression" : {
+            "expression" : "zrms.From_Date"
+          },
+          "alias" : "zrms_From_Date",
+          "_row_id" : "544337521"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ "ZTABR8ipnGjmuu8FHwUuv$$Tsbn_N7aSMyB64CUCobCD##Account_Id", "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa##Account_Id", "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa##From_Date", "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa##To_Date", "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa##To_Date", "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa##From_Date", "ZTABR8ipnGjmuu8FHwUuv$$Tsbn_N7aSMyB64CUCobCD##To_Date", "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa##Repayment_Type", "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa##Account_Id", "ZTABR8ipnGjmuu8FHwUuv$$Tsbn_N7aSMyB64CUCobCD##Account_Id", "ZTABR8ipnGjmuu8FHwUuv$$Tsbn_N7aSMyB64CUCobCD##From_Date" ],
+        "headAlias" : "zrms"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ZTABR8ipnGjmuu8FHwUuv$$Tsbn_N7aSMyB64CUCobCD",
+          "slug" : "zrms"
+        }, {
+          "id" : "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa",
+          "slug" : "zrms_la"
+        } ],
+        "outputs" : [ {
+          "id" : "MJGxv1rAs-Tcqlprbp7_A$$ehz6ZZdGs2roFS5iCDJB_",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb" : {
+      "id" : "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "filtered_active_accounts",
+        "x" : -320,
+        "y" : 340,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "ULgDyz5HAuW2a0soBoZIX$$Br-dtyfaufkIrjvPz4x17##zrms_From_Date", "ULgDyz5HAuW2a0soBoZIX$$Br-dtyfaufkIrjvPz4x17##zrms_To_Date" ],
+        "condition" : {
+          "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zrms_From_Date AND zrms_To_Date"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ULgDyz5HAuW2a0soBoZIX$$Br-dtyfaufkIrjvPz4x17",
+          "slug" : "joined_account_repayment_data"
+        } ],
+        "outputs" : [ {
+          "id" : "MbNEytxKib9pJhTNLzVPy$$lUI7qTHv-wa_aMd73AGTr",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T" : {
+      "id" : "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "repayment_type_extraction",
+        "x" : -120,
+        "y" : 340,
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ "dN5JfWSd0ag1XehiP8XF8$$FkuZxXjE30Y_RHIfV8S2W##zrms_Account_Id", "dN5JfWSd0ag1XehiP8XF8$$FkuZxXjE30Y_RHIfV8S2W##zrms_la_Repayment_Type" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "zrms_Account_Id"
+          },
+          "alias" : "armt_key",
+          "_row_id" : "579843626"
+        }, {
+          "expression" : {
+            "expression" : "'RMS'"
+          },
+          "alias" : "src_sys_code",
+          "_row_id" : "2044400654"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(zrms_la_Repayment_Type, '')"
+          },
+          "alias" : "src_repay_type_code",
+          "_row_id" : "1255314376"
+        }, {
+          "expression" : {
+            "expression" : "'Repayment_Type'"
+          },
+          "alias" : "src_column",
+          "_row_id" : "1039702153"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_product_code",
+          "_row_id" : "912711315"
+        }, {
+          "expression" : {
+            "expression" : "CAST(NULL AS STRING)"
+          },
+          "alias" : "mu001_system_product_type",
+          "_row_id" : "1891978377"
+        }, {
+          "expression" : {
+            "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd')"
+          },
+          "alias" : "process_date",
+          "_row_id" : "1809076906"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "dN5JfWSd0ag1XehiP8XF8$$FkuZxXjE30Y_RHIfV8S2W",
+          "slug" : "filtered_active_accounts"
+        } ],
+        "outputs" : [ {
+          "id" : "N7IS9YutsJNdVduG2JQqc$$rK1iz--TUSr_v13VUJPWw",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc" : {
+      "id" : "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "zrms_loan_account",
+        "x" : -720,
+        "y" : 280,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zrms_loan_account",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "xpcGa4_3PNM07hjCnkIq7$$tVdnIOavWthAptI0ZMoxg",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf" : {
+      "id" : "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "zrms_account",
+        "x" : -720,
+        "y" : 420,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zrms_account",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "RTAkoDXxA32WobdUsmAFU$$X9XraXvyQGcqUkO1qM4pL",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T_N7IS9YutsJNdVduG2JQqc$$rK1iz--TUSr_v13VUJPWw_repayment_type_extraction_N7IS9YutsJNdVduG2JQqc$$rK1iz--TUSr_v13VUJPWw",
+    "source" : "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T",
+    "sourcePort" : "N7IS9YutsJNdVduG2JQqc$$rK1iz--TUSr_v13VUJPWw",
+    "target" : "repayment_type_extraction_N7IS9YutsJNdVduG2JQqc$$rK1iz--TUSr_v13VUJPWw",
+    "targetPort" : "input_port_0"
+  }, {
+    "id" : "7tS3fJumIN2HXgz6Q2VQU",
+    "source" : "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb",
+    "sourcePort" : "MbNEytxKib9pJhTNLzVPy$$lUI7qTHv-wa_aMd73AGTr",
+    "target" : "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T",
+    "targetPort" : "dN5JfWSd0ag1XehiP8XF8$$FkuZxXjE30Y_RHIfV8S2W"
+  }, {
+    "id" : "_OZXdgCQr6__cuJFm_6gD",
+    "source" : "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb",
+    "sourcePort" : "MJGxv1rAs-Tcqlprbp7_A$$ehz6ZZdGs2roFS5iCDJB_",
+    "target" : "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb",
+    "targetPort" : "ULgDyz5HAuW2a0soBoZIX$$Br-dtyfaufkIrjvPz4x17"
+  }, {
+    "id" : "MJsTDnaDHFoPdAHUch69X",
+    "source" : "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf",
+    "sourcePort" : "RTAkoDXxA32WobdUsmAFU$$X9XraXvyQGcqUkO1qM4pL",
+    "target" : "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb",
+    "targetPort" : "ZTABR8ipnGjmuu8FHwUuv$$Tsbn_N7aSMyB64CUCobCD"
+  }, {
+    "id" : "gbWjWPwSIDEg8YVbSwSvK",
+    "source" : "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc",
+    "sourcePort" : "xpcGa4_3PNM07hjCnkIq7$$tVdnIOavWthAptI0ZMoxg",
+    "target" : "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb",
+    "targetPort" : "C2cOSFzMCte3HIn_Lissd$$mn6wc411umF-df1DoVRFa"
+  } ],
+  "component" : "Model"
+}

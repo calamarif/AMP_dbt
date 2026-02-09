@@ -8,6 +8,7 @@ sources:
   - name: "zsgd_acct"
     config:
       tags:
+      - "pipeline:zsgd_base"
       - "pipeline:manual_test"
     columns:
     - name: "Acct_Key"
@@ -32,6 +33,7 @@ sources:
   - name: "zsgd_acct_loan"
     config:
       tags:
+      - "pipeline:zsgd_base"
       - "pipeline:manual_test"
     columns:
     - name: "Acct_Key"
@@ -51,6 +53,7 @@ sources:
     config:
       tags:
       - "pipeline:rms_base"
+      - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
       dataType:
@@ -69,6 +72,7 @@ sources:
     config:
       tags:
       - "pipeline:rms_base"
+      - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
       dataType:
@@ -138,6 +142,7 @@ sources:
     config:
       tags:
       - "pipeline:tbk_base"
+      - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
       dataType:

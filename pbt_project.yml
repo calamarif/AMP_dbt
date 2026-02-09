@@ -996,6 +996,8 @@ sqlOrchestratorPipelines:
     - pipelines/manual_test.py
     - models/manual_test/manual_test__repay_type_source_data.sql
     - models/manual_test/schema.yml
+    - models/manual_test/manual_test__tbk_base.sql
+    - models/manual_test/manual_test__repayment_type_extraction.sql
     createdAt: '2026-02-09 03:19:38'
   .prophecy/metadata/sqlorchestratorpipeline/rms_base:
     name: rms_base
@@ -1039,4 +1041,15 @@ sqlOrchestratorPipelines:
     - models/tbk_base/tbk_base__tbk_base.sql
     - models/tbk_base/schema.yml
     createdAt: '2026-02-09 06:29:05'
+  .prophecy/metadata/sqlorchestratorpipeline/zsgd_base:
+    name: zsgd_base
+    schema: null
+    description: null
+    author: callum@prophecy.io
+    files:
+    - pipelines/zsgd_base.py
+    - .prophecy/ide/pipelines/zsgd_base.json
+    - models/zsgd_base/zsgd_base__repay_type_source_data.sql
+    - models/zsgd_base/schema.yml
+    createdAt: '2026-02-09 06:31:35'
 sqlBusinessApps: {}

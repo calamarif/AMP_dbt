@@ -1,7 +1,7 @@
 {
-  "id" : "manual_test__repay_type_source_data",
+  "id" : "zsgd_base__repay_type_source_data",
   "metainfo" : {
-    "label" : "manual_test__repay_type_source_data",
+    "label" : "zsgd_base__repay_type_source_data",
     "autoLayout" : true,
     "staleState" : "none",
     "sourceSuggestions" : {
@@ -18,13 +18,101 @@
     "version" : 3
   },
   "processes" : {
-    "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL" : {
-      "id" : "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL",
+    "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi" : {
+      "id" : "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "zsgd_acct_loan",
+        "x" : -640,
+        "y" : -100,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zsgd_acct_loan",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "cBZDhrPLyXh-cndjIwHmS$$8OvOM_FfXMAF1xqt4RZAK",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6" : {
+      "id" : "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "zsgd_acct",
+        "x" : -640,
+        "y" : -240,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zsgd_acct",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "GgsOM57vXcIui1VBgEXhH$$8rXnNlbrMuR62wrjMjSSZ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "repay_type_source_data_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T" : {
+      "id" : "repay_type_source_data_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "repay_type_source_data"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM repay_type_source_data\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7" : {
+      "id" : "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7",
       "component" : "Reformat",
       "metadata" : {
         "label" : "repay_type_source_data",
-        "x" : -80,
-        "y" : -220,
+        "x" : -40,
+        "y" : -160,
         "phase" : 0
       },
       "properties" : {
@@ -75,112 +163,52 @@
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "uDfNqiPP6P7qDNTFYjXYZ$$A7BgJ4d3VZ49Fj_MEYfpi",
+          "id" : "-J_gTVRCz7unJkSqqfvG_$$Mk0d8mRT39QVIVJ4lf_4_",
           "slug" : "filtered_source_data"
         } ],
         "outputs" : [ {
-          "id" : "_F1SF2JkNeFNxFaQK4jtj$$zqN1OAIHV-Ezw3f2IJc09",
+          "id" : "FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false,
         "autoUpdateOnRun" : false
       }
     },
-    "repay_type_source_data__F1SF2JkNeFNxFaQK4jtj$$zqN1OAIHV-Ezw3f2IJc09" : {
-      "id" : "repay_type_source_data__F1SF2JkNeFNxFaQK4jtj$$zqN1OAIHV-Ezw3f2IJc09",
-      "component" : "TargetModel",
+    "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt" : {
+      "id" : "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt",
+      "component" : "Filter",
       "metadata" : {
-        "label" : "repay_type_source_data"
-      },
-      "properties" : {
-        "customQueryDisabled" : true,
-        "customQuery" : false,
-        "incrementalEditorDisabled" : true,
-        "query" : "\nSELECT *\n\nFROM repay_type_source_data\n\n",
-        "isModel" : true,
-        "incrementalKey" : false,
-        "incremental" : {
-          "expression" : "true"
-        }
-      },
-      "ports" : {
-        "inputs" : [ {
-          "id" : "input_port_1",
-          "slug" : "input_port_1"
-        } ],
-        "outputs" : [ {
-          "id" : "output_port_1",
-          "slug" : "output_port_1"
-        } ],
-        "isCustomOutputSchema" : false,
-        "autoUpdateOnRun" : false
-      }
-    },
-    "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0" : {
-      "id" : "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0",
-      "component" : "Source",
-      "metadata" : {
-        "label" : "zsgd_acct_loan",
-        "x" : -680,
+        "label" : "filtered_source_data",
+        "x" : -240,
         "y" : -160,
         "phase" : 0
       },
       "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "zsgd_acct_loan",
-          "sourceName" : "westpac_edw_views",
-          "sourceType" : "Table"
+        "columnsSelector" : [ "q5q7im2C##zsgd_From_Date", "q5q7im2C##zsgd_To_Date", "q5q7im2C##zsgd_Src_Sys_Code" ],
+        "condition" : {
+          "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_From_Date AND zsgd_To_Date\nAND zsgd_Src_Sys_Code IN ('LIS', 'DDA', 'CHA', 'LNS', 'CHS')"
         }
       },
       "ports" : {
-        "inputs" : [ ],
+        "inputs" : [ {
+          "id" : "12PBMe3ec5f-PLUOJX4So$$Bi4CLHWK5dGJCIFSU0oGX",
+          "slug" : "source_repay_type_data"
+        } ],
         "outputs" : [ {
-          "id" : "8vn_me9n7Qunpvb91O0ER$$DRaAI5Lmzv7XXSbhHqWPk",
+          "id" : "stVUqQx_D1mog0ARzNfQz$$_94NgGqN_Rf3u1eg2dgb9",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false,
         "autoUpdateOnRun" : false
       }
     },
-    "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj" : {
-      "id" : "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj",
-      "component" : "Source",
-      "metadata" : {
-        "label" : "zsgd_acct",
-        "x" : -680,
-        "y" : -300,
-        "phase" : 0
-      },
-      "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "zsgd_acct",
-          "sourceName" : "westpac_edw_views",
-          "sourceType" : "Table"
-        }
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ {
-          "id" : "AHO0PyJwA50GIiJ0qVIHh$$8GUH5Yaf0x02ll8hHUTPr",
-          "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false,
-        "autoUpdateOnRun" : false
-      }
-    },
-    "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz" : {
-      "id" : "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz",
+    "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO" : {
+      "id" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
       "component" : "Join",
       "metadata" : {
         "label" : "source_repay_type_data",
-        "x" : -480,
-        "y" : -220,
+        "x" : -440,
+        "y" : -160,
         "phase" : 0
       },
       "properties" : {
@@ -282,45 +310,17 @@
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "CmyWMd9i9oR97H7dAI4_1$$lY5SaY9WY0nD3X81ZYRAG",
+          "id" : "ybrBKirmI6X01zD7j1SZ3$$lzQtI5om6KsAQSiN_Pyft",
           "slug" : "zsgd"
         }, {
-          "id" : "fLU3G_GBI_zVkx9sxJxDj$$Ercnm4TgDapkChhe8DZt_",
+          "id" : "-UiRFB_nCvt0RAr7Be0lQ$$DrsotJJd3x62zAn3aYsOl",
           "slug" : "zsgd_al"
         }, {
-          "id" : "7MIBnsDScPxjvgXvP1GEY$$s9afbwr_gfhVri9V9n4qe",
+          "id" : "XBQle0732JHqJO2q7G5Fg$$D6CpkJFe_ORuq6GOnXLjb",
           "slug" : "zsgd_a"
         } ],
         "outputs" : [ {
-          "id" : "3u9_Xl_rh82_CYcQN-C4L$$ndUMQ5pCfAK-b2wfHw05c",
-          "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false,
-        "autoUpdateOnRun" : false
-      }
-    },
-    "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp" : {
-      "id" : "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp",
-      "component" : "Filter",
-      "metadata" : {
-        "label" : "filtered_source_data",
-        "x" : -280,
-        "y" : -220,
-        "phase" : 0
-      },
-      "properties" : {
-        "columnsSelector" : [ "q5q7im2C##zsgd_From_Date", "q5q7im2C##zsgd_To_Date", "q5q7im2C##zsgd_Src_Sys_Code" ],
-        "condition" : {
-          "expression" : "TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_From_Date AND zsgd_To_Date\nAND zsgd_Src_Sys_Code IN ('LIS', 'DDA', 'CHA', 'LNS', 'CHS')"
-        }
-      },
-      "ports" : {
-        "inputs" : [ {
-          "id" : "oXoRTbX0AJcY3tl8nVYvz$$cubb7Ywz-rzr5HprhdfrR",
-          "slug" : "source_repay_type_data"
-        } ],
-        "outputs" : [ {
-          "id" : "1PiVMjgJ1F7opoMyFF5sd$$8BLdm3-kwAjUAjcwpu1xH",
+          "id" : "n1LwjatYjSH5s4tNlg53a$$34VRsG9MfwF2BS84t9WXv",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false,
@@ -329,41 +329,41 @@
     }
   },
   "connections" : [ {
-    "id" : "conn_Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL__F1SF2JkNeFNxFaQK4jtj$$zqN1OAIHV-Ezw3f2IJc09_repay_type_source_data__F1SF2JkNeFNxFaQK4jtj$$zqN1OAIHV-Ezw3f2IJc09",
-    "source" : "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL",
-    "sourcePort" : "_F1SF2JkNeFNxFaQK4jtj$$zqN1OAIHV-Ezw3f2IJc09",
-    "target" : "repay_type_source_data__F1SF2JkNeFNxFaQK4jtj$$zqN1OAIHV-Ezw3f2IJc09",
-    "targetPort" : "input_port_1"
+    "id" : "conn_-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T_repay_type_source_data_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T",
+    "source" : "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7",
+    "sourcePort" : "FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T",
+    "target" : "repay_type_source_data_FrU-6vtrH0yuBPP_ALMgl$$lxtbqlPAp0RHMse5E6S1T",
+    "targetPort" : "input_port_0"
   }, {
-    "id" : "_PUs4-QC8OmjK10f7NYQ1",
-    "source" : "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp",
-    "sourcePort" : "1PiVMjgJ1F7opoMyFF5sd$$8BLdm3-kwAjUAjcwpu1xH",
-    "target" : "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL",
-    "targetPort" : "uDfNqiPP6P7qDNTFYjXYZ$$A7BgJ4d3VZ49Fj_MEYfpi"
+    "id" : "xhCPxYvBzPQ8FqPwriVID",
+    "source" : "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt",
+    "sourcePort" : "stVUqQx_D1mog0ARzNfQz$$_94NgGqN_Rf3u1eg2dgb9",
+    "target" : "-x_rl01F-uyx8DGiO0QPk$$lherQwjHGgPr2lu_ax9I7",
+    "targetPort" : "-J_gTVRCz7unJkSqqfvG_$$Mk0d8mRT39QVIVJ4lf_4_"
   }, {
-    "id" : "OJY6xXaYdZ3DC91K6qBiH",
-    "source" : "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz",
-    "sourcePort" : "3u9_Xl_rh82_CYcQN-C4L$$ndUMQ5pCfAK-b2wfHw05c",
-    "target" : "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp",
-    "targetPort" : "oXoRTbX0AJcY3tl8nVYvz$$cubb7Ywz-rzr5HprhdfrR"
+    "id" : "vulDoIVwckFhbbiDrq-3s",
+    "source" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "sourcePort" : "n1LwjatYjSH5s4tNlg53a$$34VRsG9MfwF2BS84t9WXv",
+    "target" : "nZEZf_JG7l_gwJG3p0fH7$$gDDCkGxYfAvgG1tdTybLt",
+    "targetPort" : "12PBMe3ec5f-PLUOJX4So$$Bi4CLHWK5dGJCIFSU0oGX"
   }, {
-    "id" : "ppYmNNvfG6qnu5dBHRmzB",
-    "source" : "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj",
-    "sourcePort" : "AHO0PyJwA50GIiJ0qVIHh$$8GUH5Yaf0x02ll8hHUTPr",
-    "target" : "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz",
-    "targetPort" : "CmyWMd9i9oR97H7dAI4_1$$lY5SaY9WY0nD3X81ZYRAG"
+    "id" : "N-tixCvAZZTJVcu2WpYBJ",
+    "source" : "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6",
+    "sourcePort" : "GgsOM57vXcIui1VBgEXhH$$8rXnNlbrMuR62wrjMjSSZ",
+    "target" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "targetPort" : "ybrBKirmI6X01zD7j1SZ3$$lzQtI5om6KsAQSiN_Pyft"
   }, {
-    "id" : "9Ei1wKTq0lDG0gRboAqZt",
-    "source" : "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj",
-    "sourcePort" : "AHO0PyJwA50GIiJ0qVIHh$$8GUH5Yaf0x02ll8hHUTPr",
-    "target" : "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz",
-    "targetPort" : "7MIBnsDScPxjvgXvP1GEY$$s9afbwr_gfhVri9V9n4qe"
+    "id" : "5xrLCr7R7iNPajICIQNO4",
+    "source" : "COiTNMMwaySHImSLqPZws$$hdTXXmoka2XP0eTVmvUO6",
+    "sourcePort" : "GgsOM57vXcIui1VBgEXhH$$8rXnNlbrMuR62wrjMjSSZ",
+    "target" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "targetPort" : "XBQle0732JHqJO2q7G5Fg$$D6CpkJFe_ORuq6GOnXLjb"
   }, {
-    "id" : "a9jtFn4ZDe3rGfbUSFnnH",
-    "source" : "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0",
-    "sourcePort" : "8vn_me9n7Qunpvb91O0ER$$DRaAI5Lmzv7XXSbhHqWPk",
-    "target" : "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz",
-    "targetPort" : "fLU3G_GBI_zVkx9sxJxDj$$Ercnm4TgDapkChhe8DZt_"
+    "id" : "eb0kjSz5xC1xeIcjMySYx",
+    "source" : "DpGaF8pt3DbES5gK34Zpo$$4K2XiFAi0CBbiBfuBCWoi",
+    "sourcePort" : "cBZDhrPLyXh-cndjIwHmS$$8OvOM_FfXMAF1xqt4RZAK",
+    "target" : "0UYDi_yOswj-IwMZ_S_jY$$XSC4SDt3PjBCgzDOrz8nO",
+    "targetPort" : "-UiRFB_nCvt0RAr7Be0lQ$$DrsotJJd3x62zAn3aYsOl"
   } ],
   "component" : "Model"
 }
