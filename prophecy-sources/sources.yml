@@ -83,3 +83,45 @@ sources:
       dataType:
         type: "Date"
     type: "table"
+  - name: "zwgd_all_acct_m_hist"
+    config:
+      tags:
+      - "pipeline:mu001_base"
+    columns:
+    - name: "Account_Id"
+      dataType:
+        type: "Bigint"
+    - name: "Armt_Key"
+      dataType:
+        type: "Bigint"
+    - name: "Source_System_Code"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"
+  - name: "zwgd_mrtg_loan_m_hist"
+    config:
+      tags:
+      - "pipeline:mu001_base"
+    columns:
+    - name: "Account_Id"
+      dataType:
+        type: "Bigint"
+    - name: "Armt_Key"
+      dataType:
+        type: "Bigint"
+    - name: "Source_System_Code"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"

@@ -843,6 +843,54 @@ sqlSources:
       author: callum@prophecy.io
       createdAt: '2026-02-09 03:46:53'
       tableType: table
+    - name: zwgd_all_acct_m_hist
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Account_Id
+          dataType:
+            type: Bigint
+        - name: Armt_Key
+          dataType:
+            type: Bigint
+        - name: Source_System_Code
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:56:15'
+      tableType: table
+    - name: zwgd_mrtg_loan_m_hist
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Account_Id
+          dataType:
+            type: Bigint
+        - name: Armt_Key
+          dataType:
+            type: Bigint
+        - name: Source_System_Code
+          dataType:
+            type: String
+        - name: From_Date
+          dataType:
+            type: Date
+        - name: To_Date
+          dataType:
+            type: Date
+      description: null
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:56:39'
+      tableType: table
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline
@@ -878,4 +926,13 @@ sqlOrchestratorPipelines:
     - models/rms_base/rms_base__repayment_type_extraction.sql
     - models/rms_base/schema.yml
     createdAt: '2026-02-09 03:44:00'
+  .prophecy/metadata/sqlorchestratorpipeline/mu001_base:
+    name: mu001_base
+    schema: null
+    description: null
+    author: callum@prophecy.io
+    files:
+    - .prophecy/ide/pipelines/mu001_base.json
+    - pipelines/mu001_base.py
+    createdAt: '2026-02-09 03:54:50'
 sqlBusinessApps: {}

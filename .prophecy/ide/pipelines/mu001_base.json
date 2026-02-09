@@ -1,0 +1,82 @@
+{
+  "id" : "mu001_base",
+  "metainfo" : {
+    "label" : "mu001_base",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false
+  },
+  "processes" : {
+    "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-" : {
+      "id" : "oxZgz7rNzwsdNxqgXG31D$$Jjy3BcxTVWNvC14K8r_r-",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "zwgd_all_acct_m_hist",
+        "x" : -1120,
+        "y" : -420,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zwgd_all_acct_m_hist",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "v6jWSvaGl7nSm0ZdEwKR3$$inXDk9F-1Gv74J3maTxeB",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "K1SafoRqK_u4d2e1fs3Z0$$2ciVhbChitZjsJ-VZYv_N",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "NC5Ex4Ir2IlO7myixcaFm$$cQZdXJxKnBaUt-tZ6NYiY" : {
+      "id" : "NC5Ex4Ir2IlO7myixcaFm$$cQZdXJxKnBaUt-tZ6NYiY",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "zwgd_mrtg_loan_m_hist",
+        "x" : -1120,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "zwgd_mrtg_loan_m_hist",
+          "sourceName" : "westpac_edw_views",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "XiysuB3WeDIxgDIaNoH5S$$sUcAkUm1uCB84cvJlTjm0",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "fLo6w5H8n9ogV-fcbaqIz$$pfpULnADNdeiyUEw9F22k",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ ],
+  "component" : "Pipeline"
+}
