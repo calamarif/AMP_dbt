@@ -1,0 +1,27 @@
+{
+  "name" : "AMP_dbt",
+  "fileSystem" : {
+    "type" : "Folder",
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "providerType" : "databricks",
+  "prophecyIDEFolder" : {
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "dependenciesContainer" : {
+    "dependencies" : { },
+    "prophecyProjectDependencies" : { }
+  },
+  "entitiesToSync" : [ {
+    "name" : "stg_loan_repayment_type",
+    "type" : "Model",
+    "syncedOnce" : true
+  } ],
+  "frontEndLanguage" : "sql"
+}

@@ -1,0 +1,770 @@
+name: AMP_dbt
+description: ''
+version: 0.0.1
+author: callum@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs: {}
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2026-02-09 03:11:01'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/stg_loan_repayment_type:
+    name: stg_loan_repayment_type
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: armt_key
+        dataType:
+          type: String
+      - name: source_system_code
+        dataType:
+          type: String
+      - name: source_value
+        dataType:
+          type: String
+      - name: src_column
+        dataType:
+          type: String
+      - name: mu001_product_code
+        dataType:
+          type: String
+      - name: mu001_system_product_type
+        dataType:
+          type: String
+      - name: reference_mapped_value
+        dataType:
+          type: String
+      - name: covid_carryover_value
+        dataType:
+          type: String
+      - name: loan_repayment_type
+        dataType:
+          type: String
+      - name: applied_rule
+        dataType:
+          type: String
+      - name: process_date
+        dataType:
+          type: Date
+      - name: dbt_loaded_at
+        dataType:
+          type: Timestamp
+    description: |
+      Derives Loan_Repayment_Type from ultimate source systems using documented business rules.
+
+      **Source Systems:**
+      - LIS, DDA, CHA/LNS, CHS (ZSGD_Acct_Loan / ZSGD_Acct)
+      - RAMS/RMS (ZRMS_Loan_Account)
+      - MB/MU-001 (ZWGD_Mrtg_Loan_M_Hist - Product-based inference)
+      - Nexus/ML-005 (ZNEX_LOAN)
+      - TBK (ZTBK_Account)
+
+      **Business Rules (Priority Order):**
+      1. CHS OD_Type mapping via Refs_Repay_Type_Map
+      2. MU-001 EAL Products (11752, 11753, 11758) → 'Interest Only'
+      3. MU-001 Product 11206 → 'Interest Only'
+      4. COVID-19 Repayment Pause Carryover (LIS)
+      5. Standard reference table mapping
+      99. Default to 'Amortising'
+
+      **Valid Domain Values:**
+      - Amortising: Principal and interest repayments
+      - Interest Only: Interest-only repayments
+      - Revolving: Revolving credit facility
+      - '' (Empty): Not applicable
+    author: callum@prophecy.io
+    files:
+    - models/staging/stg_loan_repayment_type.sql
+    - .prophecy/ide/models/stg_loan_repayment_type.json
+    - models/staging/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2026-02-09 03:11:13'
+sqlSnapshots: {}
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/prophecy_tmp_source:
+    name: prophecy_tmp_source
+    macroType: expression
+    description: null
+    author: callum@prophecy.io
+    files:
+    - macros/prophecy_tmp_source.sql
+    - .prophecy/ide/macros/prophecy_tmp_source.json
+    createdAt: '2026-02-09 03:19:38'
+sqlSeeds:
+  .prophecy/metadata/sqlseeds/Armt_Stock:
+    name: Armt_Stock
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Armt_Key
+        dataType:
+          type: Integer
+      - name: Loan_Repayment_Type
+        dataType:
+          type: String
+      - name: Product_Category
+        dataType:
+          type: String
+      - name: As_Of_Date
+        dataType:
+          type: Date
+      - name: Process_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/Armt_Stock.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/REFS_COVID_Repay_Type:
+    name: REFS_COVID_Repay_Type
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Armt_Key
+        dataType:
+          type: Integer
+      - name: COVID_EFS_Repay_Type_Code
+        dataType:
+          type: String
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/REFS_COVID_Repay_Type.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/Refs_Repay_Type_Map:
+    name: Refs_Repay_Type_Map
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Src_Sys_Code
+        dataType:
+          type: String
+      - name: Src_Repay_Type_Code
+        dataType:
+          type: String
+      - name: Src_Column
+        dataType:
+          type: String
+      - name: Repay_Type_Code
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/Refs_Repay_Type_Map.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZNEX_Account:
+    name: ZNEX_Account
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Account_Id
+        dataType:
+          type: Integer
+      - name: Armt_Key
+        dataType:
+          type: Integer
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZNEX_Account.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZNEX_LOAN:
+    name: ZNEX_LOAN
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Account_Id
+        dataType:
+          type: Integer
+      - name: Repay_Type_Code
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZNEX_LOAN.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZRMS_Account:
+    name: ZRMS_Account
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Account_Id
+        dataType:
+          type: Integer
+      - name: Armt_Key
+        dataType:
+          type: Integer
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZRMS_Account.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZRMS_Loan_Account:
+    name: ZRMS_Loan_Account
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Account_Id
+        dataType:
+          type: Integer
+      - name: Repayment_Type
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZRMS_Loan_Account.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZSGD_Acct:
+    name: ZSGD_Acct
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Acct_Key
+        dataType:
+          type: Integer
+      - name: Armt_Key
+        dataType:
+          type: Integer
+      - name: Src_Sys_Code
+        dataType:
+          type: String
+      - name: OD_Type
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZSGD_Acct.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZSGD_Acct_Loan:
+    name: ZSGD_Acct_Loan
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Acct_Key
+        dataType:
+          type: Integer
+      - name: Repay_Type_Code
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZSGD_Acct_Loan.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZTBK_Account:
+    name: ZTBK_Account
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Account_Id
+        dataType:
+          type: Integer
+      - name: Armt_Key
+        dataType:
+          type: Integer
+      - name: Repay_Type_Code
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZTBK_Account.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZWGD_All_Acct_M_Hist:
+    name: ZWGD_All_Acct_M_Hist
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Account_Id
+        dataType:
+          type: Integer
+      - name: Armt_Key
+        dataType:
+          type: Integer
+      - name: Source_System_Code
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZWGD_All_Acct_M_Hist.csv
+    createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlseeds/ZWGD_Mrtg_Loan_M_Hist:
+    name: ZWGD_Mrtg_Loan_M_Hist
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: Account_Id
+        dataType:
+          type: Integer
+      - name: Product_Code
+        dataType:
+          type: Integer
+      - name: System_Product_Type
+        dataType:
+          type: String
+      - name: From_Date
+        dataType:
+          type: Date
+      - name: To_Date
+        dataType:
+          type: Date
+    description: null
+    author: callum@prophecy.io
+    files:
+    - seeds/ZWGD_Mrtg_Loan_M_Hist.csv
+    createdAt: '2026-02-09 03:11:13'
+sqlSources:
+  .prophecy/metadata/sqlsources/edw_views:
+    name: edw_views
+    description: EDW View layer - Enterprise Data Warehouse views
+    author: callum@prophecy.io
+    files:
+    - models/staging/sources.yml
+    createdAt: '2026-02-09 03:11:13'
+    tables:
+    - name: zsgd_acct
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: armt_key
+          dataType:
+            type: String
+          description: Arrangement key - unique account identifier
+        - name: acct_key
+          dataType:
+            type: String
+          description: Account key for joins
+        - name: src_sys_code
+          dataType:
+            type: String
+          description: Source system code (LIS, DDA, CHA, LNS, CHS)
+        - name: od_type
+          dataType:
+            type: String
+          description: Overdraft type - used for CHS repayment type derivation
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: St.George Account master - LIS, DDA, CHA, LNS, CHS source systems
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: zsgd_acct_loan
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: acct_key
+          dataType:
+            type: String
+          description: Account key for joins
+        - name: repay_type_code
+          dataType:
+            type: String
+          description: Source repayment type code
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: St.George Loan Account details
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: zrms_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: armt_key
+          dataType:
+            type: String
+          description: Arrangement key
+        - name: account_id
+          dataType:
+            type: String
+          description: Account identifier for joins
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: RAMS Account master
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: zrms_loan_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: account_id
+          dataType:
+            type: String
+          description: Account identifier for joins
+        - name: repayment_type
+          dataType:
+            type: String
+          description: Source repayment type
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: RAMS Loan Account details
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: zwgd_all_acct_m_hist
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: armt_key
+          dataType:
+            type: String
+          description: Arrangement key
+        - name: account_id
+          dataType:
+            type: String
+          description: Account identifier for joins
+        - name: source_system_code
+          dataType:
+            type: String
+          description: Source system code (MB for Mortgage Builder)
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: Westpac Group All Account Monthly History
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: zwgd_mrtg_loan_m_hist
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: account_id
+          dataType:
+            type: String
+          description: Account identifier for joins
+        - name: product_code
+          dataType:
+            type: String
+          description: Product code - used for repayment type inference
+        - name: system_product_type
+          dataType:
+            type: String
+          description: System product type (e.g., EAL)
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: Mortgage Loan Monthly History - MU-001 source
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: ztbk_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: armt_key
+          dataType:
+            type: String
+          description: Arrangement key
+        - name: repay_type_code
+          dataType:
+            type: String
+          description: Source repayment type code
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: Transaction Banking Account
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlsources/efs:
+    name: efs
+    description: EFS Production schema - Reference and target tables
+    author: callum@prophecy.io
+    files:
+    - models/staging/sources.yml
+    createdAt: '2026-02-09 03:11:13'
+    tables:
+    - name: refs_repay_type_map
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: src_sys_code
+          dataType:
+            type: String
+          description: Source system code
+        - name: src_repay_type_code
+          dataType:
+            type: String
+          description: Source repayment type code
+        - name: src_column
+          dataType:
+            type: String
+          description: Source column name (Repay_Type_Code or OD_Type)
+        - name: repay_type_code
+          dataType:
+            type: String
+          description: Mapped EFS repayment type value
+        - name: from_date
+          dataType:
+            type: String
+          description: Mapping effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Mapping effective end date
+      description: Reference mapping table for repayment type codes
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: refs_covid_repay_type
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: armt_key
+          dataType:
+            type: String
+          description: Arrangement key
+        - name: covid_efs_repay_type_code
+          dataType:
+            type: String
+          description: Carried-over repayment type during COVID pause
+      description: COVID-19 repayment pause carryover values
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: armt_stock
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: armt_key
+          dataType:
+            type: String
+          description: Arrangement key
+        - name: as_of_date
+          dataType:
+            type: String
+          description: As of date for the record
+        - name: process_date
+          dataType:
+            type: String
+          description: Process date
+        - name: loan_repayment_type
+          dataType:
+            type: String
+          description: Target attribute - Loan Repayment Type
+        - name: source_system_code
+          dataType:
+            type: String
+          description: Source system code
+        - name: product_category
+          dataType:
+            type: String
+          description: Product category (Loans)
+      description: Target table - Arrangement Stock
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+  .prophecy/metadata/sqlsources/sgdw_views:
+    name: sgdw_views
+    description: SGDW View layer - St.George Data Warehouse views
+    author: callum@prophecy.io
+    files:
+    - models/staging/sources.yml
+    createdAt: '2026-02-09 03:11:13'
+    tables:
+    - name: znex_account
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: armt_key
+          dataType:
+            type: String
+          description: Arrangement key
+        - name: account_id
+          dataType:
+            type: String
+          description: Account identifier for joins
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: Nexus Account master - Margin Lending
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+    - name: znex_loan
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: account_id
+          dataType:
+            type: String
+          description: Account identifier for joins
+        - name: repay_type_code
+          dataType:
+            type: String
+          description: Source repayment type code
+        - name: from_date
+          dataType:
+            type: String
+          description: Record effective start date
+        - name: to_date
+          dataType:
+            type: String
+          description: Record effective end date
+      description: Nexus Loan details
+      author: callum@prophecy.io
+      createdAt: '2026-02-09 03:11:13'
+sqlUnreferencedSources: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: callum@prophecy.io
+  createdAt: '2026-02-09 03:11:01'
+dependencies: []
+projectDependencies: {}
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}
+projectConfigurations: {}
+sqlOrchestratorPipelines:
+  .prophecy/metadata/sqlorchestratorpipeline/manual_test:
+    name: manual_test
+    schema: null
+    description: null
+    author: callum@prophecy.io
+    files:
+    - .prophecy/ide/pipelines/manual_test.json
+    - pipelines/manual_test.py
+    createdAt: '2026-02-09 03:19:38'
+sqlBusinessApps: {}

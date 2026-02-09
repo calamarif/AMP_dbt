@@ -1,0 +1,62 @@
+{
+  "id" : "manual_test",
+  "metainfo" : {
+    "label" : "manual_test",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false
+  },
+  "processes" : {
+    "VyRmGrA_oa5KL2Nr9oY53$$2t_KdlNbYLA2YXIw48h06" : {
+      "id" : "VyRmGrA_oa5KL2Nr9oY53$$2t_KdlNbYLA2YXIw48h06",
+      "component" : "OrchestrationSource",
+      "kind" : "OnedriveSource",
+      "metadata" : {
+        "label" : "OrchestrationSource_0",
+        "x" : -980,
+        "y" : -420,
+        "phase" : 0
+      },
+      "properties" : {
+        "connector" : {
+          "kind" : "onedrive",
+          "properties" : { },
+          "type" : "connector"
+        },
+        "properties" : {
+          "fileOperationProperties" : { }
+        },
+        "format" : {
+          "properties" : {
+            "allowLazyQuotes" : false,
+            "allowEmptyColumnNames" : true,
+            "separator" : ",",
+            "nullValue" : "",
+            "encoding" : "UTF-8",
+            "header" : true
+          },
+          "kind" : "csv",
+          "category" : "file"
+        },
+        "isNew" : true
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "G-T7MlD8732o0yoZCbtke$$GCSXbRsD7dMVlIvosEOg1",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ ],
+  "component" : "Pipeline"
+}

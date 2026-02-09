@@ -1,0 +1,327 @@
+{
+  "id" : "stg_loan_repayment_type",
+  "metainfo" : {
+    "label" : "stg_loan_repayment_type",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "table",
+        "description" : "'Derives Loan_Repayment_Type from ultimate source systems using documented business rules'",
+        "schema" : "'westpac'",
+        "tags" : "['loan_repayment_type', 'data_lineage']",
+        "type" : "ModelConfig"
+      },
+      "userDefinedConfig" : {
+        "vars" : {
+          "edw_process_date" : " var('edw_process_date', '20260101') ",
+          "ref_effective_date" : " var('ref_effective_date', '20260101') "
+        }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "final##KfHj9lFm" : {
+      "id" : "final##KfHj9lFm",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "stg_loan_repayment_type",
+        "x" : 700,
+        "y" : 420,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : true,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT \n  armt_key,\n  src_sys_code AS source_system_code,\n  src_repay_type_code AS source_value,\n  src_column,\n  mu001_product_code,\n  mu001_system_product_type,\n  mapped_repay_type AS reference_mapped_value,\n  covid_carryover_value,\n  loan_repayment_type,\n  applied_rule,\n  process_date,\n  current_timestamp() AS dbt_loaded_at\n\nFROM derived\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "kNhCMdGR",
+          "slug" : "derived"
+        } ],
+        "outputs" : [ {
+          "id" : "qnH5SOw2",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 7
+    },
+    "mu001_base##sdnYvsEA" : {
+      "id" : "mu001_base##sdnYvsEA",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "mu001_base",
+        "x" : 20,
+        "y" : 420,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  zaam.armt_key,\n  'MU-001' AS src_sys_code,\n  '' AS src_repay_type_code,\n  'Product_Code' AS src_column,\n  zmlm.product_code AS mu001_product_code,\n  zmlm.system_product_type AS mu001_system_product_type,\n  to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date\n\nFROM {{ source('edw_views', 'zwgd_all_acct_m_hist') }} AS zaam\nLEFT JOIN {{ source('edw_views', 'zwgd_mrtg_loan_m_hist') }} AS zmlm\n   ON zaam.account_id = zmlm.account_id\n  AND to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zmlm.from_date AND zmlm.to_date\n\nWHERE zaam.source_system_code = 'MB'\n      AND to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zaam.from_date AND zaam.to_date\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "St6XSCta",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "derived##Kely9Cdv" : {
+      "id" : "derived##Kely9Cdv",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "derived",
+        "x" : 500,
+        "y" : 420,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  b.armt_key,\n  b.src_sys_code,\n  b.src_repay_type_code,\n  b.src_column,\n  b.mu001_product_code,\n  b.mu001_system_product_type,\n  b.process_date,\n  -- Reference mapping lookups\n  rrtm.repay_type_code AS mapped_repay_type,\n  rctm.repay_type_code AS chs_mapped_repay_type,\n  COALESCE(covid.covid_efs_repay_type_code, '') AS covid_carryover_value,\n  -- ====================================================================\n  -- BUSINESS RULES APPLICATION\n  -- ====================================================================\n  CASE\n    WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''\n      THEN rctm.repay_type_code\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code IN ('11752', '11753', '11758')\n    AND b.mu001_system_product_type = 'EAL'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Interest Only'\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code = '11206'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Interest Only'\n    WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''\n      THEN covid.covid_efs_repay_type_code\n    WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> ''\n      THEN rrtm.repay_type_code\n    ELSE 'Amortising'\n  END AS loan_repayment_type,\n  CASE\n    WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.repay_type_code, '') <> ''\n      THEN 'Rule 1 - CHS OD_Type Mapping'\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code IN ('11752', '11753', '11758')\n    AND b.mu001_system_product_type = 'EAL'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Rule 2 - MU-001 EAL Product Default'\n    WHEN b.src_sys_code = 'MU-001'\n    AND b.mu001_product_code = '11206'\n    AND COALESCE(rrtm.repay_type_code, '') = ''\n      THEN 'Rule 3 - MU-001 Product 11206 Default'\n    WHEN b.src_sys_code = 'LIS' AND COALESCE(covid.covid_efs_repay_type_code, '') <> ''\n      THEN 'Rule 4 - COVID Carryover'\n    WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.repay_type_code, '') <> ''\n      THEN 'Rule 5 - Reference Mapping'\n    ELSE 'Rule 99 - Default Amortising'\n  END AS applied_rule\n\nFROM all_sources AS b\nLEFT JOIN {{ source('efs', 'refs_repay_type_map') }} AS rrtm\n   ON b.src_sys_code = rrtm.src_sys_code\n  AND b.src_repay_type_code = rrtm.src_repay_type_code\n  AND rrtm.src_column = 'Repay_Type_Code'\n  AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rrtm.from_date AND rrtm.to_date\nLEFT JOIN {{ source('efs', 'refs_repay_type_map') }} AS rctm\n   ON b.src_sys_code = rctm.src_sys_code\n  AND b.src_repay_type_code = rctm.src_repay_type_code\n  AND rctm.src_column = 'OD_Type'\n  AND b.src_sys_code = 'CHS'\n  AND to_date('{{ ref_effective_date }}', 'yyyyMMdd') BETWEEN rctm.from_date AND rctm.to_date\nLEFT JOIN {{ source('efs', 'refs_covid_repay_type') }} AS covid\n   ON b.armt_key = covid.armt_key AND b.src_sys_code = 'LIS'\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "EbPZo4E5",
+          "slug" : "all_sources"
+        } ],
+        "outputs" : [ {
+          "id" : "kZoulVAt",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 6
+    },
+    "all_sources##okPT5cy0" : {
+      "id" : "all_sources##okPT5cy0",
+      "component" : "Union",
+      "metadata" : {
+        "label" : "all_sources",
+        "x" : 280,
+        "y" : 400,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "operationType" : "union",
+        "preserveDuplicates" : true,
+        "useMinus" : false,
+        "inputAliases" : [ "zsgd_base", "rms_base", "mu001_base", "nexus_base", "tbk_base" ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ZU2Y2hq2",
+          "slug" : "zsgd_base"
+        }, {
+          "id" : "CGdaMs5c",
+          "slug" : "rms_base"
+        }, {
+          "id" : "eXu3lUjR",
+          "slug" : "mu001_base"
+        }, {
+          "id" : "MSWa6uqZ",
+          "slug" : "nexus_base"
+        }, {
+          "id" : "GYa1uRlo",
+          "slug" : "tbk_base"
+        } ],
+        "outputs" : [ {
+          "id" : "pcsztKss",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "nexus_base##bo0NKIlH" : {
+      "id" : "nexus_base##bo0NKIlH",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "nexus_base",
+        "x" : 20,
+        "y" : 620,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  znex.armt_key,\n  'ML-005' AS src_sys_code,\n  COALESCE(znex_l.repay_type_code, '') AS src_repay_type_code,\n  'Repay_Type_Code' AS src_column,\n  CAST(NULL AS STRING) AS mu001_product_code,\n  CAST(NULL AS STRING) AS mu001_system_product_type,\n  to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date\n\nFROM {{ source('sgdw_views', 'znex_account') }} AS znex\nLEFT JOIN {{ source('sgdw_views', 'znex_loan') }} AS znex_l\n   ON znex.account_id = znex_l.account_id\n  AND to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN znex_l.from_date AND znex_l.to_date\n\nWHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN znex.from_date AND znex.to_date\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "L1cHhjaZ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "tbk_base##Kmdr9dfp" : {
+      "id" : "tbk_base##Kmdr9dfp",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "tbk_base",
+        "x" : 20,
+        "y" : 820,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  ztbk.armt_key,\n  'TBK' AS src_sys_code,\n  COALESCE(ztbk.repay_type_code, '') AS src_repay_type_code,\n  'Repay_Type_Code' AS src_column,\n  CAST(NULL AS STRING) AS mu001_product_code,\n  CAST(NULL AS STRING) AS mu001_system_product_type,\n  to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date\n\nFROM {{ source('edw_views', 'ztbk_account') }} AS ztbk\n\nWHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN ztbk.from_date AND ztbk.to_date\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "HOlhEUiJ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "rms_base##im2NFT9X" : {
+      "id" : "rms_base##im2NFT9X",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "rms_base",
+        "x" : 20,
+        "y" : 220,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  zrms.armt_key,\n  'RMS' AS src_sys_code,\n  COALESCE(zrms_la.repayment_type, '') AS src_repay_type_code,\n  'Repayment_Type' AS src_column,\n  CAST(NULL AS STRING) AS mu001_product_code,\n  CAST(NULL AS STRING) AS mu001_system_product_type,\n  to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date\n\nFROM {{ source('edw_views', 'zrms_account') }} AS zrms\nLEFT JOIN {{ source('edw_views', 'zrms_loan_account') }} AS zrms_la\n   ON zrms.account_id = zrms_la.account_id\n  AND to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zrms_la.from_date AND zrms_la.to_date\n\nWHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zrms.from_date AND zrms.to_date\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "svv647D6",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "zsgd_base##fjytIu31" : {
+      "id" : "zsgd_base##fjytIu31",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "zsgd_base",
+        "x" : 20,
+        "y" : 20,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  zsgd.armt_key,\n  zsgd.src_sys_code,\n  CASE\n    WHEN zsgd.src_sys_code = 'CHS'\n      THEN COALESCE(zsgd_a.od_type, '')\n    ELSE COALESCE(zsgd_al.repay_type_code, '')\n  END AS src_repay_type_code,\n  CASE\n    WHEN zsgd.src_sys_code = 'CHS'\n      THEN 'OD_Type'\n    ELSE 'Repay_Type_Code'\n  END AS src_column,\n  CAST(NULL AS STRING) AS mu001_product_code,\n  CAST(NULL AS STRING) AS mu001_system_product_type,\n  to_date('{{ edw_process_date }}', 'yyyyMMdd') AS process_date\n\nFROM {{ source('edw_views', 'zsgd_acct') }} AS zsgd\nLEFT JOIN {{ source('edw_views', 'zsgd_acct_loan') }} AS zsgd_al\n   ON zsgd.acct_key = zsgd_al.acct_key\n  AND to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_al.from_date AND zsgd_al.to_date\nLEFT JOIN {{ source('edw_views', 'zsgd_acct') }} AS zsgd_a\n   ON zsgd.acct_key = zsgd_a.acct_key\n  AND zsgd.src_sys_code = 'CHS'\n  AND to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd_a.from_date AND zsgd_a.to_date\n\nWHERE to_date('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN zsgd.from_date AND zsgd.to_date\n      AND zsgd.src_sys_code IN ('LIS', 'DDA', 'CHA', 'LNS', 'CHS')\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "zD4ZnmCr",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    }
+  },
+  "connections" : [ {
+    "id" : "hOj3xMV0",
+    "source" : "zsgd_base##fjytIu31",
+    "sourcePort" : "zD4ZnmCr",
+    "target" : "all_sources##okPT5cy0",
+    "targetPort" : "ZU2Y2hq2"
+  }, {
+    "id" : "jqDoHRLX",
+    "source" : "rms_base##im2NFT9X",
+    "sourcePort" : "svv647D6",
+    "target" : "all_sources##okPT5cy0",
+    "targetPort" : "CGdaMs5c"
+  }, {
+    "id" : "VEwEOEqE",
+    "source" : "mu001_base##sdnYvsEA",
+    "sourcePort" : "St6XSCta",
+    "target" : "all_sources##okPT5cy0",
+    "targetPort" : "eXu3lUjR"
+  }, {
+    "id" : "M0NM9O1l",
+    "source" : "nexus_base##bo0NKIlH",
+    "sourcePort" : "L1cHhjaZ",
+    "target" : "all_sources##okPT5cy0",
+    "targetPort" : "MSWa6uqZ"
+  }, {
+    "id" : "nAluiAZu",
+    "source" : "tbk_base##Kmdr9dfp",
+    "sourcePort" : "HOlhEUiJ",
+    "target" : "all_sources##okPT5cy0",
+    "targetPort" : "GYa1uRlo"
+  }, {
+    "id" : "AbUOSdnl",
+    "source" : "all_sources##okPT5cy0",
+    "sourcePort" : "pcsztKss",
+    "target" : "derived##Kely9Cdv",
+    "targetPort" : "EbPZo4E5"
+  }, {
+    "id" : "diQ1kGqU",
+    "source" : "derived##Kely9Cdv",
+    "sourcePort" : "kZoulVAt",
+    "target" : "final##KfHj9lFm",
+    "targetPort" : "kNhCMdGR"
+  } ],
+  "component" : "Model"
+}
