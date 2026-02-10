@@ -1,51 +1,26 @@
 {
-  "id" : "manual_test",
+  "id" : "manual_test__loan_repayment_type_logic",
   "metainfo" : {
-    "label" : "manual_test",
-    "autoLayout" : false,
-    "version" : 1,
-    "configuration" : {
-      "schema" : {
-        "type" : "record",
-        "fields" : [ ]
+    "label" : "manual_test__loan_repayment_type_logic",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"main\"",
+        "schema" : "\"default\"",
+        "type" : "ModelConfig"
       }
     },
-    "isTranspiledPipeline" : false,
-    "publishDiagnosticMetrics" : false,
-    "processesVsModelFiles" : {
-      "refs_repay_type_##rzMGhEjo" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "mu001_product_co##RTfylfxA" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "filtered_source_##hyAg44j6" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "account_loan_pro##zmMtzv3e" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "znex_loan##YcJxwoeo" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "source_repay_typ##Qc3eFU5e" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "zsgd_acct_loan##LWHnF8DB" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "zsgd_acct##f2BGzsBZ" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "repay_type_code_##HQPt6sKU" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "znex_account##fuC2GH71" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "loan_repayment_type_logic_m7inbLdt" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "account_loan_joi##LX9FU5ri" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "zrms_account##hXz7k6cG" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "repay_type_sourc##pf1mpt7P" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "repayment_type_e##IjhgFP6T" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "ztbk_account##lG10XNK8" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "zrms_loan_accoun##c4dGP6t6" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "loan_repayment_t##FaKYOccQ" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "filtered_active_##iTRactei" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "zwgd_mrtg_loan_m##sdIWkXnl" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "zwgd_all_acct_m_##vsDU1v9j" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "Union_1##N9vjlIZW" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "joined_account_r##z1rdNtNL" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "tbk_base##yE0S72oY" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "filtered_tbk_acc##eDATGJqy" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "mb_accounts_filt##uMMii4bp" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
-      "account_date_fil##S08Exwto" : "models/manual_test/manual_test__loan_repayment_type_logic.sql"
-    }
+    "version" : 3
   },
   "processes" : {
     "refs_repay_type_##rzMGhEjo" : {
       "id" : "refs_repay_type_##rzMGhEjo",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "refs_repay_type_map",
         "x" : -1260,
@@ -68,9 +43,9 @@
           "id" : "kpUUxC89",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 14
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "mu001_product_co##RTfylfxA" : {
       "id" : "mu001_product_co##RTfylfxA",
@@ -136,7 +111,8 @@
           "id" : "SExlNsH4",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "filtered_source_##hyAg44j6" : {
@@ -163,7 +139,8 @@
           "id" : "J7HwAxgy",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "account_loan_pro##zmMtzv3e" : {
@@ -230,12 +207,13 @@
           "id" : "ENzDYR7d",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "znex_loan##YcJxwoeo" : {
       "id" : "znex_loan##YcJxwoeo",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "znex_loan",
         "x" : -720,
@@ -258,9 +236,9 @@
           "id" : "vWIJiqft",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 6
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "source_repay_typ##Qc3eFU5e" : {
       "id" : "source_repay_typ##Qc3eFU5e",
@@ -383,60 +361,13 @@
           "id" : "j5kVG072",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "0tCi4rILoP2RMm-ZJA0YV$$YC7-2DtLvSwjFSBo53sR5" : {
-      "id" : "0tCi4rILoP2RMm-ZJA0YV$$YC7-2DtLvSwjFSBo53sR5",
-      "component" : "Dataset",
-      "metadata" : {
-        "label" : "refs_covid_repay_type",
-        "x" : -1260,
-        "y" : 0,
-        "phase" : 0
-      },
-      "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "refs_covid_repay_type",
-          "sourceName" : "westpac_efs",
-          "sourceType" : "Table"
-        }
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ {
-          "id" : "OgFe8apU",
-          "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "HI3BZ6g5bNzpMnfkPBxwj$$FIbRLCF4_ghyVIdXdDZsy" : {
-      "id" : "HI3BZ6g5bNzpMnfkPBxwj$$FIbRLCF4_ghyVIdXdDZsy",
-      "component" : "Comment",
-      "metadata" : {
-        "label" : "Comment_2",
-        "x" : -560,
-        "y" : -420,
-        "height" : 180,
-        "width" : 30,
-        "phase" : 0
-      },
-      "properties" : {
-        "comment" : "",
-        "connectedNodes" : [ ]
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ ]
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "zsgd_acct_loan##LWHnF8DB" : {
       "id" : "zsgd_acct_loan##LWHnF8DB",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zsgd_acct_loan",
         "x" : -680,
@@ -459,13 +390,13 @@
           "id" : "nwncvIOV",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 7
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "zsgd_acct##f2BGzsBZ" : {
       "id" : "zsgd_acct##f2BGzsBZ",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zsgd_acct",
         "x" : -700,
@@ -488,9 +419,9 @@
           "id" : "wAsx57n4",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 8
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "repay_type_code_##HQPt6sKU" : {
       "id" : "repay_type_code_##HQPt6sKU",
@@ -556,12 +487,13 @@
           "id" : "jR4P9JVs",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "znex_account##fuC2GH71" : {
       "id" : "znex_account##fuC2GH71",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "znex_account",
         "x" : -720,
@@ -584,9 +516,39 @@
           "id" : "zWfb2eoD",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "loan_repayment_type_logic_m7inbLdt" : {
+      "id" : "loan_repayment_type_logic_m7inbLdt",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "loan_repayment_type_logic"
       },
-      "index" : 12
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM loan_repayment_type_logic\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "account_loan_joi##LX9FU5ri" : {
       "id" : "account_loan_joi##LX9FU5ri",
@@ -670,32 +632,13 @@
           "id" : "O4mLCoyF",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "lOYrQd1ES2wV_n-bWNVmE$$cNFedYU5Dlxpip0xYnvks" : {
-      "id" : "lOYrQd1ES2wV_n-bWNVmE$$cNFedYU5Dlxpip0xYnvks",
-      "component" : "Comment",
-      "metadata" : {
-        "label" : "Comment_1_1_1_1",
-        "x" : -720,
-        "y" : 540,
-        "height" : 39.999977111816406,
-        "width" : 219.99996948242188,
-        "phase" : 0
-      },
-      "properties" : {
-        "comment" : "Nexus Base",
-        "connectedNodes" : [ ]
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ ]
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "zrms_account##hXz7k6cG" : {
       "id" : "zrms_account##hXz7k6cG",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zrms_account",
         "x" : -720,
@@ -718,9 +661,9 @@
           "id" : "u88w3yej",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 17
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "repay_type_sourc##pf1mpt7P" : {
       "id" : "repay_type_sourc##pf1mpt7P",
@@ -786,7 +729,8 @@
           "id" : "KIP34bY3",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "repayment_type_e##IjhgFP6T" : {
@@ -853,12 +797,13 @@
           "id" : "Hc2y2HdJ",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "ztbk_account##lG10XNK8" : {
       "id" : "ztbk_account##lG10XNK8",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "ztbk_account",
         "x" : -660,
@@ -881,13 +826,13 @@
           "id" : "hJCGZSor",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 1
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "zrms_loan_accoun##c4dGP6t6" : {
       "id" : "zrms_loan_accoun##c4dGP6t6",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zrms_loan_account",
         "x" : -720,
@@ -910,9 +855,9 @@
           "id" : "reuCrjmd",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 16
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "loan_repayment_t##FaKYOccQ" : {
       "id" : "loan_repayment_t##FaKYOccQ",
@@ -1022,7 +967,8 @@
           "id" : "m7inbLdt",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "filtered_active_##iTRactei" : {
@@ -1049,12 +995,13 @@
           "id" : "HaCgRgvs",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "zwgd_mrtg_loan_m##sdIWkXnl" : {
       "id" : "zwgd_mrtg_loan_m##sdIWkXnl",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zwgd_mrtg_loan_m_hist",
         "x" : -720,
@@ -1077,33 +1024,13 @@
           "id" : "hWPsEUAq",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 0
-    },
-    "QyBjMYzd3Yk5GH7iNIFZT$$hDMzrRt_O6FfbticVs9vS" : {
-      "id" : "QyBjMYzd3Yk5GH7iNIFZT$$hDMzrRt_O6FfbticVs9vS",
-      "component" : "Comment",
-      "metadata" : {
-        "label" : "Comment_1_1_1_1_1",
-        "x" : -760,
-        "y" : 880,
-        "height" : 39.999977111816406,
-        "width" : 220.0000457763672,
-        "phase" : 0
-      },
-      "properties" : {
-        "comment" : "mu001 Base",
-        "connectedNodes" : [ ]
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ ]
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "zwgd_all_acct_m_##vsDU1v9j" : {
       "id" : "zwgd_all_acct_m_##vsDU1v9j",
-      "component" : "Dataset",
+      "component" : "Source",
       "metadata" : {
         "label" : "zwgd_all_acct_m_hist",
         "x" : -720,
@@ -1126,9 +1053,9 @@
           "id" : "KWAvQd18",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      },
-      "index" : 3
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
     },
     "Union_1##N9vjlIZW" : {
       "id" : "Union_1##N9vjlIZW",
@@ -1166,27 +1093,8 @@
           "id" : "yyM9Oq0A",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "iXcxDDQq9z_32eFE6c7ZE$$GTVsQu_hsEYaZlG_b5mXp" : {
-      "id" : "iXcxDDQq9z_32eFE6c7ZE$$GTVsQu_hsEYaZlG_b5mXp",
-      "component" : "Comment",
-      "metadata" : {
-        "label" : "Comment_1",
-        "x" : -780,
-        "y" : -380,
-        "height" : 40.0000114440918,
-        "width" : 220.0000457763672,
-        "phase" : 0
-      },
-      "properties" : {
-        "comment" : "ZSGD Base",
-        "connectedNodes" : [ ]
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ ]
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "joined_account_r##z1rdNtNL" : {
@@ -1265,27 +1173,8 @@
           "id" : "yNFas6GA",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "HXiyXH3qxuX0lsH6U_qQx$$5AZoAE6BUii2DlQB3AXX4" : {
-      "id" : "HXiyXH3qxuX0lsH6U_qQx$$5AZoAE6BUii2DlQB3AXX4",
-      "component" : "Comment",
-      "metadata" : {
-        "label" : "Comment_1_1_1",
-        "x" : -760,
-        "y" : 200,
-        "height" : 40.00004959106445,
-        "width" : 219.99996948242188,
-        "phase" : 0
-      },
-      "properties" : {
-        "comment" : "RMS Base",
-        "connectedNodes" : [ ]
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ ]
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "tbk_base##yE0S72oY" : {
@@ -1352,7 +1241,8 @@
           "id" : "AUL0Aeak",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "filtered_tbk_acc##eDATGJqy" : {
@@ -1379,7 +1269,8 @@
           "id" : "Su2BRYAc",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "mb_accounts_filt##uMMii4bp" : {
@@ -1406,7 +1297,8 @@
           "id" : "smGdfhDJ",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     },
     "account_date_fil##S08Exwto" : {
@@ -1433,144 +1325,35 @@
           "id" : "lwqrSCRM",
           "slug" : "out"
         } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "10J_Qcmjom_o3EN7ukqPA$$tZLzTfu8RILJMQE7iQUqJ" : {
-      "id" : "10J_Qcmjom_o3EN7ukqPA$$tZLzTfu8RILJMQE7iQUqJ",
-      "component" : "Comment",
-      "metadata" : {
-        "label" : "Comment_1_1",
-        "x" : -760,
-        "y" : -20,
-        "height" : 39.999977111816406,
-        "width" : 219.99996948242188,
-        "phase" : 0
-      },
-      "properties" : {
-        "comment" : "TBK Base",
-        "connectedNodes" : [ ]
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ ]
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       }
     }
   },
   "connections" : [ {
-    "id" : "tvBTzf63",
-    "source" : "zwgd_all_acct_m_##vsDU1v9j",
-    "sourcePort" : "KWAvQd18",
-    "target" : "account_loan_pro##zmMtzv3e",
-    "targetPort" : "QSpJLhmn"
+    "id" : "conn_loan_repayment_t##FaKYOccQ_m7inbLdt_loan_repayment_type_logic_m7inbLdt",
+    "source" : "loan_repayment_t##FaKYOccQ",
+    "sourcePort" : "m7inbLdt",
+    "target" : "loan_repayment_type_logic_m7inbLdt",
+    "targetPort" : "input_port_0"
   }, {
-    "id" : "iLjgsz6z",
-    "source" : "zwgd_mrtg_loan_m##sdIWkXnl",
-    "sourcePort" : "hWPsEUAq",
-    "target" : "account_loan_pro##zmMtzv3e",
-    "targetPort" : "kmJLAjlb"
+    "id" : "msdmf8YC",
+    "source" : "Union_1##N9vjlIZW",
+    "sourcePort" : "yyM9Oq0A",
+    "target" : "loan_repayment_t##FaKYOccQ",
+    "targetPort" : "L5GiIoRX"
   }, {
-    "id" : "NY86bsUW",
-    "source" : "account_loan_pro##zmMtzv3e",
-    "sourcePort" : "ENzDYR7d",
-    "target" : "mb_accounts_filt##uMMii4bp",
-    "targetPort" : "gv71zrZB"
+    "id" : "Sw8nMVCH",
+    "source" : "refs_repay_type_##rzMGhEjo",
+    "sourcePort" : "kpUUxC89",
+    "target" : "loan_repayment_t##FaKYOccQ",
+    "targetPort" : "qpDN0qhE"
   }, {
-    "id" : "gGXOXwui",
-    "source" : "zsgd_acct##f2BGzsBZ",
-    "sourcePort" : "wAsx57n4",
-    "target" : "source_repay_typ##Qc3eFU5e",
-    "targetPort" : "LdVY1XPW"
-  }, {
-    "id" : "q9sUY7K0",
-    "source" : "zsgd_acct_loan##LWHnF8DB",
-    "sourcePort" : "nwncvIOV",
-    "target" : "source_repay_typ##Qc3eFU5e",
-    "targetPort" : "TPqOuYOc"
-  }, {
-    "id" : "dXlbmQxL",
-    "source" : "zsgd_acct##f2BGzsBZ",
-    "sourcePort" : "wAsx57n4",
-    "target" : "source_repay_typ##Qc3eFU5e",
-    "targetPort" : "kcXw1DHp"
-  }, {
-    "id" : "RD6UvM2e",
-    "source" : "source_repay_typ##Qc3eFU5e",
-    "sourcePort" : "j5kVG072",
-    "target" : "filtered_source_##hyAg44j6",
-    "targetPort" : "kRe5DQJs"
-  }, {
-    "id" : "jQ2Mdgow",
-    "source" : "filtered_source_##hyAg44j6",
-    "sourcePort" : "J7HwAxgy",
-    "target" : "repay_type_sourc##pf1mpt7P",
-    "targetPort" : "snUL4gxS"
-  }, {
-    "id" : "inNZzIrq",
-    "source" : "znex_account##fuC2GH71",
-    "sourcePort" : "zWfb2eoD",
-    "target" : "account_loan_joi##LX9FU5ri",
-    "targetPort" : "tUT2mW5w"
-  }, {
-    "id" : "YmmpLhCi",
-    "source" : "znex_loan##YcJxwoeo",
-    "sourcePort" : "vWIJiqft",
-    "target" : "account_loan_joi##LX9FU5ri",
-    "targetPort" : "oLjlMhzZ"
-  }, {
-    "id" : "elUCbFPC",
-    "source" : "mb_accounts_filt##uMMii4bp",
-    "sourcePort" : "smGdfhDJ",
-    "target" : "mu001_product_co##RTfylfxA",
-    "targetPort" : "igkZgIDn"
-  }, {
-    "id" : "gAy4TrF8",
-    "source" : "zrms_account##hXz7k6cG",
-    "sourcePort" : "u88w3yej",
-    "target" : "joined_account_r##z1rdNtNL",
-    "targetPort" : "kYzCDl3b"
-  }, {
-    "id" : "AsFG0Cso",
-    "source" : "zrms_loan_accoun##c4dGP6t6",
-    "sourcePort" : "reuCrjmd",
-    "target" : "joined_account_r##z1rdNtNL",
-    "targetPort" : "QwaDEyyD"
-  }, {
-    "id" : "GW6nfqd8",
-    "source" : "joined_account_r##z1rdNtNL",
-    "sourcePort" : "yNFas6GA",
-    "target" : "filtered_active_##iTRactei",
-    "targetPort" : "GA0Jpa8H"
-  }, {
-    "id" : "wqTMkdOz",
-    "source" : "filtered_active_##iTRactei",
-    "sourcePort" : "HaCgRgvs",
-    "target" : "repayment_type_e##IjhgFP6T",
-    "targetPort" : "Vu7ex5Ct"
-  }, {
-    "id" : "Jj9uedex",
-    "source" : "account_loan_joi##LX9FU5ri",
-    "sourcePort" : "O4mLCoyF",
-    "target" : "account_date_fil##S08Exwto",
-    "targetPort" : "boLeGSZx"
-  }, {
-    "id" : "uT3PmCXc",
-    "source" : "account_date_fil##S08Exwto",
-    "sourcePort" : "lwqrSCRM",
-    "target" : "repay_type_code_##HQPt6sKU",
-    "targetPort" : "oJsQYNoc"
-  }, {
-    "id" : "JSsYNNTr",
-    "source" : "ztbk_account##lG10XNK8",
-    "sourcePort" : "hJCGZSor",
-    "target" : "filtered_tbk_acc##eDATGJqy",
-    "targetPort" : "FUwFKUbs"
-  }, {
-    "id" : "XRWN8RzI",
-    "source" : "filtered_tbk_acc##eDATGJqy",
-    "sourcePort" : "Su2BRYAc",
-    "target" : "tbk_base##yE0S72oY",
-    "targetPort" : "WwYfM6fE"
+    "id" : "dmwiU02G",
+    "source" : "refs_repay_type_##rzMGhEjo",
+    "sourcePort" : "kpUUxC89",
+    "target" : "loan_repayment_t##FaKYOccQ",
+    "targetPort" : "ubfcQFDO"
   }, {
     "id" : "RTQzpcfP",
     "source" : "repay_type_sourc##pf1mpt7P",
@@ -1602,23 +1385,119 @@
     "target" : "Union_1##N9vjlIZW",
     "targetPort" : "GHqzknXG"
   }, {
-    "id" : "msdmf8YC",
-    "source" : "Union_1##N9vjlIZW",
-    "sourcePort" : "yyM9Oq0A",
-    "target" : "loan_repayment_t##FaKYOccQ",
-    "targetPort" : "L5GiIoRX"
+    "id" : "jQ2Mdgow",
+    "source" : "filtered_source_##hyAg44j6",
+    "sourcePort" : "J7HwAxgy",
+    "target" : "repay_type_sourc##pf1mpt7P",
+    "targetPort" : "snUL4gxS"
   }, {
-    "id" : "Sw8nMVCH",
-    "source" : "refs_repay_type_##rzMGhEjo",
-    "sourcePort" : "kpUUxC89",
-    "target" : "loan_repayment_t##FaKYOccQ",
-    "targetPort" : "qpDN0qhE"
+    "id" : "XRWN8RzI",
+    "source" : "filtered_tbk_acc##eDATGJqy",
+    "sourcePort" : "Su2BRYAc",
+    "target" : "tbk_base##yE0S72oY",
+    "targetPort" : "WwYfM6fE"
   }, {
-    "id" : "dmwiU02G",
-    "source" : "refs_repay_type_##rzMGhEjo",
-    "sourcePort" : "kpUUxC89",
-    "target" : "loan_repayment_t##FaKYOccQ",
-    "targetPort" : "ubfcQFDO"
+    "id" : "wqTMkdOz",
+    "source" : "filtered_active_##iTRactei",
+    "sourcePort" : "HaCgRgvs",
+    "target" : "repayment_type_e##IjhgFP6T",
+    "targetPort" : "Vu7ex5Ct"
+  }, {
+    "id" : "uT3PmCXc",
+    "source" : "account_date_fil##S08Exwto",
+    "sourcePort" : "lwqrSCRM",
+    "target" : "repay_type_code_##HQPt6sKU",
+    "targetPort" : "oJsQYNoc"
+  }, {
+    "id" : "elUCbFPC",
+    "source" : "mb_accounts_filt##uMMii4bp",
+    "sourcePort" : "smGdfhDJ",
+    "target" : "mu001_product_co##RTfylfxA",
+    "targetPort" : "igkZgIDn"
+  }, {
+    "id" : "RD6UvM2e",
+    "source" : "source_repay_typ##Qc3eFU5e",
+    "sourcePort" : "j5kVG072",
+    "target" : "filtered_source_##hyAg44j6",
+    "targetPort" : "kRe5DQJs"
+  }, {
+    "id" : "JSsYNNTr",
+    "source" : "ztbk_account##lG10XNK8",
+    "sourcePort" : "hJCGZSor",
+    "target" : "filtered_tbk_acc##eDATGJqy",
+    "targetPort" : "FUwFKUbs"
+  }, {
+    "id" : "GW6nfqd8",
+    "source" : "joined_account_r##z1rdNtNL",
+    "sourcePort" : "yNFas6GA",
+    "target" : "filtered_active_##iTRactei",
+    "targetPort" : "GA0Jpa8H"
+  }, {
+    "id" : "Jj9uedex",
+    "source" : "account_loan_joi##LX9FU5ri",
+    "sourcePort" : "O4mLCoyF",
+    "target" : "account_date_fil##S08Exwto",
+    "targetPort" : "boLeGSZx"
+  }, {
+    "id" : "NY86bsUW",
+    "source" : "account_loan_pro##zmMtzv3e",
+    "sourcePort" : "ENzDYR7d",
+    "target" : "mb_accounts_filt##uMMii4bp",
+    "targetPort" : "gv71zrZB"
+  }, {
+    "id" : "gGXOXwui",
+    "source" : "zsgd_acct##f2BGzsBZ",
+    "sourcePort" : "wAsx57n4",
+    "target" : "source_repay_typ##Qc3eFU5e",
+    "targetPort" : "LdVY1XPW"
+  }, {
+    "id" : "dXlbmQxL",
+    "source" : "zsgd_acct##f2BGzsBZ",
+    "sourcePort" : "wAsx57n4",
+    "target" : "source_repay_typ##Qc3eFU5e",
+    "targetPort" : "kcXw1DHp"
+  }, {
+    "id" : "q9sUY7K0",
+    "source" : "zsgd_acct_loan##LWHnF8DB",
+    "sourcePort" : "nwncvIOV",
+    "target" : "source_repay_typ##Qc3eFU5e",
+    "targetPort" : "TPqOuYOc"
+  }, {
+    "id" : "gAy4TrF8",
+    "source" : "zrms_account##hXz7k6cG",
+    "sourcePort" : "u88w3yej",
+    "target" : "joined_account_r##z1rdNtNL",
+    "targetPort" : "kYzCDl3b"
+  }, {
+    "id" : "AsFG0Cso",
+    "source" : "zrms_loan_accoun##c4dGP6t6",
+    "sourcePort" : "reuCrjmd",
+    "target" : "joined_account_r##z1rdNtNL",
+    "targetPort" : "QwaDEyyD"
+  }, {
+    "id" : "inNZzIrq",
+    "source" : "znex_account##fuC2GH71",
+    "sourcePort" : "zWfb2eoD",
+    "target" : "account_loan_joi##LX9FU5ri",
+    "targetPort" : "tUT2mW5w"
+  }, {
+    "id" : "YmmpLhCi",
+    "source" : "znex_loan##YcJxwoeo",
+    "sourcePort" : "vWIJiqft",
+    "target" : "account_loan_joi##LX9FU5ri",
+    "targetPort" : "oLjlMhzZ"
+  }, {
+    "id" : "tvBTzf63",
+    "source" : "zwgd_all_acct_m_##vsDU1v9j",
+    "sourcePort" : "KWAvQd18",
+    "target" : "account_loan_pro##zmMtzv3e",
+    "targetPort" : "QSpJLhmn"
+  }, {
+    "id" : "iLjgsz6z",
+    "source" : "zwgd_mrtg_loan_m##sdIWkXnl",
+    "sourcePort" : "hWPsEUAq",
+    "target" : "account_loan_pro##zmMtzv3e",
+    "targetPort" : "kmJLAjlb"
   } ],
-  "component" : "Pipeline"
+  "component" : "Model"
 }

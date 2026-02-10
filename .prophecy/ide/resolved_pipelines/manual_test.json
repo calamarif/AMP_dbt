@@ -13,31 +13,33 @@
     "isTranspiledPipeline" : false,
     "publishDiagnosticMetrics" : false,
     "processesVsModelFiles" : {
-      "XKdgsr36gbVkJ2_E6o-ci$$1tnBPFYkgvk4B5kbk6Ru_" : "models/manual_test/manual_test__Union_1.sql",
-      "gY0QJsI1me5y9TtecxkYA$$VqrFPclpJ6rmCuBfjH9m0" : "models/manual_test/manual_test__Union_1.sql",
-      "WUMNk1vOoP7LjS5RCedUh$$zaJWXVbXi_PY-GaTrHivx" : "models/manual_test/manual_test__Union_1.sql",
-      "2iizAFqOBTeJm2inIQblg$$9BtGc6xFSDN5h7usciTHP" : "models/manual_test/manual_test__Union_1.sql",
-      "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL" : "models/manual_test/manual_test__Union_1.sql",
-      "KLBNHqvpq_3oQmdE7t7YQ$$d9iUPN1jhOsfr3zLN5UzU" : "models/manual_test/manual_test__Union_1.sql",
-      "L-BOcXvly_gw6oofAithx$$HurZpZo4BdwNSVz7766mD" : "models/manual_test/manual_test__Union_1.sql",
-      "Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5" : "models/manual_test/manual_test__Union_1.sql",
-      "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl" : "models/manual_test/manual_test__Union_1.sql",
-      "awLTyUKbvtJs0bVtyQtz5$$j6YScd_TZQIaczBCxC_Xg" : "models/manual_test/manual_test__Union_1.sql",
-      "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0" : "models/manual_test/manual_test__Union_1.sql",
-      "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb" : "models/manual_test/manual_test__Union_1.sql",
-      "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r" : "models/manual_test/manual_test__Union_1.sql",
-      "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb" : "models/manual_test/manual_test__Union_1.sql",
-      "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj" : "models/manual_test/manual_test__Union_1.sql",
-      "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T" : "models/manual_test/manual_test__Union_1.sql",
-      "LsYgYhWoyM4L3X4wBFI0u$$2GTSOM0MoHjs8qsb5t0Os" : "models/manual_test/manual_test__Union_1.sql",
-      "_HZzro8gcfOsRy2XDFzAH$$lzkQ4Ch1yOHejEra_WYq6" : "models/manual_test/manual_test__Union_1.sql",
-      "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz" : "models/manual_test/manual_test__Union_1.sql",
-      "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp" : "models/manual_test/manual_test__Union_1.sql",
-      "z2ZzCkr81tI69xfB8uV-0$$pJLKrwEUD2C8gSIE8Fg3x" : "models/manual_test/manual_test__Union_1.sql",
-      "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc" : "models/manual_test/manual_test__Union_1.sql",
-      "3wo9kLHphslEy4gvbdEBG$$XSHdJVDMv9aQXT23LD48q" : "models/manual_test/manual_test__Union_1.sql",
-      "PRS5XBPnGlortyYU7H22T$$ZYUJ58wuf29oloUdufJ-a" : "models/manual_test/manual_test__Union_1.sql",
-      "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf" : "models/manual_test/manual_test__Union_1.sql"
+      "refs_repay_type_##rzMGhEjo" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "mu001_product_co##RTfylfxA" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "filtered_source_##hyAg44j6" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "account_loan_pro##zmMtzv3e" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "znex_loan##YcJxwoeo" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "source_repay_typ##Qc3eFU5e" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "zsgd_acct_loan##LWHnF8DB" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "zsgd_acct##f2BGzsBZ" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "repay_type_code_##HQPt6sKU" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "znex_account##fuC2GH71" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "loan_repayment_type_logic_m7inbLdt" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "account_loan_joi##LX9FU5ri" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "zrms_account##hXz7k6cG" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "repay_type_sourc##pf1mpt7P" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "repayment_type_e##IjhgFP6T" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "ztbk_account##lG10XNK8" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "zrms_loan_accoun##c4dGP6t6" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "loan_repayment_t##FaKYOccQ" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "filtered_active_##iTRactei" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "zwgd_mrtg_loan_m##sdIWkXnl" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "zwgd_all_acct_m_##vsDU1v9j" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "Union_1##N9vjlIZW" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "joined_account_r##z1rdNtNL" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "tbk_base##yE0S72oY" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "filtered_tbk_acc##eDATGJqy" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "mb_accounts_filt##uMMii4bp" : "models/manual_test/manual_test__loan_repayment_type_logic.sql",
+      "account_date_fil##S08Exwto" : "models/manual_test/manual_test__loan_repayment_type_logic.sql"
     }
   },
   "processes" : {
@@ -61,97 +63,72 @@
         }
       },
       "ports" : {
-        "inputs" : [ {
-          "id" : "ja6sPxG0Maa1zc0KaLXg7$$sxRXktkMJJd7JhWhCEDBl",
-          "slug" : "in"
-        } ],
+        "inputs" : [ ],
         "outputs" : [ {
-          "id" : "Oyb7uzwyq9E6jlXunT5Q-$$AAaWleLk100CcQ-uTSZaN",
+          "id" : "OgFe8apU",
           "slug" : "out"
         } ],
         "isCustomOutputSchema" : false
       }
     },
-    "Moc47HIx_m1M1B3H_ipLU$$EbhTKtUlF3jc9Tu4GLXl5" : {
-      "id" : "Moc47HIx_m1M1B3H_ipLU$$EbhTKtUlF3jc9Tu4GLXl5",
-      "component" : "Dataset",
-      "metadata" : {
-        "label" : "refs_repay_type_map",
-        "x" : -1260,
-        "y" : 140,
-        "phase" : 0
-      },
-      "properties" : {
-        "writeOptions" : {
-          "writeMode" : "overwrite"
-        },
-        "table" : {
-          "name" : "refs_repay_type_map",
-          "sourceName" : "westpac_efs",
-          "sourceType" : "Table"
-        }
-      },
-      "ports" : {
-        "inputs" : [ {
-          "id" : "_Q9631IOoY-J3ulaheYNa$$bqrg9g02p5RYbCFBdrzTl",
-          "slug" : "in"
-        } ],
-        "outputs" : [ {
-          "id" : "aNE58Mw9UFHpIDrlwtIkr$$J3HkGGO5pTYTtibr_nFzE",
-          "slug" : "out"
-        } ],
-        "isCustomOutputSchema" : false
-      }
-    },
-    "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r" : {
-      "id" : "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r",
+    "loan_repayment_t##FaKYOccQ" : {
+      "id" : "loan_repayment_t##FaKYOccQ",
       "component" : "Model",
       "metadata" : {
-        "label" : "manual_test__Union_1",
+        "label" : "manual_test__loan_repayment_type_logic",
         "phase" : 0
       },
       "properties" : {
-        "modelName" : "manual_test__Union_1"
+        "modelName" : "manual_test__loan_repayment_type_logic"
       },
       "visualMetaInfo" : {
-        "visualProcessIds" : [ "Union_1_DfZK21BGARu7gAh1DzTF9$$mLiajPv-PeY0JmGfgFFR5", "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r", "Ka1lMAkhSfbnRYtSuko0X$$xV8O6gCAsyjyd_k4j8xpL", "z2ZzCkr81tI69xfB8uV-0$$pJLKrwEUD2C8gSIE8Fg3x", "mm0ck3r2hJylyqxhjtF0A$$bi19BWDBI42mTgLwhPb-T", "_HZzro8gcfOsRy2XDFzAH$$lzkQ4Ch1yOHejEra_WYq6", "awLTyUKbvtJs0bVtyQtz5$$j6YScd_TZQIaczBCxC_Xg", "6gPKv6RlzWqQqXKlley_G$$8ZKARztIHUCW59r1N08Lp", "LsYgYhWoyM4L3X4wBFI0u$$2GTSOM0MoHjs8qsb5t0Os", "gY0QJsI1me5y9TtecxkYA$$VqrFPclpJ6rmCuBfjH9m0", "jzFgSqX2Pg71yfE6lTWcV$$20Aw6k1bDWYfGm7k5THgb", "3wo9kLHphslEy4gvbdEBG$$XSHdJVDMv9aQXT23LD48q", "WUMNk1vOoP7LjS5RCedUh$$zaJWXVbXi_PY-GaTrHivx", "G42-Yj1KdPshfEaw5dodv$$emnDf7lKhswJmGTFFj5Pz", "2TEma7YuE5DSrp4SXy09r$$m5iBolAmfSmG_cswYk7qj", "IbX8bwjmzJVwEJNWQ-JQC$$RB73B2sjrHhZwV3FUAlz0", "TIcLGwkzq2ANqRW--YSEQ$$koeF0ZrY51k4y1xWekbJb", "SPDXE8A568zdkQBgwt0Ww$$H1NdL6Y7ipq30N8nuDPJf", "yLIbrU0HOQUDFBkyMTLhS$$6vhCK9mYxMztJmphVZqUc", "L-BOcXvly_gw6oofAithx$$HurZpZo4BdwNSVz7766mD", "k00GcMHDKXs0zGMQ-wpEL$$ywyTMKjwiFHxXZFztdxfl", "2iizAFqOBTeJm2inIQblg$$9BtGc6xFSDN5h7usciTHP", "KLBNHqvpq_3oQmdE7t7YQ$$d9iUPN1jhOsfr3zLN5UzU", "PRS5XBPnGlortyYU7H22T$$ZYUJ58wuf29oloUdufJ-a", "XKdgsr36gbVkJ2_E6o-ci$$1tnBPFYkgvk4B5kbk6Ru_" ],
+        "visualProcessIds" : [ "loan_repayment_type_logic_m7inbLdt", "loan_repayment_t##FaKYOccQ", "refs_repay_type_##rzMGhEjo", "Union_1##N9vjlIZW", "repay_type_sourc##pf1mpt7P", "tbk_base##yE0S72oY", "repayment_type_e##IjhgFP6T", "repay_type_code_##HQPt6sKU", "mu001_product_co##RTfylfxA", "filtered_source_##hyAg44j6", "filtered_tbk_acc##eDATGJqy", "ztbk_account##lG10XNK8", "filtered_active_##iTRactei", "account_date_fil##S08Exwto", "mb_accounts_filt##uMMii4bp", "source_repay_typ##Qc3eFU5e", "zsgd_acct##f2BGzsBZ", "zsgd_acct_loan##LWHnF8DB", "joined_account_r##z1rdNtNL", "zrms_account##hXz7k6cG", "zrms_loan_accoun##c4dGP6t6", "account_loan_joi##LX9FU5ri", "znex_account##fuC2GH71", "znex_loan##YcJxwoeo", "account_loan_pro##zmMtzv3e", "zwgd_all_acct_m_##vsDU1v9j", "zwgd_mrtg_loan_m##sdIWkXnl" ],
         "type" : "ephemeral",
         "isTemporaryTable" : true
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "manual_test__Union_1_in_0",
+          "id" : "manual_test__loan_repayment_type_logic_in_0",
           "slug" : "in_0"
         }, {
-          "id" : "manual_test__Union_1_in_1",
+          "id" : "manual_test__loan_repayment_type_logic_in_1",
           "slug" : "in_1"
         }, {
-          "id" : "manual_test__Union_1_in_2",
+          "id" : "manual_test__loan_repayment_type_logic_in_2",
           "slug" : "in_2"
         }, {
-          "id" : "manual_test__Union_1_in_3",
+          "id" : "manual_test__loan_repayment_type_logic_in_3",
           "slug" : "in_3"
         }, {
-          "id" : "manual_test__Union_1_in_4",
+          "id" : "manual_test__loan_repayment_type_logic_in_4",
           "slug" : "in_4"
         }, {
-          "id" : "manual_test__Union_1_in_5",
+          "id" : "manual_test__loan_repayment_type_logic_in_5",
           "slug" : "in_5"
         }, {
-          "id" : "manual_test__Union_1_in_6",
+          "id" : "manual_test__loan_repayment_type_logic_in_6",
           "slug" : "in_6"
         }, {
-          "id" : "manual_test__Union_1_in_7",
+          "id" : "manual_test__loan_repayment_type_logic_in_7",
           "slug" : "in_7"
         }, {
-          "id" : "manual_test__Union_1_in_8",
+          "id" : "manual_test__loan_repayment_type_logic_in_8",
           "slug" : "in_8"
         }, {
-          "id" : "manual_test__Union_1_in_9",
+          "id" : "manual_test__loan_repayment_type_logic_in_9",
           "slug" : "in_9"
+        }, {
+          "id" : "manual_test__loan_repayment_type_logic_in_10",
+          "slug" : "in_10"
+        }, {
+          "id" : "manual_test__loan_repayment_type_logic_in_11",
+          "slug" : "in_11"
+        }, {
+          "id" : "manual_test__loan_repayment_type_logic_in_12",
+          "slug" : "in_12"
         } ],
         "outputs" : [ {
-          "id" : "manual_test__Union_1_out_0",
+          "id" : "manual_test__loan_repayment_type_logic_out_0",
           "slug" : "out_0"
         } ],
         "isCustomOutputSchema" : false

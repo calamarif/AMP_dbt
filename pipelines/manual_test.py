@@ -5,14 +5,8 @@ with DAG():
         writeOptions = {"writeMode" : "overwrite"}, 
         table = {"name" : "refs_covid_repay_type", "sourceName" : "westpac_efs", "sourceType" : "Table"}
     )
-    refs_repay_type_map = Task(
-        task_id = "refs_repay_type_map", 
-        component = "Dataset", 
-        writeOptions = {"writeMode" : "overwrite"}, 
-        table = {"name" : "refs_repay_type_map", "sourceName" : "westpac_efs", "sourceType" : "Table"}
-    )
-    manual_test__Union_1 = Task(
-        task_id = "manual_test__Union_1", 
+    manual_test__loan_repayment_type_logic = Task(
+        task_id = "manual_test__loan_repayment_type_logic", 
         component = "Model", 
-        modelName = "manual_test__Union_1"
+        modelName = "manual_test__loan_repayment_type_logic"
     )

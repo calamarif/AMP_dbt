@@ -6,19 +6,19 @@
   })
 }}
 
-WITH zwgd_mrtg_loan_m_hist AS (
+WITH refs_repay_type_map AS (
+
+  SELECT * 
+  
+  FROM {{ source('westpac_efs', 'refs_repay_type_map') }}
+
+),
+
+zwgd_mrtg_loan_m_hist AS (
 
   SELECT * 
   
   FROM {{ source('westpac_edw_views', 'zwgd_mrtg_loan_m_hist') }}
-
-),
-
-ztbk_account AS (
-
-  SELECT * 
-  
-  FROM {{ source('westpac_edw_views', 'ztbk_account') }}
 
 ),
 
@@ -58,11 +58,18 @@ mb_accounts_filtered AS (
 
 ),
 
-znex_loan AS (
+mu001_product_code_mapping AS (
 
-  SELECT * 
+  SELECT 
+    Armt_Key AS ARMT_KEY,
+    'MU-001' AS SRC_SYS_CODE,
+    '' AS SRC_REPAY_TYPE_CODE,
+    'Product_Code' AS SRC_COLUMN,
+    Product_Code AS MU001_PRODUCT_CODE,
+    System_Product_Type AS MU001_SYSTEM_PRODUCT_TYPE,
+    TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') AS PROCESS_DATE
   
-  FROM {{ source('westpac_sgdw_views', 'znex_loan') }}
+  FROM mb_accounts_filtered
 
 ),
 
@@ -121,26 +128,11 @@ filtered_source_data AS (
 
 ),
 
-repay_type_source_data AS (
+znex_loan AS (
 
-  SELECT 
-    zsgd_Armt_Key AS armt_key,
-    zsgd_Src_Sys_Code AS src_sys_code,
-    CASE
-      WHEN zsgd_Src_Sys_Code = 'CHS'
-        THEN COALESCE(zsgd_a_OD_Type, '')
-      ELSE COALESCE(zsgd_al_Repay_Type_Code, '')
-    END AS src_repay_type_code,
-    CASE
-      WHEN zsgd_Src_Sys_Code = 'CHS'
-        THEN 'OD_Type'
-      ELSE 'Repay_Type_Code'
-    END AS src_column,
-    CAST(NULL AS STRING) AS mu001_product_code,
-    CAST(NULL AS STRING) AS mu001_system_product_type,
-    TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+  SELECT * 
   
-  FROM filtered_source_data
+  FROM {{ source('westpac_sgdw_views', 'znex_loan') }}
 
 ),
 
@@ -171,26 +163,51 @@ account_loan_joined_data AS (
 
 ),
 
-mu001_product_code_mapping AS (
-
-  SELECT 
-    Armt_Key AS ARMT_KEY,
-    'MU-001' AS SRC_SYS_CODE,
-    '' AS SRC_REPAY_TYPE_CODE,
-    'Product_Code' AS SRC_COLUMN,
-    Product_Code AS MU001_PRODUCT_CODE,
-    System_Product_Type AS MU001_SYSTEM_PRODUCT_TYPE,
-    TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') AS PROCESS_DATE
-  
-  FROM mb_accounts_filtered
-
-),
-
-zrms_loan_account AS (
+account_date_filter AS (
 
   SELECT * 
   
-  FROM {{ source('westpac_edw_views', 'zrms_loan_account') }}
+  FROM account_loan_joined_data
+  
+  WHERE TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN znex_From_Date AND znex_To_Date
+
+),
+
+repay_type_code_extract AS (
+
+  SELECT 
+    znex_Armt_Key AS armt_key,
+    'ML-005' AS src_sys_code,
+    COALESCE(znex_l_Repay_Type_Code, '') AS src_repay_type_code,
+    'Repay_Type_Code' AS src_column,
+    CAST(NULL AS STRING) AS mu001_product_code,
+    CAST(NULL AS STRING) AS mu001_system_product_type,
+    TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+  
+  FROM account_date_filter
+
+),
+
+repay_type_source_data AS (
+
+  SELECT 
+    zsgd_Armt_Key AS armt_key,
+    zsgd_Src_Sys_Code AS src_sys_code,
+    CASE
+      WHEN zsgd_Src_Sys_Code = 'CHS'
+        THEN COALESCE(zsgd_a_OD_Type, '')
+      ELSE COALESCE(zsgd_al_Repay_Type_Code, '')
+    END AS src_repay_type_code,
+    CASE
+      WHEN zsgd_Src_Sys_Code = 'CHS'
+        THEN 'OD_Type'
+      ELSE 'Repay_Type_Code'
+    END AS src_column,
+    CAST(NULL AS STRING) AS mu001_product_code,
+    CAST(NULL AS STRING) AS mu001_system_product_type,
+    TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
+  
+  FROM filtered_source_data
 
 ),
 
@@ -199,6 +216,14 @@ zrms_account AS (
   SELECT * 
   
   FROM {{ source('westpac_edw_views', 'zrms_account') }}
+
+),
+
+zrms_loan_account AS (
+
+  SELECT * 
+  
+  FROM {{ source('westpac_edw_views', 'zrms_loan_account') }}
 
 ),
 
@@ -245,28 +270,11 @@ repayment_type_extraction AS (
 
 ),
 
-account_date_filter AS (
+ztbk_account AS (
 
   SELECT * 
   
-  FROM account_loan_joined_data
-  
-  WHERE TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') BETWEEN znex_From_Date AND znex_To_Date
-
-),
-
-repay_type_code_extract AS (
-
-  SELECT 
-    znex_Armt_Key AS armt_key,
-    'ML-005' AS src_sys_code,
-    COALESCE(znex_l_Repay_Type_Code, '') AS src_repay_type_code,
-    'Repay_Type_Code' AS src_column,
-    CAST(NULL AS STRING) AS mu001_product_code,
-    CAST(NULL AS STRING) AS mu001_system_product_type,
-    TO_DATE('{{ edw_process_date }}', 'yyyyMMdd') AS process_date
-  
-  FROM account_date_filter
+  FROM {{ source('westpac_edw_views', 'ztbk_account') }}
 
 ),
 
@@ -325,8 +333,73 @@ Union_1 AS (
   
   FROM mu001_product_code_mapping AS in4
 
+),
+
+loan_repayment_type_logic AS (
+
+  SELECT 
+    b.armt_key,
+    b.src_sys_code,
+    b.src_repay_type_code,
+    b.src_column,
+    b.mu001_product_code,
+    b.mu001_system_product_type,
+    b.process_date,
+    rrtm.Repay_Type_Code AS mapped_repay_type,
+    rctm.Repay_Type_Code AS chs_mapped_repay_type,
+    '' AS covid_carryover_value,
+    CASE
+      WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.Repay_Type_Code, '') <> ''
+        THEN rctm.Repay_Type_Code
+      WHEN b.src_sys_code = 'MU-001'
+      AND b.mu001_product_code IN ('11752', '11753', '11758')
+      AND b.mu001_system_product_type = 'EAL'
+      AND COALESCE(rrtm.Repay_Type_Code, '') = ''
+        THEN 'Interest Only'
+      WHEN b.src_sys_code = 'MU-001'
+      AND b.mu001_product_code = '11206'
+      AND COALESCE(rrtm.Repay_Type_Code, '') = ''
+        THEN 'Interest Only'
+      WHEN b.src_sys_code = 'LIS'
+        THEN ''
+      WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.Repay_Type_Code, '') <> ''
+        THEN rrtm.Repay_Type_Code
+      ELSE 'Amortising'
+    END AS loan_repayment_type,
+    CASE
+      WHEN b.src_sys_code = 'CHS' AND COALESCE(rctm.Repay_Type_Code, '') <> ''
+        THEN 'Rule 1 - CHS OD_Type Mapping'
+      WHEN b.src_sys_code = 'MU-001'
+      AND b.mu001_product_code IN ('11752', '11753', '11758')
+      AND b.mu001_system_product_type = 'EAL'
+      AND COALESCE(rrtm.Repay_Type_Code, '') = ''
+        THEN 'Rule 2 - MU-001 EAL Product Default'
+      WHEN b.src_sys_code = 'MU-001'
+      AND b.mu001_product_code = '11206'
+      AND COALESCE(rrtm.Repay_Type_Code, '') = ''
+        THEN 'Rule 3 - MU-001 Product 11206 Default'
+      WHEN b.src_sys_code = 'LIS'
+        THEN 'Rule 4 - COVID Carryover'
+      WHEN b.src_sys_code <> 'CHS' AND COALESCE(rrtm.Repay_Type_Code, '') <> ''
+        THEN 'Rule 5 - Reference Mapping'
+      ELSE 'Rule 99 - Default Amortising'
+    END AS applied_rule
+  
+  FROM Union_1 AS b
+  LEFT JOIN refs_repay_type_map AS rrtm
+     ON b.src_sys_code = rrtm.Src_Sys_Code
+    AND b.src_repay_type_code = rrtm.Src_Repay_Type_Code
+    AND rrtm.Src_Column = 'Repay_Type_Code'
+    AND b.process_date BETWEEN rrtm.From_Date AND rrtm.To_Date
+  LEFT JOIN refs_repay_type_map AS rctm
+     ON b.src_sys_code = rctm.Src_Sys_Code
+    AND b.src_repay_type_code = rctm.Src_Repay_Type_Code
+    AND rctm.Src_Column = 'OD_Type'
+    AND b.src_sys_code = 'CHS'
+    AND b.process_date BETWEEN rctm.From_Date AND rctm.To_Date
+
 )
 
 SELECT *
 
-FROM Union_1
+FROM loan_repayment_type_logic
