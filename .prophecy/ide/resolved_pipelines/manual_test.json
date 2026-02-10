@@ -41,6 +41,68 @@
     }
   },
   "processes" : {
+    "0tCi4rILoP2RMm-ZJA0YV$$YC7-2DtLvSwjFSBo53sR5" : {
+      "id" : "0tCi4rILoP2RMm-ZJA0YV$$YC7-2DtLvSwjFSBo53sR5",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "refs_covid_repay_type",
+        "x" : -1260,
+        "y" : 0,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "refs_covid_repay_type",
+          "sourceName" : "westpac_efs",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ja6sPxG0Maa1zc0KaLXg7$$sxRXktkMJJd7JhWhCEDBl",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "Oyb7uzwyq9E6jlXunT5Q-$$AAaWleLk100CcQ-uTSZaN",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "Moc47HIx_m1M1B3H_ipLU$$EbhTKtUlF3jc9Tu4GLXl5" : {
+      "id" : "Moc47HIx_m1M1B3H_ipLU$$EbhTKtUlF3jc9Tu4GLXl5",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "refs_repay_type_map",
+        "x" : -1260,
+        "y" : 140,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "refs_repay_type_map",
+          "sourceName" : "westpac_efs",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "_Q9631IOoY-J3ulaheYNa$$bqrg9g02p5RYbCFBdrzTl",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "aNE58Mw9UFHpIDrlwtIkr$$J3HkGGO5pTYTtibr_nFzE",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
     "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r" : {
       "id" : "mtmjA6pwwBI6rDG3TbD8I$$RG6_TMdKixWlr-bPGgn2r",
       "component" : "Model",

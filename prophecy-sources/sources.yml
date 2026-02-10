@@ -210,3 +210,37 @@ sources:
       dataType:
         type: "Date"
     type: "table"
+- name: "westpac_efs"
+  database: "westpac"
+  schema: "efs"
+  tables:
+  - name: "refs_covid_repay_type"
+    config:
+      tags:
+      - "pipeline:manual_test"
+    columns: []
+    type: "table"
+  - name: "refs_repay_type_map"
+    config:
+      tags:
+      - "pipeline:manual_test"
+    columns:
+    - name: "Src_Sys_Code"
+      dataType:
+        type: "String"
+    - name: "Src_Repay_Type_Code"
+      dataType:
+        type: "String"
+    - name: "Src_Column"
+      dataType:
+        type: "String"
+    - name: "Repay_Type_Code"
+      dataType:
+        type: "String"
+    - name: "From_Date"
+      dataType:
+        type: "Date"
+    - name: "To_Date"
+      dataType:
+        type: "Date"
+    type: "table"
