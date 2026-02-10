@@ -167,21 +167,27 @@ sources:
   schema: "sgdw_views"
   tables:
   - name: "znex_account"
+    description: "Captures account assignment periods for tracking account ownership\
+      \ over time."
     config:
       tags:
       - "pipeline:nexus_base"
       - "pipeline:manual_test"
     columns:
     - name: "Account_Id"
+      description: "Unique identifier for the account in the system."
       dataType:
         type: "Bigint"
     - name: "Armt_Key"
+      description: "Key used to link the account to its related arm or segment."
       dataType:
         type: "Bigint"
     - name: "From_Date"
+      description: "Start date when the account or relationship becomes active."
       dataType:
         type: "Date"
     - name: "To_Date"
+      description: "End date when the account or relationship is no longer active."
       dataType:
         type: "Date"
     type: "table"

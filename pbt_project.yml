@@ -939,16 +939,21 @@ sqlSources:
         - name: Account_Id
           dataType:
             type: Bigint
+          description: Unique identifier for the account in the system.
         - name: Armt_Key
           dataType:
             type: Bigint
+          description: Key used to link the account to its related arm or segment.
         - name: From_Date
           dataType:
             type: Date
+          description: Start date when the account or relationship becomes active.
         - name: To_Date
           dataType:
             type: Date
-      description: null
+          description: End date when the account or relationship is no longer active.
+      description: Captures account assignment periods for tracking account ownership
+        over time.
       author: callum@prophecy.io
       createdAt: '2026-02-09 06:05:08'
       tableType: table

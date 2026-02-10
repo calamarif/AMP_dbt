@@ -664,8 +664,8 @@
       "component" : "Source",
       "metadata" : {
         "label" : "zsgd_acct",
-        "x" : -680,
-        "y" : -300,
+        "x" : -700,
+        "y" : -380,
         "phase" : 0
       },
       "properties" : {

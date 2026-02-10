@@ -429,7 +429,9 @@
         "label" : "znex_account",
         "x" : -720,
         "y" : 600,
-        "phase" : 0
+        "phase" : 0,
+        "comment" : "Overwrites the znex_account table with updated account data from the westpac_sgdw_views source.",
+        "autoUpdateComment" : true
       },
       "properties" : {
         "writeOptions" : {
@@ -722,8 +724,8 @@
       "component" : "Dataset",
       "metadata" : {
         "label" : "zsgd_acct",
-        "x" : -680,
-        "y" : -300,
+        "x" : -700,
+        "y" : -380,
         "phase" : 0
       },
       "properties" : {
